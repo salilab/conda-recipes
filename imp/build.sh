@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Find packages in Anaconda locations
+export CMAKE_PREFIX_PATH=${PREFIX}
+
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
