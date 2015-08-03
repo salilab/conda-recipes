@@ -1,0 +1,42 @@
+package:
+  name: imp
+  version: "2.5.0"
+
+source:
+  fn: imp-2.5.0.tar.gz
+  url: http://integrativemodeling.org/2.5.0/download/imp-2.5.0.tar.gz
+  md5: a283a80d8cd953fdd15e6c9f8dabbbc0
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - swig
+    - cmake
+    - boost
+    - hdf5
+    - fftw
+    - libtau
+    - cgal
+    - gsl
+
+  run:
+    - python
+    - boost
+    - hdf5
+    - fftw
+    - libtau
+    - cgal
+    - gsl
+
+test:
+  # Python imports
+  imports:
+    - imp
+
+about:
+  home: http://integrativemodeling.org
+  license: LGPL/GPL
+  summary: "The Integrative Modeling Platform"
