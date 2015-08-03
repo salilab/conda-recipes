@@ -1,0 +1,20 @@
+package:
+  name: fftw
+  version: 3.3.4
+
+source:
+  fn: fftw-3.3.4.tar.gz
+  url: http://www.fftw.org/fftw-3.3.4.tar.gz
+  sha256: 8f0cde90929bc05587c3368d2f15cd0530a60b8a9912a8e2979a72dbe5af0982
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - chrpath [linux]
+
+about:
+  home: http://www.fftw.org/
+  summary: 'Fastest FFT in the West'
+  license: GPL
