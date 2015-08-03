@@ -1,0 +1,16 @@
+package:
+  name: libtau
+  version: "1.0.1"
+
+source:
+  fn: libTAU-1.0.1.zip
+  url: http://salilab.org/imp/libTAU/libTAU-1.0.1.zip
+  md5: 7c332bf7b38988ae8db409ad5d36b7ac
+
+build:
+  number: 0
+
+about:
+  home: http://integrativemodeling.org/libTAU.html
+  license: Binary distribution only
+  summary: "Support library needed for MultiFit"
