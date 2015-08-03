@@ -21,6 +21,7 @@ requirements:
     - libtau
     - cgal
     - gsl
+    - opencv
 
   run:
     - python
@@ -30,6 +31,7 @@ requirements:
     - libtau
     - cgal
     - gsl
+    - opencv
 
 test:
   # Python imports
