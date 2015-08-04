@@ -1,0 +1,23 @@
+package:
+  name: gettext
+  version: "0.19.5.1"
+
+source:
+  fn: gettext-0.19.5.1.tar.gz
+  url: https://ftp.gnu.org/pub/gnu/gettext/gettext-0.19.5.1.tar.gz
+  sha256: a198d53b0c1fb11421ead197b7e76b144e887c9ef5a685323e92cbc950227731
+
+requirements:
+  build:
+    - zlib
+
+  run:
+    - zlib
+
+build:
+  number: 0
+
+about:
+  home: http://www.gnu.org/software/gettext/gettext.html
+  summary: "GNU libraries and utilities for producing multi-lingual messages"
+  license: GPLv3
