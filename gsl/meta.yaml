@@ -1,0 +1,22 @@
+package:
+  name: gsl
+  version: 1.16
+
+source:
+  fn: gsl-1.16.tar.gz
+  url: http://gnu.mirror.iweb.com/gsl/gsl-1.16.tar.gz
+  sha256: 73bc2f51b90d2a780e6d266d43e487b3dbd78945dd0b04b14ca5980fe28d2f53
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - system
+  run:
+    - system
+
+about:
+  home: http://www.gnu.org/software/gsl/
+  summary: "GNU Scientific Library"
+  license: GPLv3
