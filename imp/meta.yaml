@@ -34,7 +34,12 @@ requirements:
 test:
   # Python imports
   imports:
-    - imp
+    - IMP
+    - IMP.atom
+    - IMP.cnmultifit
+    - IMP.em2d
+    - IMP.rmf
+    - RMF
 
 about:
   home: http://integrativemodeling.org
