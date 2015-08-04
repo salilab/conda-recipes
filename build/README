@@ -1,0 +1,5 @@
+This directory contains files to set up Docker images that can be used to
+build conda packages.
+
+To build an image for 64-bit Linux, use:
+sudo docker build -t conda linux-64
