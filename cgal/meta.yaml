@@ -1,11 +1,11 @@
 package:
   name: cgal
-  version: "4.6"
+  version: "4.6.1"
 
 source:
-  fn: CGAL-4.6.tar.bz2
-  url: https://gforge.inria.fr/frs/download.php/file/34703/CGAL-4.6.tar.bz2
-  sha256: 9f267f30a827b28a14f2a3642ac2d0479df360d3995e02d1bc5b15c7b6cf9daf
+  fn: CGAL-4.6.1.tar.bz2
+  url: https://gforge.inria.fr/frs/download.php/file/34901/CGAL-4.6.1.tar.bz2
+  sha256: 58169727bead3a1d0ae4511a0f83a9079f050e61d5e8455b34f357f4461fefb2
 
 build:
   number: 0
