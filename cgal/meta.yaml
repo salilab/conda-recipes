@@ -1,0 +1,29 @@
+package:
+  name: cgal
+  version: "4.6"
+
+source:
+  fn: CGAL-4.6.tar.bz2
+  url: https://gforge.inria.fr/frs/download.php/file/34703/CGAL-4.6.tar.bz2
+  sha256: 9f267f30a827b28a14f2a3642ac2d0479df360d3995e02d1bc5b15c7b6cf9daf
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - boost 1.57.0
+    - gmp
+    - mpfr
+    - zlib
+  run:
+    - boost 1.57.0
+    - gmp
+    - mpfr
+    - zlib
+
+
+about:
+  home: http://www.cgal.org
+  license: GPLv3
