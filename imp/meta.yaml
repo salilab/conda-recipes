@@ -20,7 +20,8 @@ requirements:
     - fftw
     - libtau
     - gsl
-    - opencv
+    - opencv [py2k]
+    - opencv-nopython [py3k]
 
   run:
     - python
@@ -29,7 +30,8 @@ requirements:
     - fftw
     - libtau
     - gsl
-    - opencv
+    - opencv [py2k]
+    - opencv-nopython [py3k]
 
 test:
   # Python imports
