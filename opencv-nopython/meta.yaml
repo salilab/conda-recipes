@@ -1,0 +1,27 @@
+# Tested on Mac OS X 10.9 using clang compiler provided by XCode
+package:
+    name: opencv-nopython
+    version: 2.4.9
+
+source:
+    fn: opencv-2.4.9.zip
+    url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.9/opencv-2.4.9.zip
+
+build:
+    number: 0
+
+requirements:
+    build:
+        - cmake
+        - jpeg
+        - zlib
+        - libpng
+    run:
+        - jpeg
+        - zlib
+        - libpng
+
+about:
+    home: http://opencv.org/
+    summary: "opencv package built without Python (for Python 3)"
+    license: BSD
