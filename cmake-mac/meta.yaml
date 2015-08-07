@@ -1,0 +1,16 @@
+package:
+  name: cmake-mac
+  version: 3.2.2
+
+source:
+  fn: cmake-3.2.2.tar.gz
+  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz
+  md5: 2da57308071ea98b10253a87d2419281 
+
+test:
+  commands:
+    - cmake --help
+
+about:
+  home: http://www.cmake.org/
+  license: BSD
