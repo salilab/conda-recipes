@@ -14,8 +14,10 @@ requirements:
   build:
     - python
     - swig
-    - cmake
-    - boost
+    - cmake [not osx]
+    - cmake-mac [osx]
+    - boost [not osx]
+    - boost-mac [osx]
     - hdf5
     - fftw
     - libtau
@@ -25,7 +27,8 @@ requirements:
 
   run:
     - python
-    - boost
+    - boost [not osx]
+    - boost-mac [osx]
     - hdf5
     - fftw
     - libtau
