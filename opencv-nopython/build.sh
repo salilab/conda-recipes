@@ -1,10 +1,17 @@
 #!/bin/bash
 
+if [ `uname -s` = "Darwin" ]; then
+  EXTRA_CMAKE_OPTS="-DWITH_OPENCL=OFF"
+else
+  EXTRA_CMAKE_OPTS="\
+    -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
+    -DCMAKE_C_COMPILER=/usr/bin/gcc44 "
+fi
+
 mkdir build
 cd build
 cmake                                                               \
-    -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
-    -DCMAKE_C_COMPILER=/usr/bin/gcc44                               \
+    ${EXTRA_CMAKE_OPTS}                                             \
     -DWITH_PYTHON=OFF                                               \
     -DCMAKE_INSTALL_PREFIX=$PREFIX                                  \
     -DWITH_CUDA=OFF                                                 \

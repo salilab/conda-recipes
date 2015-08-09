@@ -12,7 +12,8 @@ build:
 
 requirements:
     build:
-        - cmake
+        - cmake [not osx]
+        - cmake-mac [osx]
         - jpeg
         - zlib
         - libpng
