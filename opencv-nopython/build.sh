@@ -2,6 +2,7 @@
 
 if [ `uname -s` = "Darwin" ]; then
   EXTRA_CMAKE_OPTS="-DWITH_OPENCL=OFF"
+  perl -pi -e "s#INSTALL_NAME_DIR lib#INSTALL_NAME_DIR ${PREFIX}/lib#" cmake/OpenCVModule.cmake apps/traincascade/CMakeLists.txt apps/haartraining/CMakeLists.txt
 else
   EXTRA_CMAKE_OPTS="\
     -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
