@@ -11,6 +11,8 @@ if [ `uname -s` = "Darwin" ]; then
       -DPYTHON_INCLUDE_DIR=${PYINC}"
   # Make sure the default encoding for files opened by Python 3 is UTF8
   export LANG=en_US.UTF-8
+  # Help ld to find opencv libs
+  export LDFLAGS="-L${PREFIX}/lib"
 else
   EXTRA_CMAKE_FLAGS=""
 fi
