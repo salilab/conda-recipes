@@ -3,9 +3,12 @@ package:
   version: 3.2.2
 
 source:
-  fn: cmake-3.2.2.tar.gz
-  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz
-  md5: 2da57308071ea98b10253a87d2419281 
+  fn: cmake-3.2.2.tar.gz [osx]
+  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz [osx]
+  md5: 2da57308071ea98b10253a87d2419281 [osx]
+  fn: cmake-3.2.2-win32-x86.zip [win]
+  url: http://www.cmake.org/files/v3.2/cmake-3.2.2-win32-x86.zip [win]
+  sha256: 8728119bbb48468ab45230a579463729e7b12d6babfa1ad77e771b239b5430db [win]
 
 test:
   commands:
