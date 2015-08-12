@@ -18,12 +18,12 @@ msbuild libgsl\libgsl.vcxproj /property:Configuration=Release-DLL
 
 if errorlevel 1 exit 1
 
-mkdir %LIBRARY_INC%\gsl
-copy ..\gsl\gsl*.h %LIBRARY_INC%\gsl\
-copy libgslcblas\Release-DLL\libgslcblas.dll %LIBRARY_LIB%
-copy libgslcblas\Release-DLL\libgslcblas_dll.lib %LIBRARY_LIB%\libgslcblas.lib
-copy libgsl\Release-DLL\libgsl.dll %LIBRARY_LIB%
-copy libgsl\Release-DLL\libgsl_dll.lib %LIBRARY_LIB%\libgsl.lib
+mkdir "%LIBRARY_INC%\gsl"
+copy ..\gsl\gsl*.h "%LIBRARY_INC%\gsl\"
+copy libgslcblas\Release-DLL\libgslcblas.dll "%LIBRARY_LIB%\"
+copy libgslcblas\Release-DLL\libgslcblas_dll.lib "%LIBRARY_LIB%\libgslcblas.lib"
+copy libgsl\Release-DLL\libgsl.dll "%LIBRARY_LIB%\"
+copy libgsl\Release-DLL\libgsl_dll.lib "%LIBRARY_LIB%\libgsl.lib"
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.
