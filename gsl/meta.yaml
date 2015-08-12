@@ -1,11 +1,15 @@
 package:
   name: gsl
-  version: 1.16
+  version: 1.16 [not win]
+  version: 1.8 [win]
 
 source:
-  fn: gsl-1.16.tar.gz
-  url: http://gnu.mirror.vexxhost.com/gsl/gsl-1.16.tar.gz
-  sha256: 73bc2f51b90d2a780e6d266d43e487b3dbd78945dd0b04b14ca5980fe28d2f53
+  fn: gsl-1.16.tar.gz [not win]
+  url: http://gnu.mirror.vexxhost.com/gsl/gsl-1.16.tar.gz [not win]
+  sha256: 73bc2f51b90d2a780e6d266d43e487b3dbd78945dd0b04b14ca5980fe28d2f53 [not win]
+  fn: gsl-1.8-src.zip [win]
+  url: http://downloads.sourceforge.net/project/gnuwin32/gsl/1.8/gsl-1.8-src.zip [win]
+  md5: 5c0df6ca6798ef666b6f89af161b76ba [win]
 
 build:
   number: 0
