@@ -12,18 +12,18 @@ build:
 
 requirements:
   build:
-    - cmake [not osx]
-    - cmake-mac [osx]
+    - cmake [not osx and not win]
+    - cmake-mac [osx or win]
     - boost 1.57.0 [not osx]
     - boost-mac 1.57.0 [osx]
     - gmp
-    - mpfr
+    - mpfr [not win]
     - zlib
   run:
     - boost 1.57.0 [not osx]
     - boost-mac 1.57.0 [osx]
     - gmp
-    - mpfr
+    - mpfr [not win]
     - zlib
 
 
