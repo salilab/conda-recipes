@@ -15,16 +15,16 @@ requirements:
     - python
     - swig
     - cgal [osx]
-    - cmake [not osx]
-    - cmake-mac [osx]
+    - cmake [not osx and not win]
+    - cmake-mac [osx or win]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5
     - fftw
     - libtau
     - gsl
-    - opencv [py2k]
-    - opencv-nopython [py3k]
+    - opencv [py2k and not win]
+    - opencv-nopython [py3k and not win]
 
   run:
     - python
@@ -35,8 +35,8 @@ requirements:
     - fftw
     - libtau
     - gsl
-    - opencv [py2k]
-    - opencv-nopython [py3k]
+    - opencv [py2k and not win]
+    - opencv-nopython [py3k and not win]
 
 test:
   # Python imports
