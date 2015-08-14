@@ -1,7 +1,7 @@
 if %ARCH% == "64" (
-  set EXTRA_CXX_FLAGS="/bigobj"
+  set EXTRA_CXX_FLAGS=/bigobj
 ) else (
-  set EXTRA_CXX_FLAGS=""
+  set EXTRA_CXX_FLAGS=
 )
 
 ::# Find packages in Anaconda locations
