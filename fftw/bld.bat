@@ -3,18 +3,18 @@ lib /def:libfftw3-3.def
 lib /def:libfftw3f-3.def
 lib /def:libfftw3l-3.def
 
-copy libfftw3-3.dll %LIBRARY_LIB%
-copy libfftw3f-3.dll %LIBRARY_LIB%
-copy libfftw3l-3.dll %LIBRARY_LIB%
+copy libfftw3-3.dll "%LIBRARY_LIB%\"
+copy libfftw3f-3.dll "%LIBRARY_LIB%\"
+copy libfftw3l-3.dll "%LIBRARY_LIB%\"
 
-copy libfftw3-3.lib %LIBRARY_LIB%
-copy libfftw3f-3.lib %LIBRARY_LIB%
-copy libfftw3l-3.lib %LIBRARY_LIB%
+copy libfftw3-3.lib "%LIBRARY_LIB%\"
+copy libfftw3f-3.lib "%LIBRARY_LIB%\"
+copy libfftw3l-3.lib "%LIBRARY_LIB%\"
 
 :: make .lib with easier name so that cmake can find it
-copy libfftw3-3.lib %LIBRARY_LIB%\fftw3.lib
+copy libfftw3-3.lib "%LIBRARY_LIB%\fftw3.lib"
 
-copy *.h %LIBRARY_INC%
+copy *.h "%LIBRARY_INC%\"
 
 if errorlevel 1 exit 1
 
