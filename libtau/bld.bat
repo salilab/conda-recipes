@@ -5,10 +5,12 @@ if %ARCH% == "64" (
 )
 
 mkdir %LIBRARY_INC%\libTAU
+if errorlevel 1 exit 1
 copy lib\%TAU_LIB%\*.dll %LIBRARY_LIB%
-copy lib\%TAU_LIB%\*.lib %LIBRARY_LIB%
+if errorlevel 1 exit 1
+copy lib\%TAU_LIB%\libTAU.lib %LIBRARY_LIB%\TAU.lib
+if errorlevel 1 exit 1
 copy include\*.h %LIBRARY_INC%\libTAU
-
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.
