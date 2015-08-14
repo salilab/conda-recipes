@@ -1,16 +1,16 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 85b76c3..60ebcc3 100644
+index 85b76c3..540bc2f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -58,6 +58,11 @@ if(POLICY CMP0042)
- cmake_policy(SET CMP0042 OLD)
- endif(POLICY CMP0042)
+@@ -32,6 +32,11 @@ if(IS_DIRECTORY "${PROJECT_SOURCE_DIR}/.git")
+   endif()
+ endif()
  
 +# Quiet warning from cmake 3.1 or later about quoted variables in if()
 +if(POLICY CMP0054)
 +cmake_policy(SET CMP0054 NEW)
 +endif(POLICY CMP0054)
 +
- set(timeout_factor 1)
- set(IMP_SWIG_PATH CACHE STRING "List of places for swig to search")
- set(SWIG_EXECUTABLE swig CACHE STRING "Swig program")
+ include(${CMAKE_SOURCE_DIR}/modules/rmf/dependency/RMF/cmake_modules/IMPExecuteProcess.cmake)
+ include(${CMAKE_SOURCE_DIR}/modules/rmf/dependency/RMF/cmake_modules/IMPAddTests.cmake)
+ include(${CMAKE_SOURCE_DIR}/modules/rmf/dependency/RMF/cmake_modules/CheckCompiles.cmake)
