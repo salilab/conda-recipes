@@ -15,6 +15,10 @@ if errorlevel 1 exit 1
 patch -p1 < %RECIPE_DIR%\cmake-policy.patch
 if errorlevel 1 exit 1
 
+:: Don't try to use os.setsid(), which isn't supported on Windows
+patch -p1 < %RECIPE_DIR%\imp-session.patch
+if errorlevel 1 exit 1
+
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
 copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\
