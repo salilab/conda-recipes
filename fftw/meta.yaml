@@ -22,5 +22,5 @@ requirements:
 
 about:
   home: http://www.fftw.org/
-  summary: 'Fastest FFT in the West'
+  summary: 'Fastest Fourier Transform in the West'
   license: GPL
