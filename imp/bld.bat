@@ -5,6 +5,14 @@ set CMAKE_PREFIX_PATH=%LIBRARY%
 patch -p1 < %RECIPE_DIR%\cmake-path.patch
 if errorlevel 1 exit 1
 
+:: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
+:: original contents
+copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\
+if errorlevel 1 exit 1
+mkdir tools\dev_tools\python_tools
+copy modules\rmf\dependency\RMF\tools\dev_tools\python_tools\* tools\dev_tools\python_tools\
+if errorlevel 1 exit 1
+
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -G "NMake Makefiles" ..
