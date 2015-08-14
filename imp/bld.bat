@@ -1,3 +1,9 @@
+if %ARCH% == "64" (
+  set EXTRA_CXX_FLAGS="/bigobj"
+) else (
+  set EXTRA_CXX_FLAGS=""
+)
+
 ::# Find packages in Anaconda locations
 set CMAKE_PREFIX_PATH=%LIBRARY%
 
@@ -19,7 +25,7 @@ if errorlevel 1 exit 1
 
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DWIN32 /DGSL_DLL" -G "NMake Makefiles" ..
+cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DWIN32 /DGSL_DLL %EXTRA_CXX_FLAGS%" -G "NMake Makefiles" ..
 if errorlevel 1 exit 1
 nmake
 if errorlevel 1 exit 1
