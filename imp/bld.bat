@@ -28,6 +28,10 @@ if errorlevel 1 exit 1
 patch -p1 < %RECIPE_DIR%\rmf-decorators.patch
 if errorlevel 1 exit 1
 
+:: Avoid confusion between RMF::hash_value and stdext::hash_value
+patch -p1 < %RECIPE_DIR%\rmf-hash-value.patch
+if errorlevel 1 exit 1
+
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
 copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\
