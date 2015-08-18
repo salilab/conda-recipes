@@ -24,6 +24,10 @@ if errorlevel 1 exit 1
 patch -p1 < %RECIPE_DIR%\imp-setup-module.patch
 if errorlevel 1 exit 1
 
+:: Don't fall over if we encounter paths containing spaces
+patch -p1 < %RECIPE_DIR%\rmf-decorators.patch
+if errorlevel 1 exit 1
+
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
 copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\
