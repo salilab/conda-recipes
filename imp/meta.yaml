@@ -47,6 +47,10 @@ test:
     - IMP.em2d
     - IMP.rmf
     - RMF
+  # Command line tools
+  commands:
+    - cnmultifit --help
+    - foxs --help
 
 about:
   home: http://integrativemodeling.org
