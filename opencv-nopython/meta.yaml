@@ -8,7 +8,7 @@ source:
     url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.9/opencv-2.4.9.zip
 
 build:
-    number: 0
+    number: 1
 
 requirements:
     build:
@@ -17,10 +17,12 @@ requirements:
         - jpeg
         - zlib
         - libpng
+        - libtiff
     run:
         - jpeg
         - zlib
         - libpng
+        - libtiff
 
 about:
     home: http://opencv.org/
