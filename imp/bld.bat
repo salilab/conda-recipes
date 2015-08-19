@@ -50,6 +50,10 @@ nmake install
 
 if errorlevel 1 exit 1
 
+:: Patch IMP Python module to add paths containing Anaconda DLLs to search path
+python "%RECIPE_DIR%\add_dll_search_path.py" "%SP_DIR%\IMP" "%LIBRARY_BIN%" "%LIBRARY_LIB%" "%SP_DIR%\IMP\__init__.py"
+if errorlevel 1 exit 1
+
 :: Add more build steps here, if they are necessary.
 
 :: See
