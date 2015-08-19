@@ -14,6 +14,16 @@ python %RECIPE_DIR%\add_proj_ref.py libgsl\libgsl.vcxproj
 python %RECIPE_DIR%\add_proj_ref.py libgslcblas\libgslcblas.vcxproj
 if errorlevel 1 exit 1
 
+if "%ARCH%" == "64" (
+  :: hack the project files for 64-bit (replace "Win32" with "x64")
+  python %RECIPE_DIR%\make_proj_64bit.py copy_gsl_headers\copy_gsl_headers.vcxproj
+  if errorlevel 1 exit 1
+  python %RECIPE_DIR%\make_proj_64bit.py libgslcblas\libgslcblas.vcxproj
+  if errorlevel 1 exit 1
+  python %RECIPE_DIR%\make_proj_64bit.py libgsl\libgsl.vcxproj
+  if errorlevel 1 exit 1
+)
+
 msbuild libgsl\libgsl.vcxproj /property:Configuration=Release-DLL
 
 if errorlevel 1 exit 1
