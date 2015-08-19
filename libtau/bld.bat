@@ -1,4 +1,4 @@
-if %ARCH% == "64" (
+if "%ARCH%" == "64" (
   set TAU_LIB="Windows.x86_64"
 ) else (
   set TAU_LIB="Windows.i386"

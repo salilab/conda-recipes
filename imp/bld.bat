@@ -1,4 +1,4 @@
-if %ARCH% == "64" (
+if "%ARCH%" == "64" (
   set EXTRA_CXX_FLAGS=/bigobj
 ) else (
   set EXTRA_CXX_FLAGS=
