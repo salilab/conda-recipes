@@ -21,15 +21,22 @@ nmake install
 if errorlevel 1 exit 1
 
 :: put libs and binaries in right location
+if "%ARCH%" == "64" (
+  set SUBDIR=x64\vc11
+  set TOPDIR=x64
+) else (
+  set SUBDIR=x86\vc10
+  set TOPDIR=x86
+)
 cd "%LIBRARY_PREFIX%"
 mkdir bin
 mkdir lib
-move x86\vc10\bin\* bin\
+move %SUBDIR%\bin\* bin\
 if errorlevel 1 exit 1
-move x86\vc10\lib\* lib\
+move %SUBDIR%\lib\* lib\
 if errorlevel 1 exit 1
-rd x86\vc10\lib
-rd x86\vc10\bin
-rd x86\vc10
-rd x86
+rd %SUBDIR%\lib
+rd %SUBDIR%\bin
+rd %SUBDIR%
+rd %TOPDIR%
 if errorlevel 1 exit 1
