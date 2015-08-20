@@ -7,10 +7,10 @@ Date:   Mon Aug 17 21:48:20 2015 -0700
     This should also do the right thing if any string contains
     escape characters (a common occurrence for Windows-style paths).
 
-diff --git a/tools/build/setup_module.py b/tools/build/setup_module.py
+diff --git tools/build/setup_module.py tools/build/setup_module.py
 index 72caf49..a44e620 100755
---- a/tools/build/setup_module.py
-+++ b/tools/build/setup_module.py
+--- tools/build/setup_module.py
++++ tools/build/setup_module.py
 @@ -222,30 +222,12 @@ def write_ok(
          swig_includes, swig_wrapper_includes):
      print("yes")

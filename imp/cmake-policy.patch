@@ -1,7 +1,7 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
+diff --git CMakeLists.txt CMakeLists.txt
 index 85b76c3..540bc2f 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
+--- CMakeLists.txt
++++ CMakeLists.txt
 @@ -32,6 +32,11 @@ if(IS_DIRECTORY "${PROJECT_SOURCE_DIR}/.git")
    endif()
  endif()

@@ -1,7 +1,7 @@
-diff --git a/tools/build/make_containers.py b/tools/build/make_containers.py
+diff --git tools/build/make_containers.py tools/build/make_containers.py
 index 37ac3d5..5ce8ac1 100755
---- a/tools/build/make_containers.py
-+++ b/tools/build/make_containers.py
+--- tools/build/make_containers.py
++++ tools/build/make_containers.py
 @@ -92,8 +92,8 @@ def make_one(path, params, test=True):
      for p in files:
          g = ContainerFileGenerator(p[1])

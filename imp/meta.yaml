@@ -6,6 +6,14 @@ source:
   fn: imp-2.5.0.tar.gz
   url: http://integrativemodeling.org/2.5.0/download/imp-2.5.0.tar.gz
   md5: a283a80d8cd953fdd15e6c9f8dabbbc0
+  patches: [win]
+    - cmake-path.patch [win]
+    - cmake-policy.patch [win]
+    - imp-session.patch [win]
+    - rmf-vmdplugin.patch [win]
+    - imp-setup-module.patch [win]
+    - rmf-decorators.patch [win]
+    - rmf-hash-value.patch [win]
 
 build:
   number: 0

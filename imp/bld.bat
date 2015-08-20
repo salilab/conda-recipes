@@ -4,34 +4,6 @@ if "%ARCH%" == "64" (
   set EXTRA_CXX_FLAGS=
 )
 
-:: Fix cmake paths to use / rather than \
-patch -p1 < %RECIPE_DIR%\cmake-path.patch
-if errorlevel 1 exit 1
-
-:: Quiet warnings from newer cmake about policy changes
-patch -p1 < %RECIPE_DIR%\cmake-policy.patch
-if errorlevel 1 exit 1
-
-:: Don't try to use os.setsid(), which isn't supported on Windows
-patch -p1 < %RECIPE_DIR%\imp-session.patch
-if errorlevel 1 exit 1
-
-:: Fix compilation of RMF VMD plugin
-patch -p1 < %RECIPE_DIR%\rmf-vmdplugin.patch
-if errorlevel 1 exit 1
-
-:: Don't generate module setup files containing unescaped backslashes
-patch -p1 < %RECIPE_DIR%\imp-setup-module.patch
-if errorlevel 1 exit 1
-
-:: Don't fall over if we encounter paths containing spaces
-patch -p1 < %RECIPE_DIR%\rmf-decorators.patch
-if errorlevel 1 exit 1
-
-:: Avoid confusion between RMF::hash_value and stdext::hash_value
-patch -p1 < %RECIPE_DIR%\rmf-hash-value.patch
-if errorlevel 1 exit 1
-
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
 copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\

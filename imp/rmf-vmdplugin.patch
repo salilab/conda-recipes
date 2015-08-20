@@ -1,7 +1,7 @@
-diff --git a/modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt b/modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
+diff --git modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
 index 6b9ae1c..b3510b9 100644
---- a/modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
-+++ b/modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
+--- modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
++++ modules/rmf/dependency/RMF/plugins/vmd/CMakeLists.txt
 @@ -6,17 +6,24 @@ find_path(VMDPLUGIN_INCLUDE_PATH
            )
  
@@ -30,11 +30,11 @@ index 6b9ae1c..b3510b9 100644
                                  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
  set_property(TARGET "RMF-vmd" PROPERTY FOLDER "RMF")
  
-diff --git a/modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp b/modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp
+diff --git modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp
 new file mode 100644
 index 0000000..6372d4f
 --- /dev/null
-+++ b/modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp
++++ modules/rmf/dependency/RMF/plugins/vmd/vmdplugin.cpp
 @@ -0,0 +1,10 @@
 +/* The VMD plugin macros are written assuming that the plugin is built as
 +   a single compilation unit (on Windows, each #include of vmdplugin.h will

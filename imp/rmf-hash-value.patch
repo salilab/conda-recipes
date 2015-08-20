@@ -1,7 +1,7 @@
-diff --git a/modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h b/modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
+diff --git modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
 index 5c4d19d..495a90c 100644
---- a/modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
+--- modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
++++ modules/rmf/dependency/RMF/include/RMF/BufferConstHandle.h
 @@ -69,6 +69,11 @@ class BufferConstHandle {
  #endif
  };
@@ -14,10 +14,10 @@ index 5c4d19d..495a90c 100644
  RMFEXPORT BufferConstHandle read_buffer(std::string file_name);
  
  RMFEXPORT void write_buffer(BufferConstHandle buffer, std::string file_name);
-diff --git a/modules/rmf/dependency/RMF/include/RMF/Enum.h b/modules/rmf/dependency/RMF/include/RMF/Enum.h
+diff --git modules/rmf/dependency/RMF/include/RMF/Enum.h modules/rmf/dependency/RMF/include/RMF/Enum.h
 index 2a44e7c..12f03f8 100644
---- a/modules/rmf/dependency/RMF/include/RMF/Enum.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/Enum.h
+--- modules/rmf/dependency/RMF/include/RMF/Enum.h
++++ modules/rmf/dependency/RMF/include/RMF/Enum.h
 @@ -79,6 +79,12 @@ class Enum {
  #endif
  };
@@ -31,10 +31,10 @@ index 2a44e7c..12f03f8 100644
  #if !defined(SWIG) && !defined(RMF_DOXYGEN)
  template <class Traits>
  inline std::ostream& operator<<(std::ostream& out, Enum<Traits> v) {
-diff --git a/modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h b/modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
+diff --git modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
 index 04380d1..723a230 100644
---- a/modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
+--- modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
++++ modules/rmf/dependency/RMF/include/RMF/FileConstHandle.h
 @@ -355,6 +355,11 @@ class RMFEXPORT FileConstHandle {
    void reload();
  };
@@ -47,10 +47,10 @@ index 04380d1..723a230 100644
  /**
     Open an RMF from a file system path in read-only mode.
  
-diff --git a/modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h b/modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
+diff --git modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
 index 48ec47d..3f9b00d 100644
---- a/modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
+--- modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
++++ modules/rmf/dependency/RMF/include/RMF/HDF5/DataSetIndexD.h
 @@ -91,6 +91,12 @@ RMF_ENABLE_WARNINGS namespace RMF {
                        } return ret;);
    };
@@ -64,10 +64,10 @@ index 48ec47d..3f9b00d 100644
  #ifndef RMF_DOXYGEN
    typedef DataSetIndexD<1> DataSetIndex1D;
    typedef std::vector<DataSetIndex1D> DataSetIndex1Ds;
-diff --git a/modules/rmf/dependency/RMF/include/RMF/ID.h b/modules/rmf/dependency/RMF/include/RMF/ID.h
+diff --git modules/rmf/dependency/RMF/include/RMF/ID.h modules/rmf/dependency/RMF/include/RMF/ID.h
 index 24f7d14..8b0ee7c 100644
---- a/modules/rmf/dependency/RMF/include/RMF/ID.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/ID.h
+--- modules/rmf/dependency/RMF/include/RMF/ID.h
++++ modules/rmf/dependency/RMF/include/RMF/ID.h
 @@ -96,6 +96,12 @@ class ID {
  #endif
  };
@@ -81,10 +81,10 @@ index 24f7d14..8b0ee7c 100644
  /** Identify a node within a file. */
  typedef ID<NodeTag> NodeID;
  /** Identify a frame within a file. */
-diff --git a/modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h b/modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
+diff --git modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
 index c06fda3..c3afba3 100644
---- a/modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
+--- modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
++++ modules/rmf/dependency/RMF/include/RMF/NodeConstHandle.h
 @@ -210,6 +210,11 @@ class RMFEXPORT NodeConstHandle
    FileConstHandle get_file() const;
  };
@@ -97,10 +97,10 @@ index c06fda3..c3afba3 100644
  } /* namespace RMF */
  
  RMF_DISABLE_WARNINGS
-diff --git a/modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h b/modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
+diff --git modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
 index a26ee5d..05740da 100644
---- a/modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
-+++ b/modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
+--- modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
++++ modules/rmf/dependency/RMF/include/RMF/infrastructure_macros.h
 @@ -182,13 +182,6 @@ class Nullable;
  struct Showable;
  inline std::ostream& operator<<(std::ostream& out, const Showable& t);

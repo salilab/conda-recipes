@@ -9,10 +9,10 @@ Date:   Tue Aug 18 11:38:10 2015 -0700
     git-subtree-dir: modules/rmf/dependency/RMF
     git-subtree-split: 50ad4d7474e51a49a4929279b3bf44457a8020e8
 
-diff --git a/modules/rmf/dependency/RMF/tools/build/_decorators.py b/modules/rmf/dependency/RMF/tools/build/_decorators.py
+diff --git modules/rmf/dependency/RMF/tools/build/_decorators.py modules/rmf/dependency/RMF/tools/build/_decorators.py
 index 482fa27..5f1ced8 100755
---- a/modules/rmf/dependency/RMF/tools/build/_decorators.py
-+++ b/modules/rmf/dependency/RMF/tools/build/_decorators.py
+--- modules/rmf/dependency/RMF/tools/build/_decorators.py
++++ modules/rmf/dependency/RMF/tools/build/_decorators.py
 @@ -2,6 +2,7 @@
  
  import os.path

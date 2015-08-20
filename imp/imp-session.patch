@@ -1,7 +1,7 @@
-diff --git a/tools/build/tools/__init__.py b/tools/build/tools/__init__.py
+diff --git tools/build/tools/__init__.py tools/build/tools/__init__.py
 index ad101eb..a416110 100644
---- a/tools/build/tools/__init__.py
-+++ b/tools/build/tools/__init__.py
+--- tools/build/tools/__init__.py
++++ tools/build/tools/__init__.py
 @@ -556,9 +556,9 @@ def run_subprocess(command, **kwargs):
      #    kwargs["stdout"] = subprocess.PIPE
      # if not kwargs.has_key("stderr"):
