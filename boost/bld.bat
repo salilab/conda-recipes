@@ -12,8 +12,14 @@ echo the moment
 call bootstrap.bat
 if errorlevel 1 exit 1
 
+if "%ARCH%" == "64" (
+  set EXTRA_FLAGS=address-model=64
+) else (
+  set EXTRA_FLAGS=
+)
+
 REM Build step
-bjam --build-dir=buildboost variant=release threading=multi link=shared --prefix=%LIBRARY_PREFIX% -sNO_ZLIB=0 -sZLIB_SOURCE=%RECIPE_DIR%\zlib-1.2.8 install
+bjam %EXTRA_FLAGS% --build-dir=buildboost variant=release threading=multi link=shared --prefix=%LIBRARY_PREFIX% -sNO_ZLIB=0 -sZLIB_SOURCE=%RECIPE_DIR%\zlib-1.2.8 install
 if errorlevel 1 exit 1
 
 rmdir /S /Q %RECIPE_DIR%\zlib-1.2.8
