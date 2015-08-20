@@ -67,6 +67,12 @@ if errorlevel 1 exit 1
 for /f %%f in ('dir /b *.exe') do copy "%SRC_DIR%\app_wrapper.exe" "%PREFIX%\%%f"
 if errorlevel 1 exit 1
 
+:: Since we built with MSVC 2012, and Anaconda only ships with the 2010 runtime,
+:: copy over the runtime (should really put this in its own package)
+if "%ARCH%" == "64" (
+  copy C:\Windows\system32\msvc*110.dll "%PREFIX%"
+)
+
 :: Add more build steps here, if they are necessary.
 
 :: See
