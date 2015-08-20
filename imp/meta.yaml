@@ -15,6 +15,7 @@ source:
     - rmf-decorators.patch [win]
     - rmf-hash-value.patch [win]
     - imp-symlink.patch [win]
+    - imp-utf8-encoding.patch [win]
 
 build:
   number: 0
