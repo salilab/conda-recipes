@@ -9,3 +9,6 @@ Mac (10.6) system. It assumes the Mac has Homebrew installed, and so hides
 the Homebrew packages to avoid contaminating the conda build environment.
 (Really we should use a VM here, but they're a little more awkward to
 set up for Mac.)
+
+The `linux-32` directory contains the commands we run to set up a `mock`
+chroot that can be used to build conda packages for 32-bit Linux.
