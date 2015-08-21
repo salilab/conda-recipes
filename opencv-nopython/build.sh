@@ -12,7 +12,7 @@ else
   EXTRA_CMAKE_OPTS="\
     -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
     -DCMAKE_C_COMPILER=/usr/bin/gcc44 "
-  SO="dylib"
+  SO="so"
 fi
 
 mkdir build
