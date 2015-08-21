@@ -1,0 +1,18 @@
+package:
+  name: mpfr
+  version: "3.0.0"
+
+source:
+  fn: mpfr-all-CGAL-3.9.zip
+  url: https://cgal.geometryfactory.com/CGAL/precompiled_libs/auxiliary/win32/MPFR/3.0.0/mpfr-all-CGAL-3.9.zip [win32]
+  url: https://cgal.geometryfactory.com/CGAL/precompiled_libs/auxiliary/x64/MPFR/3.0.0/mpfr-all-CGAL-3.9.zip [win64]
+  sha256: eafe73ae0715714277671e58e30466a9feaeb727c541a45c2ffec606c4f6e363 [win32]
+  sha256: 3e3a4bf48988ecfd97b0ad38ce5647046978c13574e2f1ab6fdb98041bf9845b [win64]
+
+build:
+  number: 0
+
+about:
+  home: http://www.mpfr.org
+  license: LGPLv3
+  summary: "Multiple-precision floating-point computation library (for Windows)"
