@@ -17,13 +17,13 @@ requirements:
     - boost 1.57.0 [not osx]
     - boost-mac 1.57.0 [osx]
     - gmp
-    - mpfr [not win]
+    - mpfr
     - zlib
   run:
     - boost 1.57.0 [not osx]
     - boost-mac 1.57.0 [osx]
     - gmp
-    - mpfr [not win]
+    - mpfr
     - zlib
 
 
