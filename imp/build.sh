@@ -6,8 +6,6 @@ export CMAKE_PREFIX_PATH=${PREFIX}
 if [ `uname -s` = "Darwin" ]; then
   PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
   EXTRA_CMAKE_FLAGS="\
-      -DCMAKE_INCLUDE_PATH=${PREFIX}/include/boost-mac \
-      -DCMAKE_LIBRARY_PATH=${PREFIX}/lib/boost-mac \
       -DPYTHON_INCLUDE_DIR=${PYINC}"
   # Make sure the default encoding for files opened by Python 3 is UTF8
   export LANG=en_US.UTF-8

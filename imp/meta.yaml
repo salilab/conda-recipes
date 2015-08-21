@@ -25,10 +25,8 @@ requirements:
     - python
     - swig
     - cgal [not linux]
-    - cmake [not osx and not win]
-    - cmake-mac [osx or win]
-    - boost [not osx]
-    - boost-mac [osx]
+    - cmake
+    - boost
     - hdf5
     - fftw
     - libtau
@@ -39,8 +37,7 @@ requirements:
   run:
     - python
     - cgal [not linux]
-    - boost [not osx]
-    - boost-mac [osx]
+    - boost
     - hdf5
     - fftw
     - libtau
