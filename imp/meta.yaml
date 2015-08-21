@@ -24,7 +24,7 @@ requirements:
   build:
     - python
     - swig
-    - cgal [osx]
+    - cgal [not linux]
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
@@ -38,7 +38,7 @@ requirements:
 
   run:
     - python
-    - cgal [osx]
+    - cgal [not linux]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5
@@ -53,6 +53,7 @@ test:
   imports:
     - IMP
     - IMP.atom
+    - IMP.cgal [not linux]
     - IMP.cnmultifit
     - IMP.em2d
     - IMP.rmf
