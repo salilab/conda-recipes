@@ -2,6 +2,11 @@ package:
   name: mpfr
   version: "3.0.0"
 
+# Use precompiled binaries provided by the CGAL folks (since we're going to
+# use them to build CGAL anyway, they should work). The "official" way to get
+# them is to run the CGAL installer, but it doesn't seem to be possible to
+# run that from a command line - but these are the URLs it hits (may need to
+# be changed in the future if the installer goes elsewhere for them).
 source:
   fn: mpfr-all-CGAL-3.9.zip
   url: https://cgal.geometryfactory.com/CGAL/precompiled_libs/auxiliary/win32/MPFR/3.0.0/mpfr-all-CGAL-3.9.zip [win32]
