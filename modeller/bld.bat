@@ -8,6 +8,9 @@ if "%ARCH%" == "64" (
 move modlib\modeller "%SP_DIR%\"
 if errorlevel 1 exit 1
 
+:: add missing util\__init__.py
+echo "# do nothing" > "%SP_DIR%\modeller\util\__init__.py"
+
 move lib\%EXETYPE%\python%PY_VER%\_modeller.pyd "%SP_DIR%\"
 if errorlevel 1 exit 1
 
