@@ -22,7 +22,7 @@ if errorlevel 1 exit 1
 
 :: put libs and binaries in right location
 if "%ARCH%" == "64" (
-  set SUBDIR=x64\vc11
+  set SUBDIR=x64\vc10
   set TOPDIR=x64
 ) else (
   set SUBDIR=x86\vc10
