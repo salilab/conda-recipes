@@ -70,11 +70,11 @@ if [ "${py_major}" = "3" ]; then
 fi
 
 # Build Python extension from SWIG inputs
-(cd ${modtop}/src/swig \
- && swig -python -keyword -nodefaultctor -nodefaultdtor -noproxy modeller.i \
- && python setup.py build \
- && cp build/lib.*${PY_VER}/_modeller*.so ${SP_DIR} \
- && rm -rf build modeller_wrap.c)
+cd ${modtop}/src/swig
+swig -python -keyword -nodefaultctor -nodefaultdtor -noproxy modeller.i
+python setup.py build
+cp build/lib.*${PY_VER}/_modeller*.so ${SP_DIR}
+rm -rf build modeller_wrap.c
 
 # Make config.py
 cat > ${modtop}/modlib/modeller/config.py <<END
