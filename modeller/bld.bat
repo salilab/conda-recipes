@@ -5,12 +5,6 @@ if "%ARCH%" == "64" (
   set EXETYPE=i386-w32
 )
 
-move modlib\modeller "%SP_DIR%\"
-if errorlevel 1 exit 1
-
-:: add missing util\__init__.py
-echo "# do nothing" > "%SP_DIR%\modeller\util\__init__.py"
-
 move lib\%EXETYPE%\python%PY_VER%\_modeller.pyd "%SP_DIR%\"
 if errorlevel 1 exit 1
 
@@ -41,6 +35,8 @@ move lib\%EXETYPE%\hdf5_hl.dll "%PREFIX%\"
 if errorlevel 1 exit 1
 move lib\%EXETYPE%\libglib-2.0-0.dll "%PREFIX%\"
 if errorlevel 1 exit 1
+move lib\%EXETYPE%\zlib1.dll "%PREFIX%\"
+if errorlevel 1 exit 1
 
 move lib\%EXETYPE%\mod*.exe "%PREFIX%\"
 if errorlevel 1 exit 1
@@ -48,6 +44,10 @@ move lib\%EXETYPE%\python23.dll "%PREFIX%\"
 if errorlevel 1 exit 1
 
 :: 64-bit uses msvcr110, so must pull that in (not in Anaconda)
+if "%ARCH%" == "64" (
+  move lib\%EXETYPE%\msvcr110.dll "%PREFIX%\"
+  if errorlevel 1 exit 1
+)
 
 mkdir "%MODTOP%"
 if errorlevel 1 exit 1
@@ -67,7 +67,14 @@ if errorlevel 1 exit 1
 move examples "%MODTOP%\"
 if errorlevel 1 exit 1
 
+:: add Modeller Python directory to Python path
+echo %MODTOP%\modlib > "%SP_DIR%\modeller.pth"
+if errorlevel 1 exit 1
+
+:: add missing util\__init__.py
+echo "# do nothing" > "%MODTOP%\modlib\modeller\util\__init__.py"
+
 :: Make config.py (note; path is wrong in Modeller error message if license
 :: is incorrect)
-echo install_dir = r'%MODTOP%' > "%SP_DIR%\modeller\config.py"
-echo license = r'XXXX' >> "%SP_DIR%\modeller\config.py"
+echo install_dir = r'%MODTOP%' > "%MODTOP%\modlib\modeller\config.py"
+echo license = r'XXXX' >> "%MODTOP%\modlib\modeller\config.py"
