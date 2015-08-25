@@ -27,7 +27,7 @@ requirements:
     - python
     - swig
     - setuptools
-    - glib [linux]
+    - glib [unix]
 
   run:
     - python

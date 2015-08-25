@@ -11,6 +11,9 @@ if [ `uname -s` = "Darwin" ]; then
   # Move from .dmg location to Anaconda path
   mv Library/modeller* ${PREFIX}/lib
 
+  # Note that we keep the glib that is already bundled with Modeller, since
+  # it is newer than that in Anaconda
+
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
@@ -49,13 +52,8 @@ else
   # Don't need modpy.sh
   rm -f ${modtop}/bin/modpy.sh
 
-fi
-
-# Bundle glib so we don't need it as a runtime dependency (since it pulls in
-# gettext which might interfere with the system copy)
-if [ `uname -s` = "Darwin" ]; then
-  cp ${PREFIX}/lib/libglib-2.0.dylib ${modtop}/lib/${exetype}/
-else
+  # Bundle glib so we don't need it as a runtime dependency (since it pulls in
+  # gettext which might interfere with the system copy)
   cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
 fi
 
@@ -91,24 +89,9 @@ license = r'XXXX'
 END
 
 if [ `uname -s` = "Darwin" ]; then
-  # Building _modeller.so pulled in glib and libintl from Homebrew; point to
-  # bundled copies instead (better would be to have packages for these in
-  # Anaconda)
-  install_name_tool -change /usr/local/lib/libglib-2.0.0.dylib ${modtop}/lib/${univ_exetype}/libglib-2.0.0.dylib ${SP_DIR}/_modeller.so
-  install_name_tool -change /usr/local/opt/gettext/lib/libintl.8.dylib ${modtop}/lib/${univ_exetype}/libintl.8.dylib ${SP_DIR}/_modeller.so
-
-  # Make sure that binaries don't refer to non-standard libs (e.g. in Homebrew) 
-  otool -L ${SP_DIR}/_modeller.so ${modtop}/lib/${univ_exetype}/*.dylib ${modtop}/bin/mod*_* | grep -Ev "/usr/lib|/lib/${univ_exetype}/|/System/Library/|:" | sort -u > /tmp/non-standard.$$
-  if [ -s /tmp/non-standard.$$ ]; then
-    echo "Non-standard libraries linked against:"
-    cat /tmp/non-standard.$$
-    rm -f /tmp/non-standard.$$
-    exit 1
-  else
-    rm -f /tmp/non-standard.$$
-  fi
+  # Make Python extension link against glib and intl bundled with Modeller,
+  # not from Anaconda
+  for lib in glib-2.0.0 intl.8; do
+    install_name_tool -change @rpath/./lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${SP_DIR}/_modeller*.so
+  done
 fi
-
-# See
-# http://docs.continuum.io/conda/build.html
-# for a list of environment variables that are set during the build process.
