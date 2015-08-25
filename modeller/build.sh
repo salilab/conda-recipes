@@ -51,6 +51,14 @@ else
 
 fi
 
+# Bundle glib so we don't need it as a runtime dependency (since it pulls in
+# gettext which might interfere with the system copy)
+if [ `uname -s` = "Darwin" ]; then
+  cp ${PREFIX}/lib/libglib-2.0.dylib ${modtop}/lib/${exetype}/
+else
+  cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+fi
+
 mv ${modtop}/bin/mod${PKG_VERSION} ${PREFIX}/bin
 perl -pi -e "s#^MODINSTALL(.*)=.*#MODINSTALL\$1=/opt/anaconda1anaconda2anaconda3/lib/${PKG_NAME}-${PKG_VERSION}#" ${PREFIX}/bin/mod${PKG_VERSION}
 

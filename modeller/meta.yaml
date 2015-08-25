@@ -17,7 +17,7 @@ source:
   sha256: 2ffbd0297a1b8ecd1399c6e364e44de248e75be269867600113f71c67e49a4c9 [win64]
 
 build:
-  number: 2
+  number: 3
   rpaths: [linux]
     - lib/modeller-9.15/lib/x86_64-intel8/ [linux64]
     - lib/modeller-9.15/lib/i386-intel8/ [linux32]
@@ -27,6 +27,7 @@ requirements:
     - python
     - swig
     - setuptools
+    - glib [linux]
 
   run:
     - python
