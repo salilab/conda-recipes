@@ -74,7 +74,6 @@ if errorlevel 1 exit 1
 :: add missing util\__init__.py
 echo "# do nothing" > "%MODTOP%\modlib\modeller\util\__init__.py"
 
-:: Make config.py (note; path is wrong in Modeller error message if license
-:: is incorrect)
+:: Make config.py
 echo install_dir = r'%MODTOP%' > "%MODTOP%\modlib\modeller\config.py"
 echo license = r'XXXX' >> "%MODTOP%\modlib\modeller\config.py"
