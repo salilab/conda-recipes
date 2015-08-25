@@ -1,0 +1,16 @@
+package:
+  name: libffi
+  version: "3.2.1"
+
+source:
+  fn: libffi-3.2.1.tar.gz
+  url: ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
+  sha256: d06ebb8e1d9a22d19e38d63fdb83954253f39bedc5d46232a05645685722ca37
+
+build:
+  number: 0
+
+about:
+  home: https://sourceware.org/libffi/
+  summary: "A Portable Foreign Function Interface Library"
+  license: BSD
