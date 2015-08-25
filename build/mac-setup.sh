@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! -x /usr/local/bin/pkg-config ]; then
+  echo "Expecting to find /usr/local/bin/pkg-config"
+  exit 1
+fi
+
 CONDA_ROOT=/tmp/conda.$$
 
 # Make sure conda build environment isn't polluted by Homebrew
@@ -7,6 +12,9 @@ CONDA_ROOT=/tmp/conda.$$
 
 # Make a clean conda build environment
 bash ~/Miniconda-latest-MacOSX-x86_64.sh -b -p ${CONDA_ROOT}
+
+# Make Homebrew pkg-config available
+ln -sf /usr/local/bin.hide/pkg-config ${CONDA_ROOT}/bin
 
 export PATH=${CONDA_ROOT}/bin:$PATH
 
