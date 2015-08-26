@@ -7,7 +7,7 @@ def install(src, dest, rename_map):
     with open(src, 'rb') as fh:
         contents = fh.read()
     for orig, repl in rename_map.items():
-        contents = contents.replace(orig, repl)
+        contents = contents.replace(orig.encode('ascii'), repl.encode('ascii'))
     with open(dest, 'wb') as fh:
         fh.write(contents)
 
