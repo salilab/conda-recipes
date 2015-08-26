@@ -38,11 +38,6 @@ if errorlevel 1 exit 1
 move lib\%EXETYPE%\zlib1.dll "%PREFIX%\"
 if errorlevel 1 exit 1
 
-move lib\%EXETYPE%\mod*.exe "%PREFIX%\"
-if errorlevel 1 exit 1
-move lib\%EXETYPE%\python23.dll "%PREFIX%\"
-if errorlevel 1 exit 1
-
 :: 64-bit uses msvcr110, so must pull that in (not in Anaconda)
 if "%ARCH%" == "64" (
   move lib\%EXETYPE%\msvcr110.dll "%PREFIX%\"
@@ -77,3 +72,20 @@ echo "# do nothing" > "%MODTOP%\modlib\modeller\util\__init__.py"
 :: Make config.py
 echo install_dir = r'%MODTOP%' > "%MODTOP%\modlib\modeller\config.py"
 echo license = r'XXXX' >> "%MODTOP%\modlib\modeller\config.py"
+
+:: make mini Python 2.3 environment so modXXX binary works
+move lib\%EXETYPE%\mod%PKG_VERSION%.exe "%MODTOP%\modlib\mod%PKG_VERSION%-orig.exe"
+if errorlevel 1 exit 1
+move lib\%EXETYPE%\python23.dll "%MODTOP%\modlib\"
+if errorlevel 1 exit 1
+mkdir "%MODTOP%\modlib\lib"
+move lib\%EXETYPE%\python2.3\_modeller.pyd "%MODTOP%\modlib\lib\"
+
+:: make modXXX wrapper that sets MODINSTALLXXX and PYTHONHOME then calls
+:: real modXXX binary
+copy "%RECIPE_DIR%\mod_wrapper.c" .
+cl mod_wrapper.c shell32.lib
+if errorlevel 1 exit 1
+
+copy mod_wrapper.exe "%PREFIX%\mod%PKG_VERSION%.exe"
+if errorlevel 1 exit 1
