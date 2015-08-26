@@ -32,8 +32,10 @@ requirements:
   run:
     - python
 
-#test:
-  # Python imports
+test:
+  commands:
+    - mod9.15
+  # Python imports (cannot test without license key)
   #imports:
   #  - modeller
 
