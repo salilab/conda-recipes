@@ -1,6 +1,6 @@
 @echo off
 set MODTOP=%PREFIX%\Library\modeller
-set CONFIG=%PREFIX%\lib\site-packages\modeller\config.py
+set CONFIG=%MODTOP%\modlib\modeller\config.py
 
 if "%KEY_MODELLER%" == "" (
   echo
