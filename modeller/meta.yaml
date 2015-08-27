@@ -33,8 +33,9 @@ requirements:
     - python
 
 test:
-  commands:
-    - mod9.15
+  # Command line tool (cannot test since usage returns exit value 1)
+  #commands:
+  #  - mod9.15
   # Python imports (cannot test without license key)
   #imports:
   #  - modeller
