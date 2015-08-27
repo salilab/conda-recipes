@@ -127,7 +127,7 @@ static char* get_python_binary(const char *topdir)
 
 /* Run the given binary, passing it the parameters we ourselves were given.
    If the binary is actually a Python script, be sure to run it with Python. */
-static void run_binary(const char *binary, const char *topdir, int is_python)
+static DWORD run_binary(const char *binary, const char *topdir, int is_python)
 {
   SHELLEXECUTEINFO si;
   BOOL bResult;
@@ -157,13 +157,17 @@ static void run_binary(const char *binary, const char *topdir, int is_python)
 
   if (bResult) {
     if (si.hProcess) {
+      DWORD exit_code;
       WaitForSingleObject(si.hProcess, INFINITE);
+      GetExitCodeProcess(si.hProcess, &exit_code);
       CloseHandle(si.hProcess);
+      return exit_code;
     }
   } else {
     fprintf(stderr, "Failed to start process, code %d\n", GetLastError());
     exit(1);
   }
+  return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -171,6 +175,7 @@ int main(int argc, char *argv[]) {
   static const char *library_bin = "\\Library\\bin\\";
   int is_python;
   char *dir, *fname, *new_full_path;
+  DWORD return_code;
 
   get_full_path(&dir, &fname);
   /*printf("%s, %s\n", dir, fname);*/
@@ -179,9 +184,9 @@ int main(int argc, char *argv[]) {
   /* If file (without extension) exists, then it must be a Python script */
   is_python = (_access(new_full_path, 0) == 0);
   /*printf("new full path %s, %d\n", new_full_path, is_python);*/
-  run_binary(new_full_path, dir, is_python);
+  return_code = run_binary(new_full_path, dir, is_python);
   free(dir);
   free(fname);
   free(new_full_path);
-  return 0;
+  return return_code;
 }

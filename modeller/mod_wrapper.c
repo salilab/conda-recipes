@@ -142,7 +142,7 @@ static char* get_python_binary(const char *topdir)
 }
 
 /* Run the given binary, passing it the parameters we ourselves were given. */
-static void run_binary(const char *binary)
+static DWORD run_binary(const char *binary)
 {
   SHELLEXECUTEINFO si;
   BOOL bResult;
@@ -162,17 +162,22 @@ static void run_binary(const char *binary)
 
   if (bResult) {
     if (si.hProcess) {
+      DWORD exit_code;
       WaitForSingleObject(si.hProcess, INFINITE);
+      GetExitCodeProcess(si.hProcess, &exit_code);
       CloseHandle(si.hProcess);
+      return exit_code;
     }
   } else {
     fprintf(stderr, "Failed to start process, code %d\n", GetLastError());
     exit(1);
   }
+  return 0;
 }
 
 int main(int argc, char *argv[]) {
   char *dir, *version, *new_full_path;
+  DWORD return_code;
 
   get_path_and_version(&dir, &version);
   /*printf("dir, version %s, %s\n", dir, version);*/
@@ -180,9 +185,9 @@ int main(int argc, char *argv[]) {
   set_modeller_env(dir, version);
   new_full_path = get_new_full_path(dir, version);
   /*printf("new full path %s\n", new_full_path);*/
-  run_binary(new_full_path);
+  return_code = run_binary(new_full_path);
   free(dir);
   free(version);
   free(new_full_path);
-  return 0;
+  return return_code;
 }
