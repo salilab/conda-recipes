@@ -18,13 +18,13 @@ source:
     - imp-utf8-encoding.patch [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - python
     - swig
-    - cgal [not linux]
+    - cgal
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
@@ -38,7 +38,7 @@ requirements:
 
   run:
     - python
-    - cgal [not linux]
+    - cgal
     - boost [not osx]
     - boost-mac [osx]
     - hdf5
@@ -53,7 +53,7 @@ test:
   imports:
     - IMP
     - IMP.atom
-    - IMP.cgal [not linux]
+    - IMP.cgal
     - IMP.cnmultifit
     - IMP.em2d
     - IMP.rmf
