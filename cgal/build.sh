@@ -20,6 +20,7 @@ if [ `uname` == Darwin ]; then
     -D OPENGL_INCLUDE_DIR=/System/Library/Frameworks/OpenGL.framework/Headers \
     .
 else
+    export CXXFLAGS="-fPIC"
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
     -D BOOST_ROOT=$PREFIX \
     -D BOOST_INCLUDE_DIR=$PREFIX/include \
@@ -32,6 +33,7 @@ else
     -D GMPXX_LIBRARIES=$PREFIX/include/libgmpxx.so \
     -D ZLIB_LIBRARY=$PREFIX/lib/libz.so \
     -D ZLIB_INCLUDE_DIR=$PREFIX/include \
+    -DBUILD_SHARED_LIBS=FALSE \
     .
 fi
 
