@@ -11,12 +11,14 @@ source:
 
 requirements:
   build:
+    - python
     - modeller 9.15
     - scons
     - swig
     - glib
 
   run:
+    - python
     - modeller 9.15
 
 about:
