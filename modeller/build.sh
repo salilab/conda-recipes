@@ -5,8 +5,9 @@ modtop=${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}
 if [ `uname -s` = "Darwin" ]; then
   tar -xzf *.pax.gz
   mkdir -p ${PREFIX}/lib
-  # Fix broken HDF5 symlinks in 9.15 package (fixed in SVN)
-  (cd Library/modeller-*/lib/mac10v4 && rm -f libhdf5.dylib libhdf5_hl.dylib && ln -sf libhdf5.8.dylib libhdf5.dylib && ln -sf libhdf5_hl.8.dylib libhdf5_hl.dylib)
+
+  # Remove bundled HDF5 libraries; use those in the conda package instead
+  rm -f Library/modeller-*/lib/mac10v4/libhdf5*
 
   # Move from .dmg location to Anaconda path
   mv Library/modeller* ${PREFIX}/lib
@@ -17,7 +18,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
-  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 hdf5.8 hdf5_hl.8 saxs modeller.10"
+  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.10"
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
@@ -25,6 +26,10 @@ if [ `uname -s` = "Darwin" ]; then
   for bin in ${modtop}/bin/mod*_* ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
     for lib in ${libs}; do
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${bin}
+    done
+    # Point to HDF5 libs in conda package
+    for lib in hdf5_hl.8 hdf5.8; do
+      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1813/lib${lib}.dylib ${bin}
     done
   done
 
@@ -113,10 +118,12 @@ if [ `uname -s` = "Darwin" ]; then
   # Put libraries in more usual locations
   ln -sf ${modtop}/lib/${exetype}/libmodeller.*.dylib ${PREFIX}/lib
   ln -sf ${modtop}/lib/${exetype}/libmodeller.dylib ${PREFIX}/lib
+  pkgconfig_libs="-L${modtop}/lib/${exetype} -lmodeller"
 else
   # Put libraries in more usual locations
   ln -sf ${modtop}/lib/${exetype}/libmodeller.so.* ${PREFIX}/lib
   ln -sf ${modtop}/lib/${exetype}/libmodeller.so ${PREFIX}/lib
+  pkgconfig_libs="-lmodeller"
 fi
 
 # Add pkg-config support
@@ -127,6 +134,6 @@ exec_prefix=${PREFIX}
 Name: Modeller
 Description: Comparative modeling by satisfaction of spatial restraints
 Version: ${PKG_VERSION}
-Libs: -lmodeller
+Libs: ${pkgconfig_libs}
 Cflags: -I${PREFIX}/include/modeller
 END
