@@ -1,0 +1,20 @@
+package:
+  name: hdf5-1813 
+  version: "1.8.13"
+
+source:
+  fn: hdf5-1.8.13.tar.bz2
+  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.bz2
+  sha1: 712955025f03db808f000d8f4976b8df0c0d37b5
+
+requirements:
+  build:
+    - zlib
+
+  run:
+    - zlib
+
+about:
+  home: http://www.hdfgroup.org/HDF5/
+  license: BSD
+  summary: "HDF5 pinned at 1.8.13, for use with Modeller"
