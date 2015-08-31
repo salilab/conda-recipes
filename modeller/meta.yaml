@@ -36,9 +36,9 @@ requirements:
     - hdf5-1813
 
 test:
-  # Command line tool (cannot test since usage returns exit value 1)
-  #commands:
-  #  - mod9.15
+  # Command line tool
+  commands:
+    - mod9.15 --cflags --libs
   # Python imports (cannot test without license key)
   #imports:
   #  - modeller
