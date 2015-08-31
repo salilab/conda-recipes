@@ -11,13 +11,13 @@ source:
 
 requirements:
   build:
-    - modeller
+    - modeller 9.15
     - scons
     - swig
     - glib
 
   run:
-    - modeller
+    - modeller 9.15
 
 about:
   home: http://salilab.org/mdt/
