@@ -29,11 +29,11 @@ requirements:
     - swig [unix]
     - setuptools
     - glib [unix]
-    - hdf5-1813
+    - hdf5-1813 [unix]
 
   run:
     - python
-    - hdf5-1813
+    - hdf5-1813 [unix]
 
 test:
   # Command line tool
