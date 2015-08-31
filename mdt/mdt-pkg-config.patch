@@ -1,0 +1,14 @@
+Index: tools/__init__.py
+===================================================================
+--- tools/__init__.py	(revision 1064)
++++ tools/__init__.py	(working copy)
+@@ -369,6 +369,9 @@
+     # Make Modeller exetype variable available:
+     if os.environ.has_key('EXECUTABLE_TYPESVN'):
+         env['ENV']['EXECUTABLE_TYPESVN'] = os.environ['EXECUTABLE_TYPESVN']
++    # Propagate pkg-config path
++    if os.environ.has_key('PKG_CONFIG_PATH'):
++        env['ENV']['PKG_CONFIG_PATH'] = os.environ['PKG_CONFIG_PATH']
+     # Set empty variables in case checks fail or are not run (e.g. clean)
+     env['MODELLER_MODPY'] = ''
+     env['MODELLER'] = {}

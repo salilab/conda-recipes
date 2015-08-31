@@ -1,0 +1,25 @@
+package:
+  name: mdt
+  version: "5.3"
+
+source:
+  fn: mdt-5.3.tar.gz
+  url: http://salilab.org/mdt/5.3/mdt-5.3.tar.gz
+  sha1: 9bc08fdae5247d82d4adba8ca1ba07edf4da254c
+  patches: [unix]
+    - mdt-pkg-config.patch [unix]
+
+requirements:
+  build:
+    - modeller
+    - scons
+    - swig
+    - glib
+
+  run:
+    - modeller
+
+about:
+  home: http://salilab.org/mdt/
+  license: GPLv2
+  summary: "Generate frequency tables used by Modeller and IMP"
