@@ -95,10 +95,26 @@ install_dir = r'${modtop}'
 license = r'XXXX'
 END
 
+# Put headers in more usual locations
+cd ${modtop}/src/include
+mkdir -p ${PREFIX}/include/modeller
+mv mod*.h ${exetype}/fortran-pointer-types.h ${PREFIX}/include/modeller/
+cd ${modtop}/src
+rm -rf include
+ln -sf ${PREFIX}/include/modeller include
+
 if [ `uname -s` = "Darwin" ]; then
   # Make Python extension link against glib and intl bundled with Modeller,
   # not from Anaconda
   for lib in glib-2.0.0 intl.8; do
     install_name_tool -change @rpath/./lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${SP_DIR}/_modeller*.so
   done
+
+  # Put libraries in more usual locations
+  ln -sf ${modtop}/lib/${exetype}/libmodeller.*.dylib ${PREFIX}/lib
+  ln -sf ${modtop}/lib/${exetype}/libmodeller.dylib ${PREFIX}/lib
+else
+  # Put libraries in more usual locations
+  ln -sf ${modtop}/lib/${exetype}/libmodeller.so.* ${PREFIX}/lib
+  ln -sf ${modtop}/lib/${exetype}/libmodeller.so ${PREFIX}/lib
 fi
