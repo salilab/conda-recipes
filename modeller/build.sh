@@ -55,6 +55,13 @@ else
   # Bundle glib so we don't need it as a runtime dependency (since it pulls in
   # gettext which might interfere with the system copy)
   cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+
+  # Remove bundled HDF5; use the conda package instead
+  rm -f ${modtop}/lib/${exetype}/*hdf5*
+
+  # To fix upstream: replace libmodeller.so copy with symlink
+  rm -f ${modtop}/lib/${exetype}/libmodeller.so
+  (cd ${modtop}/lib/${exetype} && ln -sf libmodeller.so.* libmodeller.so)
 fi
 
 mv ${modtop}/bin/mod${PKG_VERSION} ${PREFIX}/bin
