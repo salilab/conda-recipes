@@ -118,3 +118,15 @@ else
   ln -sf ${modtop}/lib/${exetype}/libmodeller.so.* ${PREFIX}/lib
   ln -sf ${modtop}/lib/${exetype}/libmodeller.so ${PREFIX}/lib
 fi
+
+# Add pkg-config support
+cat <<END > ${PREFIX}/lib/pkgconfig/modeller.pc
+prefix=${PREFIX}
+exec_prefix=${PREFIX}
+
+Name: Modeller
+Description: Comparative modeling by satisfaction of spatial restraints
+Version: ${PKG_VERSION}
+Libs: -lmodeller
+Cflags: -I${PREFIX}/include/modeller
+END

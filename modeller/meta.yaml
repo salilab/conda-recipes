@@ -39,6 +39,7 @@ test:
   # Command line tool
   commands:
     - mod9.15 --cflags --libs
+    - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
   #  - modeller
