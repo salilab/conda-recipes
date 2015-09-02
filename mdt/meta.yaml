@@ -11,6 +11,9 @@ source:
     - mdt-hdf5.patch [unix]
     - mdt-cmake.patch [unix]
 
+build:
+  number: 1
+
 requirements:
   build:
     - python
