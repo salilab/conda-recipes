@@ -7,8 +7,6 @@ source:
   url: http://salilab.org/mdt/5.3/mdt-5.3.tar.gz
   sha1: 9bc08fdae5247d82d4adba8ca1ba07edf4da254c
   patches: [unix]
-    - mdt-pkg-config.patch [unix]
-    - mdt-hdf5.patch [unix]
     - mdt-cmake.patch [unix]
 
 build:

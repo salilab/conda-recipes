@@ -3,11 +3,6 @@
 HDF5_VERSION="1813"
 
 PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
-if [ `uname -s` = "Darwin" ]; then
-  # Help ld to find libmodeller.dylib dependencies
-  MOD_LIB=`echo ${PREFIX}/lib/modeller*/lib/mac10v4/`
-  export LDFLAGS="-L${MOD_LIB}"
-fi
 
 mkdir build
 cd build

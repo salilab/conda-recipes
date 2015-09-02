@@ -286,8 +286,8 @@ Index: cmake_modules/FindGLIB.cmake
 Index: cmake_modules/FindMODELLER.cmake
 ===================================================================
 --- cmake_modules/FindMODELLER.cmake	(revision 0)
-+++ cmake_modules/FindMODELLER.cmake	(revision 1081)
-@@ -0,0 +1,34 @@
++++ cmake_modules/FindMODELLER.cmake	(revision 1082)
+@@ -0,0 +1,43 @@
 +# - Try to find Modeller
 +# Once done, this will define
 +#
@@ -322,6 +322,15 @@ Index: cmake_modules/FindMODELLER.cmake
 +include(FindPackageHandleStandardArgs)
 +FIND_PACKAGE_HANDLE_STANDARD_ARGS(MODELLER REQUIRED_VARS MODELLER_INCLUDE_DIRS
 +                MODELLER_LIBRARIES ${ADDITIONAL_REQUIRED_VARS})
++
++# Get all -L flags found by pkg-config; on the Mac at least we can't
++# link against Modeller successfully unless we add these.
++set(MODELLER_LDFLAGS "")
++foreach(flag ${PC_MODELLER_LDFLAGS})
++  if(${flag} MATCHES "^-L")
++    list(APPEND MODELLER_LIBRARIES ${flag})
++  endif()
++endforeach()
 Index: cmake_modules/FindNumPy.cmake
 ===================================================================
 --- cmake_modules/FindNumPy.cmake	(revision 0)
