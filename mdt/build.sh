@@ -2,15 +2,7 @@
 
 HDF5_VERSION="1813"
 
-# Find packages in Anaconda locations
-export CMAKE_PREFIX_PATH=${PREFIX}
-
-if [ `uname -s` = "Darwin" ]; then
-  PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
-  EXTRA_CMAKE_FLAGS="-DPYTHON_INCLUDE_DIR=${PYINC}"
-else
-  EXTRA_CMAKE_FLAGS=""
-fi
+PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
 
 mkdir build
 cd build
@@ -20,7 +12,10 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_DATADIR=${PREFIX}/share/mdt \
       -DCMAKE_INCLUDE_PATH=${PREFIX}/include/hdf5-${HDF5_VERSION} \
       -DCMAKE_LIBRARY_PATH=${PREFIX}/lib/hdf5-${HDF5_VERSION} \
-      ${EXTRA_CMAKE_FLAGS} ..
+      -DPYTHON_INCLUDE_DIR=${PYINC} \
+      -DCMAKE_PREFIX_PATH=${PREFIX} \
+      -DPYTHON_EXECUTABLE=${PREFIX}/bin/python \
+      ..
 
 make -j4 install
 
