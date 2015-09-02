@@ -9,17 +9,21 @@ source:
   patches: [unix]
     - mdt-pkg-config.patch [unix]
     - mdt-hdf5.patch [unix]
+    - mdt-cmake.patch [unix]
 
 requirements:
   build:
     - python
+    - numpy
     - modeller 9.15
-    - scons
+    - cmake [not osx]
+    - cmake-mac [osx]
     - swig
     - glib
 
   run:
     - python
+    - numpy
     - modeller 9.15
 
 about:

@@ -2,10 +2,27 @@
 
 HDF5_VERSION="1813"
 
-scons -j4 prefix=$PREFIX includepath=$PREFIX/include/hdf5-$HDF5_VERSION \
-          libpath=$PREFIX/lib/hdf5-$HDF5_VERSION \
-          pythondir=$SP_DIR libdir=$PREFIX/lib \
-          path="${PATH}" install
+# Find packages in Anaconda locations
+export CMAKE_PREFIX_PATH=${PREFIX}
+
+if [ `uname -s` = "Darwin" ]; then
+  PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
+  EXTRA_CMAKE_FLAGS="-DPYTHON_INCLUDE_DIR=${PYINC}"
+else
+  EXTRA_CMAKE_FLAGS=""
+fi
+
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+      -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
+      -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \
+      -DCMAKE_INSTALL_DATADIR=${PREFIX}/share/mdt \
+      -DCMAKE_INCLUDE_PATH=${PREFIX}/include/hdf5-${HDF5_VERSION} \
+      -DCMAKE_LIBRARY_PATH=${PREFIX}/lib/hdf5-${HDF5_VERSION} \
+      ${EXTRA_CMAKE_FLAGS} ..
+
+make -j4 install
 
 if [ `uname -s` = "Darwin" ]; then
   # Fix linkage of _mdt.so to libmdt.dylib
