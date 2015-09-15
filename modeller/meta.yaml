@@ -11,10 +11,10 @@ source:
   md5: 3a3cc045b6d05a3314f71a7b9ded1c41 [linux]
   fn: modeller9.15-32bit.zip [win32]
   url: http://salilab.org/modeller/9.15/modeller9.15-32bit.zip [win32]
-  sha256: bb32b0889505160fe7ccf00acb5ed194158a6389710fc97fd3f857ddb7a6f3ba [win32]
+  sha256: d84f06ff92c74456351169e1cc599de9846d404cf2a8b44aae17941c1bce80cf [win32]
   fn: modeller9.15-64bit.zip [win64]
   url: http://salilab.org/modeller/9.15/modeller9.15-64bit.zip [win64]
-  sha256: 2ffbd0297a1b8ecd1399c6e364e44de248e75be269867600113f71c67e49a4c9 [win64]
+  sha256: b9e4903b90c6861128bc9af3ecc4ea81569e55054809b2cf3bec7b5f236202e4 [win64]
 
 build:
   number: 4
