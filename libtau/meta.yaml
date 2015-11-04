@@ -4,8 +4,9 @@ package:
 
 source:
   fn: libTAU-1.0.1.zip
-  url: http://salilab.org/imp/libTAU/libTAU-1.0.1.zip
-  md5: 7c332bf7b38988ae8db409ad5d36b7ac
+  url: http://integrativemodeling.org/libTAU/libTAU-1.0.1.zip
+  md5: 7f368fd5169384602f5c492f3352aec5
+  sha256: f3a3319cdd6dda71ca1d6f04f4c401f15d6f715249fa476dca0d7e94580fe882
 
 build:
   number: 0
