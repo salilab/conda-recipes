@@ -13,8 +13,11 @@ if [ `uname -s` = "Darwin" ]; then
   export LANG=en_US.UTF-8
   # Help ld to find opencv libs
   export LDFLAGS="-L${PREFIX}/lib"
+  # Our Mac build system isn't that powerful; don't overload it
+  NUMTASKS=2
 else
   EXTRA_CMAKE_FLAGS=""
+  NUMTASKS=4
 fi
 
 mkdir build && cd build
@@ -23,5 +26,5 @@ cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
       -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
       -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \
       ${EXTRA_CMAKE_FLAGS} ..
-make -j4
+make -j${NUMTASKS}
 make install
