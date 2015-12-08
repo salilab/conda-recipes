@@ -19,6 +19,8 @@ ln -sf /usr/local/bin.hide/pkg-config ${CONDA_ROOT}/bin
 export PATH=${CONDA_ROOT}/bin:$PATH
 
 conda install -y conda-build anaconda-client
+conda config --add channels salilab
+conda update -y --all
 
 # Make a subshell to work with conda
 bash
