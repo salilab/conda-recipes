@@ -6,7 +6,7 @@ source:
   fn: imp-2.5.0.tar.gz
   url: http://integrativemodeling.org/2.5.0/download/imp-2.5.0.tar.gz
   md5: a283a80d8cd953fdd15e6c9f8dabbbc0
-  patches: [win]
+  patches:
     - cmake-path.patch [win]
     - cmake-policy.patch [win]
     - imp-session.patch [win]
@@ -16,9 +16,10 @@ source:
     - rmf-hash-value.patch [win]
     - imp-symlink.patch [win]
     - imp-utf8-encoding.patch [win]
+    - pmi-hierarchy-mass.patch
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: True
 
 requirements:
