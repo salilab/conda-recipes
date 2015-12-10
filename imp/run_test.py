@@ -11,6 +11,9 @@ import os
 d = IMP.test.get_data_path('linux.words')
 fh = open(d)
 del fh
+d = IMP.atom.get_example_path('cg_pdb.py')
+fh = open(d)
+del fh
 
 # Make sure that we can read in an RMF file that we ourselves created
 m = IMP.Model()
