@@ -16,6 +16,7 @@ source:
     - rmf-hash-value.patch [win]
     - imp-symlink.patch [win]
     - imp-utf8-encoding.patch [win]
+    - imp-directories.patch [win]
     - pmi-hierarchy-mass.patch
 
 build:
