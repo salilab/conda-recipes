@@ -24,5 +24,6 @@ del r
 r = RMF.open_rmf_file_read_only("test.rmf")
 IMP.rmf.link_hierarchies(r, [d])
 IMP.rmf.load_frame(r, 0)
+del r
 
 os.unlink("test.rmf")
