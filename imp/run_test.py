@@ -8,7 +8,9 @@ import RMF
 import os
 
 # Make sure that install prefix is set correctly
-IMP.test.get_data_path('linux.words')
+d = IMP.test.get_data_path('linux.words')
+fh = open(d)
+del fh
 
 # Make sure that we can read in an RMF file that we ourselves created
 m = IMP.Model()
