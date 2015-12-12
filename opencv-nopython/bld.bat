@@ -22,10 +22,10 @@ if errorlevel 1 exit 1
 
 :: put libs and binaries in right location
 if "%ARCH%" == "64" (
-  set SUBDIR=x64\vc10
+  set SUBDIR=x64\vc%VisualStudioVersion%
   set TOPDIR=x64
 ) else (
-  set SUBDIR=x86\vc10
+  set SUBDIR=x86\vc%VisualStudioVersion%
   set TOPDIR=x86
 )
 cd "%LIBRARY_PREFIX%"
