@@ -1,0 +1,36 @@
+diff --git a/gsl/bld.bat b/gsl/bld.bat
+index 3aca474..458e371 100644
+--- a/gsl/bld.bat
++++ b/gsl/bld.bat
+@@ -1,14 +1,14 @@
+ cd src\gsl\1.8\gsl-1.8\VC8
+ 
+ :: convert ancient .vcproj files to newer .vcxproj format
+-vcupgrade copy_gsl_headers\copy_gsl_headers.vcproj
++devenv /upgrade copy_gsl_headers\copy_gsl_headers.vcproj
+ if errorlevel 1 exit 1
+-vcupgrade libgslcblas\libgslcblas.vcproj
++devenv /upgrade libgslcblas\libgslcblas.vcproj
+ if errorlevel 1 exit 1
+-vcupgrade libgsl\libgsl.vcproj
++devenv /upgrade libgsl\libgsl.vcproj
+ if errorlevel 1 exit 1
+ 
+-:: vcupgrade doesn't work on .sln files, and misses adding ProjectReferences
++:: devenv /upgrade doesn't work on .sln files, and misses adding ProjectReferences
+ :: to the .vcxproj files, so hack them
+ python %RECIPE_DIR%\add_proj_ref.py libgsl\libgsl.vcxproj
+ python %RECIPE_DIR%\add_proj_ref.py libgslcblas\libgslcblas.vcxproj
+diff --git a/gsl/meta.yaml b/gsl/meta.yaml
+index 5e9acd5..862b46f 100644
+--- a/gsl/meta.yaml
++++ b/gsl/meta.yaml
+@@ -13,6 +13,8 @@ source:
+ 
+ build:
+   number: 1
++  features:
++    - vc14
+ 
+ requirements:
+   build:
