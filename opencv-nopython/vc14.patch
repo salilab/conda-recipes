@@ -1,0 +1,46 @@
+diff --git a/opencv-nopython/bld.bat b/opencv-nopython/bld.bat
+index f571a24..556a5ed 100644
+--- a/opencv-nopython/bld.bat
++++ b/opencv-nopython/bld.bat
+@@ -19,24 +19,3 @@ if errorlevel 1 exit 1
+ 
+ nmake install
+ if errorlevel 1 exit 1
+-
+-:: put libs and binaries in right location
+-if "%ARCH%" == "64" (
+-  set SUBDIR=x64\vc%VisualStudioVersion%
+-  set TOPDIR=x64
+-) else (
+-  set SUBDIR=x86\vc%VisualStudioVersion%
+-  set TOPDIR=x86
+-)
+-cd "%LIBRARY_PREFIX%"
+-mkdir bin
+-mkdir lib
+-move %SUBDIR%\bin\* bin\
+-if errorlevel 1 exit 1
+-move %SUBDIR%\lib\* lib\
+-if errorlevel 1 exit 1
+-rd %SUBDIR%\lib
+-rd %SUBDIR%\bin
+-rd %SUBDIR%
+-rd %TOPDIR%
+-if errorlevel 1 exit 1
+diff --git a/opencv-nopython/meta.yaml b/opencv-nopython/meta.yaml
+index 7ec4d5a..a2c740e 100644
+--- a/opencv-nopython/meta.yaml
++++ b/opencv-nopython/meta.yaml
+@@ -9,9 +9,12 @@ source:
+ 
+ build:
+     number: 2
++    features:
++      - vc14
+ 
+ requirements:
+     build:
++        - python
+         - cmake [not osx and not win]
+         - cmake-mac [osx or win]
+         - jpeg
