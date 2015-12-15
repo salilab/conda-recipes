@@ -5,6 +5,8 @@ package:
 source:
   fn: boost_1_57_0.tar.bz2
   url: http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2
+  patches: [win]
+    - boost-vc14.patch [win]
 
 build:
   number: 6
