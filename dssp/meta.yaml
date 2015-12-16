@@ -1,0 +1,32 @@
+package:
+  name: dssp
+  version: "2.2.1"
+
+source:
+  fn: dssp-2.2.1.tgz
+  url: ftp://ftp.cmbi.ru.nl/pub/software/dssp/dssp-2.2.1.tgz
+  sha256: 5fb5e7c085de16c05981e3a72869c8b082911a0b46e6dcc6dbd669c9f267e8e1
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - boost 1.57.0 [not osx]
+    - boost-mac 1.57.0 [osx]
+    - zlib
+    - bzip2
+  run:
+    - boost 1.57.0 [not osx]
+    - boost-mac 1.57.0 [osx]
+    - zlib
+    - bzip2
+
+about:
+  home: http://swift.cmbi.ru.nl/gv/dssp/
+  summary: 'Secondary structure assignment'
+  license: Boost
+
+test:
+  commands:
+    - mkdssp --version
