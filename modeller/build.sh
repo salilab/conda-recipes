@@ -18,7 +18,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
-  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.10"
+  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.11"
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
@@ -28,8 +28,8 @@ if [ `uname -s` = "Darwin" ]; then
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${bin}
     done
     # Point to HDF5 libs in conda package
-    for lib in hdf5_hl.8 hdf5.8; do
-      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1813/lib${lib}.dylib ${bin}
+    for lib in hdf5_hl.9 hdf5.9; do
+      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1814/lib${lib}.dylib ${bin}
     done
   done
 
