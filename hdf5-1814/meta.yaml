@@ -1,0 +1,21 @@
+package:
+  name: hdf5-1814 
+  version: "1.8.14"
+
+source:
+  fn: hdf5-1.8.14.tar.bz2
+  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.14/src/hdf5-1.8.14.tar.bz2
+  sha1: 3c48bcb0d5fb21a3aa425ed035c08d8da3d5483a
+  sha256: 53722cb9f5977af2908f92fc1a3f8c597800a5cb448cfe5c75060d6335bb9bab
+
+requirements:
+  build:
+    - zlib
+
+  run:
+    - zlib
+
+about:
+  home: http://www.hdfgroup.org/HDF5/
+  license: BSD
+  summary: "HDF5 pinned at 1.8.14, for use with Modeller"
