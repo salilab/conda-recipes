@@ -63,10 +63,6 @@ else
 
   # Remove bundled HDF5; use the conda package instead
   rm -f ${modtop}/lib/${exetype}/*hdf5*
-
-  # To fix upstream: replace libmodeller.so copy with symlink
-  rm -f ${modtop}/lib/${exetype}/libmodeller.so
-  (cd ${modtop}/lib/${exetype} && ln -sf libmodeller.so.* libmodeller.so)
 fi
 
 mv ${modtop}/bin/mod${PKG_VERSION} ${PREFIX}/bin
@@ -77,15 +73,6 @@ ln -s ${modtop}/modlib/modeller ${SP_DIR}
 
 perl -pi -e "s/^exetype =.*$/exetype = \"${exetype}\"/" \
          ${modtop}/src/swig/setup.py
-
-# to fix upstream: setup.py doesn't currently work with Python 3
-py_major=`echo ${PY_VER} | cut -b1`
-if [ "${py_major}" = "3" ]; then
-  perl -pi -e 's/import commands/import subprocess/;' \
-           -e 's/for token in.*$/for token in subprocess.check_output(["pkg-config", "--libs", "--cflags"] + list(packages), universal_newlines=True).split():/;' \
-           -e 's/^.*join\(packages\).*$//;' \
-           ${modtop}/src/swig/setup.py
-fi
 
 # Build Python extension from SWIG inputs
 cd ${modtop}/src/swig
