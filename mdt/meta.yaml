@@ -10,13 +10,13 @@ source:
     - mdt-cmake.patch [unix]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - python
     - numpy
-    - modeller 9.15
+    - modeller 9.16
     - cmake [not osx]
     - cmake-mac [osx]
     - swig
@@ -25,7 +25,7 @@ requirements:
   run:
     - python
     - numpy
-    - modeller 9.15
+    - modeller 9.16
 
 about:
   home: http://salilab.org/mdt/

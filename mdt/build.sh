@@ -1,6 +1,7 @@
 #!/bin/bash
 
-HDF5_VERSION="1813"
+HDF5_VERSION="1814"
+MODELLER_VERSION="9.16"
 
 PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
 
@@ -27,7 +28,7 @@ if [ `uname -s` = "Darwin" ]; then
     # Link against glib2 (and libintl dependency) bundled with Modeller, since
     # it's newer than the glib conda package
     for dep in glib-2.0.0 intl.8; do
-      install_name_tool -change "@rpath/./lib${dep}.dylib" "@rpath/modeller-9.15/lib/mac10v4/lib${dep}.dylib" ${lib}
+      install_name_tool -change "@rpath/./lib${dep}.dylib" "@rpath/modeller-${MODELLER_VERSION}/lib/mac10v4/lib${dep}.dylib" ${lib}
     done
   done
 fi
