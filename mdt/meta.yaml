@@ -19,7 +19,7 @@ requirements:
     - modeller 9.16
     - cmake [not osx]
     - cmake-mac [osx]
-    - swig
+    - swig 3.0.2
     - glib
 
   run:
