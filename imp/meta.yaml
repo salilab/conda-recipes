@@ -57,6 +57,6 @@ test:
     - foxs --help
 
 about:
-  home: http://integrativemodeling.org
+  home: https://integrativemodeling.org
   license: LGPL/GPL
   summary: "The Integrative Modeling Platform"
