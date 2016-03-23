@@ -1,26 +1,16 @@
 package:
   name: imp
-  version: "2.5.0"
+  version: "2.6.0"
 
 source:
-  fn: imp-2.5.0.tar.gz
-  url: http://integrativemodeling.org/2.5.0/download/imp-2.5.0.tar.gz
-  md5: a283a80d8cd953fdd15e6c9f8dabbbc0
+  fn: imp-2.6.0.tar.gz
+  url: http://integrativemodeling.org/2.6.0/download/imp-2.6.0.tar.gz
+  sha256: 66ab0edbb3226d0f88d1d34afcca88a34ffddb00d2c7400aad5520bc90e88d05
   patches:
-    - cmake-path.patch [win]
-    - cmake-policy.patch [win]
-    - imp-session.patch [win]
-    - rmf-vmdplugin.patch [win]
-    - imp-setup-module.patch [win]
-    - rmf-decorators.patch [win]
-    - rmf-hash-value.patch [win]
-    - imp-symlink.patch [win]
-    - imp-utf8-encoding.patch [win]
     - imp-directories.patch [win]
-    - pmi-hierarchy-mass.patch
 
 build:
-  number: 5
+  number: 1
   detect_binary_files_with_prefix: True
 
 requirements:
