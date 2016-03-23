@@ -16,7 +16,7 @@ build:
 requirements:
   build:
     - python
-    - swig
+    - swig 3.0.2
     - cgal
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
