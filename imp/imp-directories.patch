@@ -1,5 +1,5 @@
 diff --git modules/kernel/src/internal/directories.cpp modules/kernel/src/internal/directories.cpp
-index 398cdfd..71c84d6 100644
+index 456a7fa..86c234e 100644
 --- modules/kernel/src/internal/directories.cpp
 +++ modules/kernel/src/internal/directories.cpp
 @@ -28,73 +28,12 @@
@@ -50,7 +50,7 @@ index 398cdfd..71c84d6 100644
 -  HKEY key;
 -  ret = false;
 -
--  if (RegOpenKeyEx(HKEY_CURRENT_USER, regkey.c_str(), 0, KEY_READ, &key) ==
+-  if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, regkey.c_str(), 0, KEY_READ, &key) ==
 -      ERROR_SUCCESS) {
 -    DWORD keylen, keytype;
 -    if (RegQueryValueEx(key, "", nullptr, &keytype, nullptr, &keylen) ==
