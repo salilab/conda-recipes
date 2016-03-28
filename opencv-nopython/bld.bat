@@ -20,23 +20,25 @@ if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
 
-:: put libs and binaries in right location
-if "%ARCH%" == "64" (
-  set SUBDIR=x64\vc%VisualStudioVersion%
-  set TOPDIR=x64
-) else (
-  set SUBDIR=x86\vc%VisualStudioVersion%
-  set TOPDIR=x86
+if not "%VisualStudioVersion%" == "14.0" (
+  :: put libs and binaries in right location
+  if "%ARCH%" == "64" (
+    set SUBDIR=x64\vc%VisualStudioVersion%
+    set TOPDIR=x64
+  ) else (
+    set SUBDIR=x86\vc%VisualStudioVersion%
+    set TOPDIR=x86
+  )
+  cd "%LIBRARY_PREFIX%"
+  mkdir bin
+  mkdir lib
+  move %SUBDIR%\bin\* bin\
+  if errorlevel 1 exit 1
+  move %SUBDIR%\lib\* lib\
+  if errorlevel 1 exit 1
+  rd %SUBDIR%\lib
+  rd %SUBDIR%\bin
+  rd %SUBDIR%
+  rd %TOPDIR%
+  if errorlevel 1 exit 1
 )
-cd "%LIBRARY_PREFIX%"
-mkdir bin
-mkdir lib
-move %SUBDIR%\bin\* bin\
-if errorlevel 1 exit 1
-move %SUBDIR%\lib\* lib\
-if errorlevel 1 exit 1
-rd %SUBDIR%\lib
-rd %SUBDIR%\bin
-rd %SUBDIR%
-rd %TOPDIR%
-if errorlevel 1 exit 1
