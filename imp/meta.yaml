@@ -8,17 +8,21 @@ source:
   sha256: 66ab0edbb3226d0f88d1d34afcca88a34ffddb00d2c7400aad5520bc90e88d05
   patches:
     - imp-directories.patch [win]
+    - imp-boost-160.patch
 
 build:
   number: 0
   detect_binary_files_with_prefix: True
+  features:
+    - vc14 [win]
 
 requirements:
   build:
     - python
     - swig 3.0.7 [win]
     - swig 3.0.2 [not win]
-    - cgal
+    - cgal 4.7 [win]
+    - cgal 4.6.1 [not win]
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
@@ -32,7 +36,8 @@ requirements:
 
   run:
     - python
-    - cgal
+    - cgal 4.7 [win]
+    - cgal 4.6.1 [not win]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5
