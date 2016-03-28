@@ -1,12 +1,21 @@
 cd src\gsl\1.8\gsl-1.8\VC8
 
 :: convert ancient .vcproj files to newer .vcxproj format
-vcupgrade copy_gsl_headers\copy_gsl_headers.vcproj
-if errorlevel 1 exit 1
-vcupgrade libgslcblas\libgslcblas.vcproj
-if errorlevel 1 exit 1
-vcupgrade libgsl\libgsl.vcproj
-if errorlevel 1 exit 1
+if "%VisualStudioVersion%" == "14.0" (
+  devenv /upgrade copy_gsl_headers\copy_gsl_headers.vcproj
+  if errorlevel 1 exit 1
+  devenv /upgrade libgslcblas\libgslcblas.vcproj
+  if errorlevel 1 exit 1
+  devenv /upgrade libgsl\libgsl.vcproj
+  if errorlevel 1 exit 1
+) else (
+  vcupgrade copy_gsl_headers\copy_gsl_headers.vcproj
+  if errorlevel 1 exit 1
+  vcupgrade libgslcblas\libgslcblas.vcproj
+  if errorlevel 1 exit 1
+  vcupgrade libgsl\libgsl.vcproj
+  if errorlevel 1 exit 1
+)
 
 :: vcupgrade doesn't work on .sln files, and misses adding ProjectReferences
 :: to the .vcxproj files, so hack them
