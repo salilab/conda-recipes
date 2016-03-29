@@ -1,7 +1,15 @@
 if "%ARCH%" == "64" (
-  set TAU_LIB="Windows.x86_64"
+  if "%VisualStudioVersion%" == "14.0" (
+    set TAU_LIB="Windows.x86_64.vc14"
+  ) else (
+    set TAU_LIB="Windows.x86_64"
+  )
 ) else (
-  set TAU_LIB="Windows.i386"
+  if "%VisualStudioVersion%" == "14.0" (
+    set TAU_LIB="Windows.i386.vc14"
+  ) else (
+    set TAU_LIB="Windows.i386"
+  )
 )
 
 mkdir "%LIBRARY_INC%\libTAU"
