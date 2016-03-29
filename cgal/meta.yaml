@@ -1,37 +1,38 @@
 package:
   name: cgal
-  version: "4.7" [win and py35]
-  version: "4.6.1" [not (win and py35)]
+  version: "4.7" [win]
+  version: "4.6.1" [not win]
 
 source:
-  fn: CGAL-4.7.tar.gz [win and py35]
-  url: https://github.com/CGAL/cgal/releases/download/releases/CGAL-4.7/CGAL-4.7.tar.gz [win and py35]
+  fn: CGAL-4.7.tar.gz [win]
+  url: https://github.com/CGAL/cgal/releases/download/releases/CGAL-4.7/CGAL-4.7.tar.gz [win]
   sha256: 1be058fe9fc4d8331b48daf8beb114a049fd4970220d8a570ff709b7789dacae [win and py35]
-  fn: CGAL-4.6.1.tar.bz2 [not (win and py35)]
-  url: https://gforge.inria.fr/frs/download.php/file/34901/CGAL-4.6.1.tar.bz2 [not (win and py35)]
-  sha256: 58169727bead3a1d0ae4511a0f83a9079f050e61d5e8455b34f357f4461fefb2 [not (win and py35)]
+  fn: CGAL-4.6.1.tar.bz2 [not win]
+  url: https://gforge.inria.fr/frs/download.php/file/34901/CGAL-4.6.1.tar.bz2 [not win]
+  sha256: 58169727bead3a1d0ae4511a0f83a9079f050e61d5e8455b34f357f4461fefb2 [not win]
 
 build:
-  number: 0 [win and py35]
-  number: 2 [not (win and py35)]
+  number: 0 [win]
+  number: 2 [not win]
   features:
+    - vc9 [win and py27]
     - vc14 [win and py35]
 
 requirements:
   build:
-    - python [win and py35]
+    - python [win]
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
-    - boost 1.60.0 [win and py35]
+    - boost 1.60.0 [win]
     - boost-mac 1.57.0 [osx]
-    - boost 1.57.0 [not osx and not (win and py35)]
+    - boost 1.57.0 [not osx and not win]
     - gmp
     - mpfr
     - zlib
   run:
-    - boost 1.60.0 [win and py35]
+    - boost 1.60.0 [win]
     - boost-mac 1.57.0 [osx]
-    - boost 1.57.0 [not osx and not (win and py35)]
+    - boost 1.57.0 [not osx and not win]
     - gmp
     - mpfr
     - zlib
