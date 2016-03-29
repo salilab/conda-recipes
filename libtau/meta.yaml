@@ -5,8 +5,8 @@ package:
 source:
   fn: libTAU-1.0.1.zip
   url: http://integrativemodeling.org/libTAU/libTAU-1.0.1.zip
-  md5: 7f368fd5169384602f5c492f3352aec5
-  sha256: f3a3319cdd6dda71ca1d6f04f4c401f15d6f715249fa476dca0d7e94580fe882
+  md5: 3b564ea0270147ca2df5df1cc504f919
+  sha256: ebb4c008b50d2cf665e51704887353aa1901dd9de83ccd3e7680d5f955edd5b2
 
 build:
   number: 0
