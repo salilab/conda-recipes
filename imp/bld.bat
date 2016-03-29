@@ -1,4 +1,14 @@
-set EXTRA_CXX_FLAGS=/bigobj
+:: Our VS2015 build uses Anaconda's build of boost 1.60, which includes
+:: zlib support, but defining BOOST_ALL_DYN_LINK (below) makes boost try to
+:: link against boost_zlib*.lib, which doesn't exist. Override this by
+:: explicitly naming the boost library to link against - since there isn't
+:: one, link against kernel32 instead (which pretty much everything links
+:: against, so this doesn't introduce an extra dependency)
+if "%VisualStudioVersion%" == "14.0" (
+  set EXTRA_CXX_FLAGS=/bigobj -DBOOST_ZLIB_BINARY=kernel32
+) else (
+  set EXTRA_CXX_FLAGS=/bigobj
+)
 
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
