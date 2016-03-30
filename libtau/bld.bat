@@ -2,13 +2,13 @@ if "%ARCH%" == "64" (
   if "%VisualStudioVersion%" == "14.0" (
     set TAU_LIB="Windows.x86_64.vc14"
   ) else (
-    set TAU_LIB="Windows.x86_64"
+    set TAU_LIB="Windows.x86_64.vc9"
   )
 ) else (
   if "%VisualStudioVersion%" == "14.0" (
     set TAU_LIB="Windows.i386.vc14"
   ) else (
-    set TAU_LIB="Windows.i386"
+    set TAU_LIB="Windows.i386.vc9"
   )
 )
 
