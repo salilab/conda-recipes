@@ -10,11 +10,12 @@ source:
 build:
     number: 2
     features:
+      - vc9 [win and py27]
       - vc14 [win and py35]
 
 requirements:
     build:
-        - python [win and py35]
+        - python [win]
         - cmake [not osx and not win]
         - cmake-mac [osx or win]
         - jpeg

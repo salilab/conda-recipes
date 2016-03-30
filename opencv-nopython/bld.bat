@@ -1,6 +1,11 @@
 :: Find packages in Anaconda locations
 set CMAKE_PREFIX_PATH=%LIBRARY_PREFIX%:%TEMP%
 
+:: Visual Studio 2009 doesn't set the version variable
+if "%VisualStudioVersion%" == "" (
+  set VisualStudioVersion=9
+)
+
 :: cmake looks in <incdir>/libpng, not <incdir>/libpng16, so make a temporary
 :: copy
 mkdir %TEMP%\include
@@ -20,15 +25,15 @@ if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
 
+if "%ARCH%" == "64" (
+  set SUBDIR=x64\vc%VisualStudioVersion%
+  set TOPDIR=x64
+) else (
+  set SUBDIR=x86\vc%VisualStudioVersion%
+  set TOPDIR=x86
+)
 if not "%VisualStudioVersion%" == "14.0" (
   :: put libs and binaries in right location
-  if "%ARCH%" == "64" (
-    set SUBDIR=x64\vc%VisualStudioVersion%
-    set TOPDIR=x64
-  ) else (
-    set SUBDIR=x86\vc%VisualStudioVersion%
-    set TOPDIR=x86
-  )
   cd "%LIBRARY_PREFIX%"
   mkdir bin
   mkdir lib
