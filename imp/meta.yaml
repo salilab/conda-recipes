@@ -9,11 +9,13 @@ source:
   patches:
     - imp-directories.patch [win]
     - imp-boost-160.patch
+    - imp-msvc2008.patch
 
 build:
   number: 0
   detect_binary_files_with_prefix: True
   features:
+    - vc9 [win and py27]
     - vc14 [win and py35]
 
 requirements:
@@ -21,8 +23,8 @@ requirements:
     - python
     - swig 3.0.7 [win]
     - swig 3.0.2 [not win]
-    - cgal 4.7 [win and py35]
-    - cgal 4.6.1 [not (win and py35)]
+    - cgal 4.7 [win]
+    - cgal 4.6.1 [not win]
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
@@ -36,8 +38,8 @@ requirements:
 
   run:
     - python
-    - cgal 4.7 [win and py35]
-    - cgal 4.6.1 [not (win and py35)]
+    - cgal 4.7 [win]
+    - cgal 4.6.1 [not win]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5

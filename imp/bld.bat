@@ -1,14 +1,10 @@
-:: Our VS2015 build uses Anaconda's build of boost 1.60, which includes
+:: We use Anaconda's build of boost 1.60, which includes
 :: zlib support, but defining BOOST_ALL_DYN_LINK (below) makes boost try to
 :: link against boost_zlib*.lib, which doesn't exist. Override this by
 :: explicitly naming the boost library to link against - since there isn't
 :: one, link against kernel32 instead (which pretty much everything links
 :: against, so this doesn't introduce an extra dependency)
-if "%VisualStudioVersion%" == "14.0" (
-  set EXTRA_CXX_FLAGS=/bigobj -DBOOST_ZLIB_BINARY=kernel32
-) else (
-  set EXTRA_CXX_FLAGS=/bigobj
-)
+set EXTRA_CXX_FLAGS=/bigobj -DBOOST_ZLIB_BINARY=kernel32
 
 :: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
 :: original contents
@@ -28,6 +24,14 @@ for /f %%i in ('echo %PY_VER% ^| sed "s/\.//"') do set PY_VER_NO_DOT=%%i
 
 mkdir build
 cd build
+
+:: Visual Studio 2008 doesn't have stdint.h, so add a fake one
+if "%VisualStudioVersion%" == "" (
+  mkdir include
+  copy %RECIPE_DIR%\msvc2008-stdint\stdint.h include\stdint.h
+  if errorlevel 1 exit 1
+)
+
 cmake -DPYTHON_LIBRARY="%PREFIX%\libs\python%PY_VER_NO_DOT%.lib" -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DHDF5_C_LIBRARY="%LIBRARY_LIB%\hdf5.lib" -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DWIN32 /DGSL_DLL %EXTRA_CXX_FLAGS%" -DOPENCV22_LIBRARIES="%LIBRARY_LIB%\opencv_core249.lib;%LIBRARY_LIB%\opencv_imgproc249.lib;%LIBRARY_LIB%\opencv_highgui249.lib;%LIBRARY_LIB%\opencv_contrib249.lib" -G "NMake Makefiles" ..
 if errorlevel 1 exit 1
 
