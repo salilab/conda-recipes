@@ -1,15 +1,13 @@
 package:
   name: imp
-  version: "2.6.0"
+  version: "2.6.1"
 
 source:
-  fn: imp-2.6.0.tar.gz
-  url: http://integrativemodeling.org/2.6.0/download/imp-2.6.0.tar.gz
-  sha256: 66ab0edbb3226d0f88d1d34afcca88a34ffddb00d2c7400aad5520bc90e88d05
+  fn: imp-2.6.1.tar.gz
+  url: http://integrativemodeling.org/2.6.1/download/imp-2.6.1.tar.gz
+  sha256: ed9ecea7469843a3340ebd62ae3e4705c4454d733e341ea91aa19d334e4573b8
   patches:
     - imp-directories.patch [win]
-    - imp-boost-160.patch
-    - imp-msvc2008.patch
 
 build:
   number: 0
