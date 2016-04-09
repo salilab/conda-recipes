@@ -6,8 +6,12 @@
 :: against, so this doesn't introduce an extra dependency)
 set EXTRA_CXX_FLAGS=/bigobj -DBOOST_ZLIB_BINARY=kernel32
 
-:: tools/dev_tools is a symlink, but this doesn't work on Windows, so copy the
-:: original contents
+:: tools/dev_tools is a symlink, but this doesn't always work on Windows,
+:: so copy the original contents
+rd /q /s tools\dev_tools
+if errorlevel 1 exit 1
+mkdir tools\dev_tools
+if errorlevel 1 exit 1
 copy modules\rmf\dependency\RMF\tools\dev_tools\* tools\dev_tools\
 if errorlevel 1 exit 1
 mkdir tools\dev_tools\python_tools
