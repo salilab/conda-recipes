@@ -10,7 +10,7 @@ source:
     - imp-directories.patch [win]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: True
   features:
     - vc9 [win and py27]
@@ -27,7 +27,7 @@ requirements:
     - cmake-mac [osx or win]
     - boost [not osx]
     - boost-mac [osx]
-    - hdf5
+    - hdf5 1.8.16
     - fftw
     - libtau
     - gsl
@@ -40,7 +40,7 @@ requirements:
     - cgal 4.6.1 [not win]
     - boost [not osx]
     - boost-mac [osx]
-    - hdf5
+    - hdf5 1.8.16
     - fftw
     - libtau
     - gsl
