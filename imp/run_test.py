@@ -2,6 +2,7 @@ import IMP
 import IMP.core
 import IMP.atom
 import IMP.algebra
+import IMP.domino
 import IMP.rmf
 import IMP.test
 import RMF
@@ -32,3 +33,6 @@ IMP.rmf.load_frame(r, 0)
 del r
 
 os.unlink("test.rmf")
+
+# Make sure that IMP.domino was built with HDF5 support
+x = IMP.domino.ReadHDF5AssignmentContainer
