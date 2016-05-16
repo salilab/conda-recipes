@@ -36,7 +36,7 @@ requirements:
 
   run:
     - python
-    - cgal 4.7 [win]
+    - cgal 4.7
     - boost [not osx]
     - boost-mac [osx]
     - hdf5 1.8.16
