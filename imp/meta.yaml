@@ -10,7 +10,7 @@ source:
     - imp-directories.patch [win]
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: True
   features:
     - vc9 [win and py27]
@@ -21,29 +21,29 @@ requirements:
     - python
     - swig 3.0.7 [win]
     - swig 3.0.2 [not win]
-    - cgal 4.7 [win]
-    - cgal 4.6.1 [not win]
+    - cgal 4.7
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5 1.8.16
-    - fftw
+    - fftw 3.3.4
     - libtau
-    - gsl
+    - gsl 1.8 [win]
+    - gsl 1.16 [not win]
     - opencv [py2k and not win]
     - opencv-nopython [py3k or win]
 
   run:
     - python
     - cgal 4.7 [win]
-    - cgal 4.6.1 [not win]
     - boost [not osx]
     - boost-mac [osx]
     - hdf5 1.8.16
-    - fftw
+    - fftw 3.3.4
     - libtau
-    - gsl
+    - gsl 1.8 [win]
+    - gsl 1.16 [not win]
     - opencv [py2k and not win]
     - opencv-nopython [py3k or win]
 
