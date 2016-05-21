@@ -31,8 +31,8 @@ requirements:
     - libtau
     - gsl 1.8 [win]
     - gsl 1.16 [not win]
-    - opencv [py2k and not win]
-    - opencv-nopython [py3k or win]
+    - opencv 2.4.8 [py2k and not win]
+    - opencv-nopython 2.4.9 [py3k or win]
 
   run:
     - python
@@ -44,8 +44,8 @@ requirements:
     - libtau
     - gsl 1.8 [win]
     - gsl 1.16 [not win]
-    - opencv [py2k and not win]
-    - opencv-nopython [py3k or win]
+    - opencv 2.4.8 [py2k and not win]
+    - opencv-nopython 2.4.9 [py3k or win]
 
 test:
   # Python imports
