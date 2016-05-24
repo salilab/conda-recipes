@@ -30,8 +30,9 @@ requirements:
     - libtau
     - gsl 1.8 [win]
     - gsl 1.16 [not win]
-    - opencv 2.4.8 [py2k and not win and not linux32]
+    - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
+    - opencv 2.4.10 [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
 
   run:
@@ -44,8 +45,9 @@ requirements:
     - libtau
     - gsl 1.8 [win]
     - gsl 1.16 [not win]
-    - opencv 2.4.8 [py2k and not win and not linux32]
+    - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
+    - opencv 2.4.10 [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
 
 test:
