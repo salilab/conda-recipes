@@ -6,7 +6,7 @@ sp_dir, library_lib, library_bin, imp_init = sys.argv[1:]
 search_dirs = [os.path.relpath(x, sp_dir) for x in (library_lib, library_bin)]
 
 patch = """
-# Anaconda installs DLLs that we depend on in Library\lib or Library\bin,
+# Anaconda installs DLLs that we depend on in Library\\lib or Library\\bin,
 # so we need to add those directories to the DLL search path (PATH variable)
 def __add_dll_search_path():
     import sys
