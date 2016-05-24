@@ -1,16 +1,16 @@
 package:
   name: imp
-  version: "2.6.1"
+  version: "2.6.2"
 
 source:
-  fn: imp-2.6.1.tar.gz
-  url: http://integrativemodeling.org/2.6.1/download/imp-2.6.1.tar.gz
-  sha256: ed9ecea7469843a3340ebd62ae3e4705c4454d733e341ea91aa19d334e4573b8
+  fn: imp-2.6.2.tar.gz
+  url: http://integrativemodeling.org/2.6.2/download/imp-2.6.2.tar.gz
+  sha256: d048d1d0d867d4bc98de1ff1953118569b4be36c2198bc7538a7a503f7e9b853
   patches:
     - imp-directories.patch [win]
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: True
   features:
     - vc9 [win and py27]
