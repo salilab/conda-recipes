@@ -27,5 +27,11 @@ with open(imp_init) as fh:
     contents = fh.read()
 if 'add_dll_search_path' not in contents:
     with open(imp_init, 'w') as fh:
-        fh.write(patch)
-        fh.write(contents)
+        for line in contents.split('\n'):
+            if line.startswith('from sys import') and not patched:
+                fh.write(patch)
+                patched = True
+            fh.write(line)
+            fh.write('\n')
+    if not patched:
+        raise RuntimeError("Unable to apply patch")
