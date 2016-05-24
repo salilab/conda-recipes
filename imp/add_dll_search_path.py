@@ -26,6 +26,7 @@ __add_dll_search_path()
 with open(imp_init) as fh:
     contents = fh.read()
 if 'add_dll_search_path' not in contents:
+    patched = False
     with open(imp_init, 'w') as fh:
         for line in contents.split('\n'):
             if line.startswith('from sys import') and not patched:
