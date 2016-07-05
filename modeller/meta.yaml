@@ -5,16 +5,16 @@ package:
 source:
   fn: modeller-9.17-mac.pax.gz [osx]
   url: http://salilab.org/modeller/9.17/modeller-9.17-mac.pax.gz [osx]
-  sha256: e7330ef0d4ce198f29f1b7ab8a165b355e464db9919df32d6102fb8c2bff66ab [osx]
+  sha256: e8beda6bd8e791ffe1ebf19064f69c945ceec6c9079f30e3becdc3a9584da050 [osx]
   fn: modeller-9.17.tar.gz [linux]
   url: http://salilab.org/modeller/9.17/modeller-9.17.tar.gz [linux]
-  sha256: 37d6df987cfffe7a85e4fa65703d144ef909b33ac398e20dd5087b886fe7e5f1 [linux]
+  sha256: 5489865e54231d448e25ea07ec8822a02657f2ce81763990a84e99c5b6c0edf0 [linux]
   fn: modeller9.17-32bit.zip [win32]
   url: http://salilab.org/modeller/9.17/modeller9.17-32bit.zip [win32]
-  sha256: 99fdcaa5508f9635cbd86bfaadf41c3fc597b2af7c2fe1906925dc193087652d [win32]
+  sha256: f58454a0e437a6598c1cf5a36dcaa48ef5376d80a1d315283a01df0d7dc967d0 [win32]
   fn: modeller9.17-64bit.zip [win64]
   url: http://salilab.org/modeller/9.17/modeller9.17-64bit.zip [win64]
-  sha256: 5dc9f6e4bf4c253160e989d86c372aaa59e0298157cf4bd8bb08b2b77cc8db64 [win64]
+  sha256: 4220b4badb148900c6cb2b13b45746e652daa4e3e5d4d2b5d51bafb95167a62e [win64]
 
 build:
   number: 1
