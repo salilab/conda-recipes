@@ -45,6 +45,6 @@ test:
   #  - modeller
 
 about:
-  home: http://salilab.org
+  home: https://salilab.org
   license: Free for academic use
   summary: "Comparative modeling by satisfaction of spatial restraints"
