@@ -17,7 +17,7 @@ source:
   sha256: 4220b4badb148900c6cb2b13b45746e652daa4e3e5d4d2b5d51bafb95167a62e [win64]
 
 build:
-  number: 1
+  number: 2
   rpaths: [linux]
     - lib/modeller-9.17/lib/x86_64-intel8/ [linux64]
     - lib/modeller-9.17/lib/i386-intel8/ [linux32]
