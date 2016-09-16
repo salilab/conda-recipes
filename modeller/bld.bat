@@ -19,6 +19,7 @@ if errorlevel 1 exit 1
 :: cannot all be in the same directory, and if we put the DLLs in the PATH, they
 :: are visible globally and could conflict.
 if "%ARCH%" == "32" (
+  :: 32-bit uses msvcr100, which is provided by the conda vs2010_runtime package
   python "%RECIPE_DIR%\install_bins.py" lib\%EXETYPE% "%PREFIX%" iconv.dll intl.dll hdf5.dll hdf5_hl.dll libglib-2.0-0.dll zlib1.dll libifcoremd.dll libmmd.dll --norename libmodeller%SOVERSION%.dll libsaxs.dll mod%PKG_VERSION%.exe python%PY_VER%\_modeller.pyd python2.3\_modeller23.pyd
   if errorlevel 1 exit 1
 ) else (
