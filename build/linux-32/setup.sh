@@ -9,7 +9,7 @@ mock -r $CONFIG --copyin Miniconda3-4.0.5-Linux-x86.sh / || exit 1
 mock -r $CONFIG --chroot "bash /Miniconda3-4.0.5-Linux-x86.sh -b -p /root/miniconda && rm -f /Miniconda3-4.0.5-Linux-x86.sh" || exit 1
 rm -f Miniconda3-4.0.5-Linux-x86.sh
 mock -r $CONFIG --chroot 'echo "export PATH=\"/root/miniconda/bin:\$PATH\"" >> /builddir/.bashrc' || exit 1
-mock -r $CONFIG --chroot 'source /builddir/.bashrc && conda update -y --all && conda install -y conda-build && conda config --add channels salilab' || exit 1
+mock -r $CONFIG --chroot 'source /builddir/.bashrc && conda update -y --all && conda install -y conda-build curl git expat openssl && conda config --add channels salilab' || exit 1
 
 echo "Use 'mock -r $CONFIG --copyin' to copy files into the mock chroot"
 echo "and 'mock -r $CONFIG --shell' to get a conda shell."
