@@ -1,5 +1,5 @@
 diff --git a/modules/kernel/src/internal/directories.cpp b/modules/kernel/src/internal/directories.cpp
-index 968e16ba6a..d4c8c7775a 100644
+index 968e16ba6a..e936763d3c 100644
 --- a/modules/kernel/src/internal/directories.cpp
 +++ b/modules/kernel/src/internal/directories.cpp
 @@ -42,56 +42,55 @@ extern std::string imp_example_path;
@@ -98,7 +98,7 @@ index 968e16ba6a..d4c8c7775a 100644
  }
  #endif
  
-@@ -114,7 +113,7 @@ Strings get_data_prefixes(std::string) {
+@@ -114,11 +113,10 @@ Strings get_data_prefixes(std::string) {
      // (the binary installer stores the location in the Windows registry)
      std::string install_location;
      if (get_install_location(install_location)) {
@@ -107,7 +107,11 @@ index 968e16ba6a..d4c8c7775a 100644
      }
  #endif
    }
-@@ -142,7 +141,7 @@ Strings get_example_prefixes(std::string) {
+-  ret.push_back(imp_data_path);
+   if (!backup_search_path.empty()) {
+     ret.push_back(backup_search_path);
+   }
+@@ -142,11 +140,10 @@ Strings get_example_prefixes(std::string) {
      // (the binary installer stores the location in the Windows registry)
      std::string install_location;
      if (get_install_location(install_location)) {
@@ -115,4 +119,8 @@ index 968e16ba6a..d4c8c7775a 100644
 +      ret.push_back(install_location + "\\share\\doc\\IMP\\examples");
      }
  #endif
+   }
+-  ret.push_back(imp_example_path);
+   if (!backup_search_path.empty()) {
+     ret.push_back(backup_search_path);
    }
