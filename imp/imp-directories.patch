@@ -1,50 +1,60 @@
-diff --git modules/kernel/src/internal/directories.cpp modules/kernel/src/internal/directories.cpp
-index 456a7fa..86c234e 100644
---- modules/kernel/src/internal/directories.cpp
-+++ modules/kernel/src/internal/directories.cpp
-@@ -28,73 +28,12 @@
- 
- #include <cstdlib>
- 
--#ifdef _MSC_VER
--#include <windows.h>
--
--// Registry functions are not in kernel but advapi32.dll
--#pragma comment(lib, "advapi32")
--#endif
--
- IMPKERNEL_BEGIN_INTERNAL_NAMESPACE
- extern std::string imp_data_path;
- extern std::string imp_example_path;
- 
+diff --git a/modules/kernel/src/internal/directories.cpp b/modules/kernel/src/internal/directories.cpp
+index 968e16ba6a..d4c8c7775a 100644
+--- a/modules/kernel/src/internal/directories.cpp
++++ b/modules/kernel/src/internal/directories.cpp
+@@ -42,56 +42,55 @@ extern std::string imp_example_path;
  namespace {
  
--#ifdef _MSC_VER
+ #ifdef _MSC_VER
 -// assume IMP version is the IMP::base version without any 'with' suffix
 -std::string get_imp_version() {
 -  std::string full_version = get_module_version();
 -  size_t pos = full_version.find(" with");
 -  if (pos != std::string::npos) {
 -    full_version.resize(pos);
--  }
++// Remove the last component of the path. All errors are fatal.
++void remove_path_component(char *path) {
++  char *ch = strrchr(path, '\\');
++  if (ch) {
++    *ch = '\0';
++  } else {
++    fprintf(stderr, "Cannot remove path component from %s\n", path);
++    exit(1);
+   }
 -  return full_version;
--}
--
+ }
+ 
 -/** Get the directory where IMP is installed, by reading the
 -    Windows registry key (set by the IMP binary installer).
 -    \return true iff the registry key was found.
-- */
--bool get_install_location(std::string &dir) {
++/** Get the directory where IMP is installed; assume it is relative
++    to the path of this DLL (should be the case for any sane Anaconda install).
++    \return true in all cases (errors cause a hard exit).
+  */
+ bool get_install_location(std::string &dir) {
 -  // Only probe the registry once, then cache the value
 -  static bool called, ret;
--  static std::string cached_dir;
++  // Cache the value after the first call
++  static bool called;
+   static std::string cached_dir;
 -  if (called) {
 -    if (ret) {
 -      dir.assign(cached_dir);
--    }
++  if (!called) {
++    called = true;
++    char path[MAX_PATH * 2];
++    HMODULE hm = NULL;
++
++    // Get module handle using a function defined in this DLL
++    if (!GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
++                           GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
++                           (LPCTSTR)&get_install_location, &hm)) {
++      fprintf(stderr, "Failed to get module handle, code %d\n", GetLastError());
++      exit(1);
+     }
 -    return ret;
 -  }
--
+ 
 -  std::string version = get_imp_version();
 -  std::string regkey = "SOFTWARE\\IMP-" + version;
 -  HKEY key;
@@ -65,58 +75,44 @@ index 456a7fa..86c234e 100644
 -        ret = true;
 -      }
 -      delete[] keyval;
--    }
++    // Get the full path to the DLL
++    DWORD ret = GetModuleFileName(hm, path, sizeof(path));
++    if (ret == 0) {
++      fprintf(stderr, "Failed to get module path, code %d\n", GetLastError());
++      exit(1);
+     }
 -    RegCloseKey(key);
--  }
++
++    // Remove the DLL name from the path, leaving just the directory
++    remove_path_component(path);
++    // Remove the last directory - this should give the path to the
++    // Anaconda Library directory
++    remove_path_component(path);
++
++    cached_dir.assign(path);
+   }
 -  called = true;
 -  return ret;
--}
--#endif
--
- std::string backup_search_path;
++  dir.assign(cached_dir);
++  return true;
+ }
+ #endif
  
- Strings get_data_prefixes(std::string) {
-@@ -107,18 +46,10 @@ Strings get_data_prefixes(std::string) {
-       ret += cur;
-     }
-   }
--  {
--#ifdef _MSC_VER
--    // Since on Windows the IMP binary package is relocatable (the user
--    // can install it in any location), try this install location if available
--    // (the binary installer stores the location in the Windows registry)
--    std::string install_location;
--    if (get_install_location(install_location)) {
+@@ -114,7 +113,7 @@ Strings get_data_prefixes(std::string) {
+     // (the binary installer stores the location in the Windows registry)
+     std::string install_location;
+     if (get_install_location(install_location)) {
 -      ret.push_back(install_location + "\\data");
--    }
--#endif
--  }
--  ret.push_back(imp_data_path);
-+  // conda binary relocation sometimes adds trailing nulls to the data path,
-+  // so remove any that crept in
-+  ret.push_back(boost::trim_right_copy_if(imp_data_path,
-+                                      boost::is_any_of(std::string("\0", 1))));
-   if (!backup_search_path.empty()) {
-     ret.push_back(backup_search_path);
-   }
-@@ -135,18 +66,8 @@ Strings get_example_prefixes(std::string) {
-       ret += cur;
++      ret.push_back(install_location + "\\share\\IMP");
      }
+ #endif
    }
--  {
--#ifdef _MSC_VER
--    // Since on Windows the IMP binary package is relocatable (the user
--    // can install it in any location), try this install location if available
--    // (the binary installer stores the location in the Windows registry)
--    std::string install_location;
--    if (get_install_location(install_location)) {
+@@ -142,7 +141,7 @@ Strings get_example_prefixes(std::string) {
+     // (the binary installer stores the location in the Windows registry)
+     std::string install_location;
+     if (get_install_location(install_location)) {
 -      ret.push_back(install_location + "\\examples");
--    }
--#endif
--  }
--  ret.push_back(imp_example_path);
-+  ret.push_back(boost::trim_right_copy_if(imp_example_path,
-+                                      boost::is_any_of(std::string("\0", 1))));
-   if (!backup_search_path.empty()) {
-     ret.push_back(backup_search_path);
++      ret.push_back(install_location + "\\share\\doc\\IMP\\examples");
+     }
+ #endif
    }

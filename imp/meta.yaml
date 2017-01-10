@@ -10,8 +10,8 @@ source:
     - imp-directories.patch [win]
 
 build:
-  number: 0
-  detect_binary_files_with_prefix: True
+  number: 1
+  detect_binary_files_with_prefix: True [!win]
   features:
     - vc9 [win and py27]
     - vc14 [win and py35]
