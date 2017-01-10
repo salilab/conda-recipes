@@ -20,12 +20,12 @@ requirements:
   build:
     - python
     - swig
-    - cgal 4.7
+    - cgal 4.9
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
     - boost [not osx]
     - boost-mac [osx]
-    - hdf5 1.8.16
+    - hdf5 1.8.17
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
@@ -37,10 +37,10 @@ requirements:
 
   run:
     - python
-    - cgal 4.7
+    - cgal 4.9
     - boost [not osx]
     - boost-mac [osx]
-    - hdf5 1.8.16
+    - hdf5 1.8.17
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
