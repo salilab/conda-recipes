@@ -23,7 +23,7 @@ requirements:
     - cgal 4.9
     - cmake [not osx and not win]
     - cmake-mac [osx or win]
-    - boost [not osx]
+    - boost 1.60.0 [not osx]
     - boost-mac [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
@@ -38,7 +38,7 @@ requirements:
   run:
     - python
     - cgal 4.9
-    - boost [not osx]
+    - boost 1.60.0 [not osx]
     - boost-mac [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
