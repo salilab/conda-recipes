@@ -31,5 +31,5 @@ packages:
    To get an environment suitable for building the packages, run
    `setenv /xp /x64 /release`.
 
- - Any package depending on Python 3.5 needs to be built with Visual Studio
-   2015, and will have the `vc14` feature set.
+ - Any package depending on Python 3.5 or 3.6 needs to be built with
+   Visual Studio 2015, and will have the `vc14` feature set.
