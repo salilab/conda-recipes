@@ -6,6 +6,7 @@ ln -sf "$PREFIX/include/libpng16" pnginclude/libpng
 
 if [ `uname -s` = "Darwin" ]; then
   EXTRA_CMAKE_OPTS="-DWITH_OPENCL=OFF"
+  EXTRA_MAKE_OPTS=""
   SO="dylib"
   perl -pi -e "s#INSTALL_NAME_DIR lib#INSTALL_NAME_DIR ${PREFIX}/lib#" cmake/OpenCVModule.cmake apps/traincascade/CMakeLists.txt apps/haartraining/CMakeLists.txt
 else
@@ -13,6 +14,7 @@ else
   EXTRA_CMAKE_OPTS="\
     -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
     -DCMAKE_C_COMPILER=/usr/bin/gcc44 "
+  EXTRA_MAKE_OPTS="-j4"
   SO="so"
 fi
 
@@ -38,5 +40,5 @@ cmake                                                               \
     -DZLIB_INCLUDE_DIR:PATH=$PREFIX/include                         \
     -DZLIB_LIBRARY:FILEPATH=$PREFIX/lib/libz.${SO}                  \
     ..
-make
+make ${EXTRA_MAKE_OPTS}
 make install
