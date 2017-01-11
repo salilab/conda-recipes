@@ -9,6 +9,7 @@ if [ `uname -s` = "Darwin" ]; then
   SO="dylib"
   perl -pi -e "s#INSTALL_NAME_DIR lib#INSTALL_NAME_DIR ${PREFIX}/lib#" cmake/OpenCVModule.cmake apps/traincascade/CMakeLists.txt apps/haartraining/CMakeLists.txt
 else
+  export LD_LIBRARY_PATH=$PREFIX/lib
   EXTRA_CMAKE_OPTS="\
     -DCMAKE_CXX_COMPILER=/usr/bin/g++44                             \
     -DCMAKE_C_COMPILER=/usr/bin/gcc44 "
