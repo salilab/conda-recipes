@@ -22,6 +22,7 @@ if [ `uname` == Darwin ]; then
 else
     export CXXFLAGS="-fPIC"
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D CMAKE_INSTALL_LIBDIR=lib \
     -D BOOST_ROOT=$PREFIX \
     -D BOOST_INCLUDE_DIR=$PREFIX/include \
     -D MPFR_INCLUDE_DIR=$PREFIX/include \
