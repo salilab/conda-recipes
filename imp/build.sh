@@ -6,6 +6,7 @@ export CMAKE_PREFIX_PATH=${PREFIX}
 if [ `uname -s` = "Darwin" ]; then
   PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
   EXTRA_CMAKE_FLAGS="\
+      -DCMAKE_OSX_DEPLOYMENT_TARGET=10.6 \
       -DCMAKE_INCLUDE_PATH=${PREFIX}/include/boost-mac \
       -DCMAKE_LIBRARY_PATH=${PREFIX}/lib/boost-mac \
       -DPYTHON_INCLUDE_DIR=${PYINC}"
