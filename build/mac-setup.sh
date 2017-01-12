@@ -8,7 +8,7 @@ fi
 CONDA_ROOT=/tmp/conda.$$
 
 # Make sure conda build environment isn't polluted by Homebrew
-(cd /usr/local && mv lib lib.hide && mv include include.hide && mv bin bin.hide)
+(cd /usr/local && sudo mv lib lib.hide && sudo mv include include.hide && sudo mv bin bin.hide)
 
 # Make a clean conda build environment
 bash ~/Miniconda3-latest-MacOSX-x86_64.sh -b -p ${CONDA_ROOT}
@@ -27,4 +27,4 @@ bash
 
 # Clean up
 rm -rf ${CONDA_ROOT}
-(cd /usr/local && mv lib.hide lib && mv include.hide include && mv bin.hide bin)
+(cd /usr/local && sudo mv lib.hide lib && sudo mv include.hide include && sudo mv bin.hide bin)
