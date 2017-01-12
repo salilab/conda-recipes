@@ -24,6 +24,7 @@ cmake                                                               \
     ${EXTRA_CMAKE_OPTS}                                             \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_opencv_python=OFF \
+    -DBUILD_opencv_java=OFF \
     -DBUILD_JPEG=OFF \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \
