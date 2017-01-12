@@ -8,7 +8,18 @@ The `mac-setup.sh` script sets up a minimal conda environment on a real
 Mac (10.6) system. It assumes the Mac has Homebrew installed, and so hides
 the Homebrew packages to avoid contaminating the conda build environment.
 (Really we should use a VM here, but they're a little more awkward to
-set up for Mac.)
+set up for Mac.) 10.6 is no longer officially supported by conda, and a couple
+of things are currently broken and need to be worked around until we can update
+to a 10.7 or 10.8 build environment:
+
+ - Downloading from custom channels doesn't work. Remove any such channels
+   from `~/.condarc` and don't use the `-c` option to `conda build`;
+   instead, download the `.tar.bz2` files manually and
+   put them in `<conda_root>/conda-build/osx-64/`.
+
+ - Edit `post.py` and `build.py` in `site-packages/conda_build/` to replace
+   usage of `mmap` with regular file open+read. `mmap` always fails with
+   `Invalid ioctl for device` on our 10.6 box.
 
 The `linux-32` directory contains the commands we run to set up a `mock`
 chroot that can be used to build conda packages for 32-bit Linux.
