@@ -11,7 +11,7 @@ CONDA_ROOT=/tmp/conda.$$
 (cd /usr/local && mv lib lib.hide && mv include include.hide && mv bin bin.hide)
 
 # Make a clean conda build environment
-bash ~/Miniconda-latest-MacOSX-x86_64.sh -b -p ${CONDA_ROOT}
+bash ~/Miniconda3-latest-MacOSX-x86_64.sh -b -p ${CONDA_ROOT}
 
 # Make Homebrew pkg-config available
 ln -sf /usr/local/bin.hide/pkg-config ${CONDA_ROOT}/bin
