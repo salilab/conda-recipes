@@ -5,8 +5,8 @@ mkdir pnginclude
 ln -sf "$PREFIX/include/libpng16" pnginclude/libpng
 
 if [ `uname -s` = "Darwin" ]; then
-  EXTRA_CMAKE_OPTS="-DWITH_OPENCL=OFF"
-  EXTRA_MAKE_OPTS=""
+  EXTRA_CMAKE_OPTS="-DWITH_OPENCL=OFF -DCMAKE_OSX_DEPLOYMENT_TARGET=10.6"
+  EXTRA_MAKE_OPTS="-j2"
   SO="dylib"
   perl -pi -e "s#INSTALL_NAME_DIR lib#INSTALL_NAME_DIR ${PREFIX}/lib#" cmake/OpenCVModule.cmake apps/traincascade/CMakeLists.txt apps/haartraining/CMakeLists.txt
 else

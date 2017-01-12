@@ -5,6 +5,7 @@ export CMAKE_PREFIX_PATH=${PREFIX}
 
 if [ `uname` == Darwin ]; then
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.6 \
     -DCMAKE_INCLUDE_PATH=${PREFIX}/include/boost-mac \
     -DCMAKE_LIBRARY_PATH=${PREFIX}/lib/boost-mac \
     -D MPFR_INCLUDE_DIR=$PREFIX/include \
