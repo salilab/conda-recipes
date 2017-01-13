@@ -1,7 +1,7 @@
 This repository contains inputs to build 'conda' packages for the
 [Anaconda Python distribution](https://store.continuum.io/cshop/anaconda/).
 
-The resulting packages are uploaded to [Anaconda.org](http://anaconda.org/salilab/) (formerly Binstar).
+The resulting packages are uploaded to [Anaconda.org](https://anaconda.org/salilab/) (formerly Binstar).
 
 In the Sali lab we build these recipes using `conda build -c salilab recipename`
 for non-Python packages or
