@@ -8,9 +8,10 @@ source:
   sha256: d048d1d0d867d4bc98de1ff1953118569b4be36c2198bc7538a7a503f7e9b853
   patches:
     - imp-directories.patch [win]
+    - opencv3.patch [py2k and linux64]
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
@@ -33,7 +34,7 @@ requirements:
     - gsl 1.16 [not win]
     - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
-    - opencv 2.4.10 [py2k and linux64]
+    - opencv 3.1.0 [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
 
   run:
@@ -49,7 +50,7 @@ requirements:
     - gsl 1.16 [not win]
     - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
-    - opencv 2.4.10 [py2k and linux64]
+    - opencv 3.1.0 [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
 
 test:
