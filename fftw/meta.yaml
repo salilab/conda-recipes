@@ -14,7 +14,7 @@ source:
   sha256: 8b0d9f04888918e23a50949c9dd3838486cd1c4d584c21349da3fe01a0c4c7f6 [win64]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:

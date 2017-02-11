@@ -19,6 +19,8 @@ ln -sf /usr/local/bin.hide/pkg-config ${CONDA_ROOT}/bin
 export PATH=${CONDA_ROOT}/bin:$PATH
 
 conda install -y conda-build anaconda-client
+anaconda logout # https://github.com/conda/conda/issues/3399
+
 conda config --add channels salilab
 conda update -y --all
 

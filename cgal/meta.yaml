@@ -8,7 +8,7 @@ source:
   sha256: 63ac5df71f912f34f2f0f2e54a303578df51f4ec2627db593a65407d791f9039
 
 build:
-  number: 0
+  number: 1
   features:
     - vc9 [win and py27]
     - vc14 [win and py35]
@@ -16,17 +16,17 @@ build:
 requirements:
   build:
     - python [win]
-    - cmake [not osx and not win]
-    - cmake-mac [osx or win]
+    - cmake [not win]
+    - cmake-mac [win]
     - boost 1.60.0 [win]
-    - boost-mac 1.57.0 [osx]
+    - boost 1.61.0 [osx]
     - boost 1.57.0 [not osx and not win]
     - gmp
     - mpfr
     - zlib
   run:
     - boost 1.60.0 [win]
-    - boost-mac 1.57.0 [osx]
+    - boost 1.61.0 [osx]
     - boost 1.57.0 [not osx and not win]
     - gmp
     - mpfr

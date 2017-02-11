@@ -11,7 +11,7 @@ source:
     - opencv3.patch [py2k and linux64]
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
@@ -22,11 +22,11 @@ requirements:
     - python
     - swig
     - cgal 4.9
-    - cmake [not osx and not win]
-    - cmake-mac [osx or win]
+    - cmake [not win]
+    - cmake-mac [win]
     - boost 1.60.0 [win]
     - boost 1.57.0 [linux]
-    - boost-mac [osx]
+    - boost 1.61.0 [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
     - libtau
@@ -42,7 +42,7 @@ requirements:
     - cgal 4.9
     - boost 1.60.0 [win]
     - boost 1.57.0 [linux]
-    - boost-mac [osx]
+    - boost 1.61.0 [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
     - libtau
