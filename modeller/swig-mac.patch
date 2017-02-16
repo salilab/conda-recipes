@@ -2,13 +2,11 @@ Index: setup.py
 ===================================================================
 --- orig/src/swig/setup.py	(revision 10999)
 +++ new/src/swig/setup.py	(working copy)
-@@ -42,56 +42,55 @@ extern std::string imp_example_path;
- namespace {
 @@ -28,6 +28,7 @@
                  include_dirs=['../include', '../include/%s' % exetype] + \
                               glib['include_dirs'],
                  libraries=['modeller'] + glib['libraries'],
-+                extra_link_args="-headerpad_max_install_names",
++                extra_link_args=["-headerpad_max_install_names"],
                  library_dirs=['../../lib/%s' % exetype] \
                               + glib.get('library_dirs', []))
  
