@@ -1,7 +1,7 @@
 Index: setup.py
 ===================================================================
---- orig/setup.py	(revision 10999)
-+++ new/setup.py	(working copy)
+--- orig/src/swig/setup.py	(revision 10999)
++++ new/src/swig/setup.py	(working copy)
 @@ -42,56 +42,55 @@ extern std::string imp_example_path;
  namespace {
 @@ -28,6 +28,7 @@
