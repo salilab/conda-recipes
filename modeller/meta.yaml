@@ -15,6 +15,8 @@ source:
   fn: modeller9.17-64bit.zip [win64]
   url: http://salilab.org/modeller/9.17/modeller9.17-64bit.zip [win64]
   sha256: 4220b4badb148900c6cb2b13b45746e652daa4e3e5d4d2b5d51bafb95167a62e [win64]
+  patches:
+    - swig-mac.patch [osx]
 
 build:
   number: 2
