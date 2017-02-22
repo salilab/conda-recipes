@@ -8,7 +8,7 @@ source:
   sha256: 21b6bc7084d2b522c96d886625dba95d222f70f0afa4cfa334d9a1a3a82f8099 [osx]
   fn: modeller-9.18.tar.gz [linux]
   url: https://salilab.org/modeller/9.18/modeller-9.18.tar.gz [linux]
-  sha256: ae39723f6ad9d1ebe963cbe6da7a1eecd5f0a7e3c188563628e749e06e946e28 [linux]
+  sha256: 0df243c4da08214414edd303986393bc45ee2f2e4107d62335a6538ac715f3e0 [linux]
   fn: modeller9.18-32bit.zip [win32]
   url: https://salilab.org/modeller/9.18/modeller9.18-32bit.zip [win32]
   sha256: 530595a907c386f86d6fb33e61c299de3d7ef62f27015ea2552c15f6a4b934e2 [win32]
