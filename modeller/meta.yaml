@@ -5,7 +5,7 @@ package:
 source:
   fn: modeller-9.18-mac.pax.gz [osx]
   url: https://salilab.org/modeller/9.18/modeller-9.18-mac.pax.gz [osx]
-  sha256: 21b6bc7084d2b522c96d886625dba95d222f70f0afa4cfa334d9a1a3a82f8099 [osx]
+  sha256: 402528a131ddbb30144a4e0be9b2f308e84f395e4133087534ad2bf742882c02 [osx]
   fn: modeller-9.18.tar.gz [linux]
   url: https://salilab.org/modeller/9.18/modeller-9.18.tar.gz [linux]
   sha256: 0df243c4da08214414edd303986393bc45ee2f2e4107d62335a6538ac715f3e0 [linux]
