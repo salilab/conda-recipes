@@ -17,7 +17,8 @@ requirements:
     - python
     - numpy
     - modeller 9.18
-    - cmake
+    - cmake [not osx]
+    - cmake-mac [osx]
     - swig
     - glib
 
