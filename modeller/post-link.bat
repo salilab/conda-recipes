@@ -4,7 +4,7 @@ set CONFIG=%MODTOP%\modlib\modeller\config.py
 set OUT=%PREFIX%\.messages.txt
 
 if "%KEY_MODELLER%" == "" (
-  echo( > "%OUT%"
+  echo( >> "%OUT%"
   echo Edit %CONFIG% >> "%OUT%"
   echo and replace XXXX with your Modeller license key, >> "%OUT%"
   echo or set the KEY_MODELLER environment variable before running 'conda install'. >> "%OUT%"

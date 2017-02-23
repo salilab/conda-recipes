@@ -7,7 +7,7 @@ if [ -n "${KEY_MODELLER}" ]; then
 
 else
 
-cat > ${PREFIX}/.messages.txt <<END
+cat >> ${PREFIX}/.messages.txt <<END
 
 Edit ${config}
 and replace XXXX with your Modeller license key
