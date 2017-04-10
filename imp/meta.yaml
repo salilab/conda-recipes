@@ -1,21 +1,20 @@
 package:
   name: imp
-  version: "2.6.2"
+  version: "2.7.0"
 
 source:
-  fn: imp-2.6.2.tar.gz
-  url: http://integrativemodeling.org/2.6.2/download/imp-2.6.2.tar.gz
-  sha256: d048d1d0d867d4bc98de1ff1953118569b4be36c2198bc7538a7a503f7e9b853
+  fn: imp-2.7.0.tar.gz
+  url: https://integrativemodeling.org/2.7.0/download/imp-2.7.0.tar.gz
+  sha256: 877af254567051c78317ea94730dfff742aa56d21aefd71edf14a3f4b153b036
   patches:
     - imp-directories.patch [win]
-    - opencv3.patch [py2k and linux64]
 
 build:
-  number: 3
+  number: 1
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
-    - vc14 [win and py35]
+    - vc14 [win and py36]
 
 requirements:
   build:
@@ -25,7 +24,7 @@ requirements:
     - cmake [not win]
     - cmake-mac [win]
     - boost 1.60.0 [win]
-    - boost 1.57.0 [linux]
+    - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
@@ -41,7 +40,7 @@ requirements:
     - python
     - cgal 4.9
     - boost 1.60.0 [win]
-    - boost 1.57.0 [linux]
+    - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
     - hdf5 1.8.17
     - fftw 3.3.4
