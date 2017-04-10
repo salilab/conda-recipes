@@ -11,21 +11,21 @@ build:
   number: 2
   features:
     - vc9 [win and py27]
-    - vc14 [win and py35]
+    - vc14 [win and py36]
 
 requirements:
   build:
     - python [win]
     - cmake [not win]
     - cmake-mac [win]
-    - boost 1.60.0 [win]
+    - boost 1.61.0 [win]
     - boost 1.61.0 [osx]
     - boost 1.61.0 [not osx and not win]
     - gmp
     - mpfr
     - zlib
   run:
-    - boost 1.60.0 [win]
+    - boost 1.61.0 [win]
     - boost 1.61.0 [osx]
     - boost 1.61.0 [not osx and not win]
     - gmp
