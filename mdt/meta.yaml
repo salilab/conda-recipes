@@ -29,5 +29,5 @@ requirements:
 
 about:
   home: https://salilab.org/mdt/
-  license: GPLv2
+  license: GPL2
   summary: "Generate frequency tables used by Modeller and IMP"

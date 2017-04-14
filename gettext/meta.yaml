@@ -20,4 +20,4 @@ build:
 about:
   home: http://www.gnu.org/software/gettext/gettext.html
   summary: "GNU libraries and utilities for producing multi-lingual messages"
-  license: GPLv3
+  license: GPL3

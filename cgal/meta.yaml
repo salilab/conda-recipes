@@ -36,4 +36,4 @@ requirements:
 about:
   home: http://www.cgal.org
   summary: 'The Computational Geometry Algorithms Library'
-  license: GPLv3
+  license: GPL3
