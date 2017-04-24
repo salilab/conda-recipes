@@ -11,7 +11,7 @@ source:
     - imp-msvc2008-vector-data.patch [win and py27]
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
@@ -21,7 +21,7 @@ requirements:
   build:
     - python
     - swig
-    - cgal 4.9
+    - cgal 4.9.1
     - cmake [not win]
     - cmake-mac [win]
     - boost 1.61.0 [win]
@@ -39,7 +39,7 @@ requirements:
 
   run:
     - python
-    - cgal 4.9
+    - cgal 4.9.1
     - boost 1.61.0 [win]
     - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
