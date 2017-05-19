@@ -1,9 +1,14 @@
 #!/bin/bash
 
-config="${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}/modlib/modeller/config.py"
+modtop="${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}"
+config="${modtop}/modlib/modeller/config.py"
 
 if [ -n "${KEY_MODELLER}" ]; then
-  perl -pi -e "s/XXXX/${KEY_MODELLER}/" ${config}
+
+cat > "${config}" <<END
+install_dir = r'${modtop}'
+license = r'${KEY_MODELLER}'
+END
 
 else
 
