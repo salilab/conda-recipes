@@ -1,22 +1,20 @@
 package:
   name: mdt
-  version: "5.3"
+  version: "5.4"
 
 source:
-  fn: mdt-5.3.tar.gz
-  url: https://salilab.org/mdt/5.3/mdt-5.3.tar.gz
-  sha256: 9ced663387f939cff056daec76760cef6bd99f27c6fb5f04dec96b9e9e1fc1d0
-  patches: [unix]
-    - mdt-cmake.patch [unix]
+  fn: mdt-5.4.tar.gz
+  url: https://salilab.org/mdt/5.4/mdt-5.4.tar.gz
+  sha256: fc403b8c26365c11bd9522929aef0c3b51dff860fddc8ac446a980acec5a3d44
 
 build:
-  number: 4
+  number: 1
 
 requirements:
   build:
     - python
     - numpy
-    - modeller 9.18
+    - modeller 9.19
     - cmake [not osx]
     - cmake-mac [osx]
     - swig
@@ -25,7 +23,7 @@ requirements:
   run:
     - python
     - numpy
-    - modeller 9.18
+    - modeller 9.19
 
 about:
   home: https://salilab.org/mdt/
