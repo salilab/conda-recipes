@@ -7,6 +7,9 @@ PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
 
 mkdir build
 cd build
+# Make sure we use the cmake-generated mdt_config.h, not the static version
+# (used by scons builds)
+rm ../src/mdt_config.h
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
       -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \
