@@ -37,6 +37,9 @@ requirements:
     - opencv 3.1.0 [py2k and linux64]
     - numpy 1.11* [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
+    - openmpi [osx]
+    - mpich2 [linux]
+      # For windows, need to install Microsoft MPI
 
   run:
     - python
@@ -54,6 +57,8 @@ requirements:
     - opencv 3.1.0 [py2k and linux64]
     - numpy 1.11* [py2k and linux64]
     - opencv-nopython 2.4.9 [py3k or win]
+    - openmpi [osx]
+    - mpich2 [linux]
 
 test:
   # Python imports
@@ -64,11 +69,14 @@ test:
     - IMP.cnmultifit
     - IMP.em2d
     - IMP.rmf
+    - IMP.mpi
+#   - IMP.spb
     - RMF
   # Command line tools
   commands:
     - cnmultifit --help
     - foxs --help
+#   - spb_test_score --help
 
 about:
   home: https://integrativemodeling.org
