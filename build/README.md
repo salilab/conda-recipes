@@ -32,3 +32,8 @@ packages:
 
  - Any package depending on Python 3.5 or 3.6 needs to be built with
    Visual Studio 2015, and will have the `vc14` feature set.
+
+ - [Microsoft MPI](https://msdn.microsoft.com/en-us/library/bb524831.aspx)
+   should be installed on each machine (there are two installer packages
+   at that website, both of which need to be installed). No further setup
+   should be necessary, since cmake detects MS MPI automatically.
