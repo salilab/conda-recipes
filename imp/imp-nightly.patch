@@ -2,7 +2,7 @@ diff --git a/imp/meta.yaml b/imp/meta.yaml
 index cbe4044..4ebe638 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
-@@ -1,17 +1,16 @@
+@@ -1,16 +1,15 @@
  package:
 -  name: imp
 -  version: "2.7.0"
@@ -17,7 +17,6 @@ index cbe4044..4ebe638 100644
 +  url: https://integrativemodeling.org/nightly/download/imp-20170524.develop.72e58be.tar.gz
    patches:
      - imp-directories.patch [win]
-     - imp-msvc2008-vector-data.patch [win and py27]
  
  build:
 -  number: 2

@@ -8,7 +8,6 @@ source:
   sha256: 877af254567051c78317ea94730dfff742aa56d21aefd71edf14a3f4b153b036
   patches:
     - imp-directories.patch [win]
-    - imp-msvc2008-vector-data.patch [win and py27]
 
 build:
   number: 2
