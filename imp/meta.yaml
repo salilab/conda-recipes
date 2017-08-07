@@ -21,7 +21,7 @@ requirements:
   build:
     - python
     - swig
-    - cgal 4.9.1
+    - cgal 4.10
     - cmake [not win]
     - cmake-mac [win]
     - boost 1.61.0 [win]
@@ -43,7 +43,7 @@ requirements:
 
   run:
     - python
-    - cgal 4.9.1
+    - cgal 4.10
     - boost 1.61.0 [win]
     - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
