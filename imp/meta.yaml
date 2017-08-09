@@ -69,13 +69,13 @@ test:
     - IMP.em2d
     - IMP.rmf
     - IMP.mpi
-#   - IMP.spb
+    - IMP.spb
     - RMF
   # Command line tools
   commands:
     - cnmultifit --help
     - foxs --help
-#   - spb_test_score --help
+    - spb_test_score --help
 
 about:
   home: https://integrativemodeling.org
