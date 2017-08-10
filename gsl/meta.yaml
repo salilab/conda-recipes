@@ -25,6 +25,6 @@ requirements:
     - system [linux]
 
 about:
-  home: http://www.gnu.org/software/gsl/
+  home: https://www.gnu.org/software/gsl/
   summary: "GNU Scientific Library"
   license: GPLv3
