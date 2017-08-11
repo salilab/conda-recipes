@@ -30,7 +30,7 @@ requirements:
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
-    - gsl 1.16 [not win]
+    - gsl 2.4 [not win]
     - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
     - opencv 3.1.0 [py2k and linux64]
@@ -50,7 +50,7 @@ requirements:
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
-    - gsl 1.16 [not win]
+    - gsl 2.4 [not win]
     - opencv 2.4.8 [py2k and osx]
     - opencv 2.4.6 [py2k and linux32]
     - opencv 3.1.0 [py2k and linux64]
