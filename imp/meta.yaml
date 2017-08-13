@@ -8,6 +8,7 @@ source:
   sha256: 83a23c56f0be9de8900d0edd3978eb8c2637e6d5086f7ef7e2cd61f0b7a5aa80
   patches:
     - cgal-test.patch [linux]
+    - cgal-test-dos.patch [win]
     - imp-directories.patch [win]
 
 build:
