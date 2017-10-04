@@ -16,11 +16,6 @@ if [ `uname -s` = "Darwin" ]; then
   # Our Mac build system isn't that powerful; don't overload it
   NUMTASKS=2
 else
-  # gcc 4.1 and newer Boost (flat_set and flat_map) don't work well together
-  # (RMF ends up not being able to write files out correctly)
-  EXTRA_CMAKE_FLAGS="\
-    -DCMAKE_CXX_COMPILER=/usr/bin/g++44 \
-    -DCMAKE_C_COMPILER=/usr/bin/gcc44"
   NUMTASKS=4
 fi
 
