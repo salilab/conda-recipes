@@ -13,4 +13,9 @@ echo "BOOST_LIB_DIR=${BUILD_PREFIX}/lib" >> make.config
 # Use conda-provided cxx
 perl -pi -e 's/^CXX/#CXX/' makefile
 
+# clang++ won't find std::tuple unless in C++11 mode
+if [ `uname -s` = "Darwin" ]; then
+  CFLAGS="-std=c++11 ${CFLAGS}"
+fi
+
 make -j4 install
