@@ -42,5 +42,4 @@ make
 make install
 
 # Remove build path from cmake files
-perl -pi -e 's/.*INTERFACE_(SYSTEM_)?(LINK_LIBRARIES|INCLUDE_DIRECTORIES).*//g' ${PREFIX}/lib/cmake/CGAL/*.cmake
-perl -pi -e "s#${BUILD_PREFIX}#\\\${CGAL_INSTALL_PREFIX}#g" ${PREFIX}/lib/cmake/CGAL/CGALConfig.cmake
+perl -pi -e "s#${BUILD_PREFIX}#\\\${CGAL_INSTALL_PREFIX}#g" ${PREFIX}/lib/cmake/CGAL/*.cmake
