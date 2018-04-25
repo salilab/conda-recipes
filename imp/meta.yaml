@@ -12,7 +12,7 @@ source:
     - imp-directories.patch [win]
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
@@ -28,7 +28,7 @@ requirements:
     - boost 1.61.0 [win]
     - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
-    - hdf5 1.8.17
+    - hdf5 1.10.1
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
@@ -48,7 +48,7 @@ requirements:
     - boost 1.61.0 [win]
     - boost 1.61.0 [linux]
     - boost 1.61.0 [osx]
-    - hdf5 1.8.17
+    - hdf5 1.10.1
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]

@@ -21,7 +21,7 @@ index 6cbdff4..7eef16a 100644
      - imp-directories.patch [win]
  
  build:
--  number: 1
+-  number: 2
 +  number: 0
    detect_binary_files_with_prefix: True [not win]
    features:
