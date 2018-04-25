@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Find packages in Anaconda locations
-export CMAKE_PREFIX_PATH=${PREFIX}
+export CMAKE_PREFIX_PATH=${BUILD_PREFIX}
 
 if [ `uname` == Darwin ]; then
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
@@ -34,10 +34,13 @@ else
     -D GMPXX_LIBRARIES=$BUILD_PREFIX/include/libgmpxx.so \
     -D ZLIB_LIBRARY=$BUILD_PREFIX/lib/libz.so \
     -D ZLIB_INCLUDE_DIR=$BUILD_PREFIX/include \
-    -DBUILD_SHARED_LIBS=FALSE \
     .
 fi
 
 
 make
 make install
+
+# Remove build path from cmake files
+perl -pi -e 's/.*INTERFACE_(SYSTEM_)?(LINK_LIBRARIES|INCLUDE_DIRECTORIES).*//g' ${PREFIX}/lib/cmake/CGAL/*.cmake
+perl -pi -e "s#${BUILD_PREFIX}#\\\${CGAL_INSTALL_PREFIX}#g" ${PREFIX}/lib/cmake/CGAL/CGALConfig.cmake
