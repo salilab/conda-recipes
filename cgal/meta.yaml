@@ -8,13 +8,15 @@ source:
   sha256: 442ef4fffb2ad6e4141e5a7902993ae6a4e73f7cb641fae1010bb586f6ca5e3f
 
 build:
-  number: 1
+  number: 2
   features:
     - vc9 [win and py27]
     - vc14 [win and py36]
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - python [win]
     - cmake [not win]
     - cmake-mac [win]
