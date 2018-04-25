@@ -5,6 +5,7 @@ export CMAKE_PREFIX_PATH=${PREFIX}
 
 if [ `uname` == Darwin ]; then
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D CMAKE_BUILD_TYPE=Release \
     -D MPFR_INCLUDE_DIR=$PREFIX/include \
     -D MPFR_LIBRARIES=$PREFIX/lib/libmpfr.a \
     -D GMP_INCLUDE_DIR=$PREFIX/include \
@@ -20,6 +21,7 @@ if [ `uname` == Darwin ]; then
 else
     export CXXFLAGS="-fPIC"
     cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D CMAKE_BUILD_TYPE=Release \
     -D CMAKE_INSTALL_LIBDIR=lib \
     -D BOOST_ROOT=$PREFIX \
     -D BOOST_INCLUDE_DIR=$PREFIX/include \

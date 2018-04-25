@@ -1,11 +1,11 @@
 package:
   name: cgal
-  version: "4.10"
+  version: "4.12"
 
 source:
-  fn: CGAL-10.tar.xz
-  url: https://github.com/CGAL/cgal/releases/download/releases/CGAL-4.10/CGAL-4.10.tar.xz
-  sha256: eb56e17dcdecddf6a6fb808931b2142f20aaa182916ddbd912273c51e0f0c045
+  fn: CGAL-4.12.tar.xz
+  url: https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.12/CGAL-4.12.tar.xz
+  sha256: 442ef4fffb2ad6e4141e5a7902993ae6a4e73f7cb641fae1010bb586f6ca5e3f
 
 build:
   number: 1
@@ -19,21 +19,31 @@ requirements:
     - cmake [not win]
     - cmake-mac [win]
     - boost 1.61.0 [win]
-    - boost 1.61.0 [osx]
-    - boost 1.61.0 [not osx and not win]
+    - boost 1.65.1 [not win]
     - gmp
     - mpfr
     - zlib
   run:
     - boost 1.61.0 [win]
-    - boost 1.61.0 [osx]
-    - boost 1.61.0 [not osx and not win]
+    - boost 1.65.1 [not win]
     - gmp
     - mpfr
     - zlib
 
 
 about:
-  home: http://www.cgal.org
+  home: https://www.cgal.org
   summary: 'The Computational Geometry Algorithms Library'
   license: GPL3
+  description: >
+    The Computational Geometry Algorithms Library (CGAL) is a software
+    project that provides easy access to efficient and reliable geometric
+    algorithms in the form of a C++ library. CGAL is used in various areas
+    needing geometric computation, such as geographic information systems,
+    computer aided design, molecular biology, medical imaging, computer
+    graphics, and robotics.
+
+    See the [CGAL website](https://www.cgal.org/) for more information.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
