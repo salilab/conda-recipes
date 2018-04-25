@@ -1,18 +1,16 @@
 #!/bin/bash
 
 # Find packages in Anaconda locations
-export CMAKE_PREFIX_PATH=${PREFIX}
+export CMAKE_PREFIX_PATH=${BUILD_PREFIX}
+export CGAL_DIR=${CMAKE_PREFIX_PATH}/lib/cmake/CGAL
 
 if [ `uname -s` = "Darwin" ]; then
-  PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
-  # Can't build in c++11 mode yet, since Boost is built without it
-  EXTRA_CMAKE_FLAGS="\
-    -DPYTHON_INCLUDE_DIR=${PYINC} \
-    -DIMP_CXX11=OFF"
+  PYINC=`echo ${BUILD_PREFIX}/include/python${PY_VER}*`
+  EXTRA_CMAKE_FLAGS="-DPYTHON_INCLUDE_DIR=${PYINC}"
   # Make sure the default encoding for files opened by Python 3 is UTF8
   export LANG=en_US.UTF-8
   # Help ld to find opencv libs
-  export LDFLAGS="-L${PREFIX}/lib"
+  export LDFLAGS="-L${BUILD_PREFIX}/lib"
   # Our Mac build system isn't that powerful; don't overload it
   NUMTASKS=2
 else

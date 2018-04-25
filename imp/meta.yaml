@@ -8,11 +8,12 @@ source:
   sha256: 83a23c56f0be9de8900d0edd3978eb8c2637e6d5086f7ef7e2cd61f0b7a5aa80
   patches:
     - cgal-test.patch [linux]
+    - cgal-4.11.patch [linux]
     - cgal-test-dos.patch [win]
     - imp-directories.patch [win]
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: True [not win]
   features:
     - vc9 [win and py27]
@@ -20,45 +21,38 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - python
     - swig
-    - cgal 4.10
+    - cgal 4.12
     - cmake [not win]
     - cmake-mac [win]
     - boost 1.61.0 [win]
-    - boost 1.61.0 [linux]
-    - boost 1.61.0 [osx]
+    - boost 1.65.1 [not win]
     - hdf5 1.10.1
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
     - gsl 2.4 [not win]
-    - opencv 2.4.8 [py2k and osx]
-    - opencv 2.4.6 [py2k and linux32]
-    - opencv 3.1.0 [py2k and linux64]
-    - opencv-nopython 2.4.9 [py3k or win]
-    - protobuf 3.5.1
+    - opencv 3.3.1
+    - protobuf 3.4.1  # 3.5.1 is available but opencv needs 3.4.1
     - openmpi [osx]
     - mpich2 [linux]
       # For windows, need to install Microsoft MPI
 
   run:
     - python
-    - cgal 4.10
+    - cgal 4.12
     - boost 1.61.0 [win]
-    - boost 1.61.0 [linux]
-    - boost 1.61.0 [osx]
+    - boost 1.65.1 [not win]
     - hdf5 1.10.1
     - fftw 3.3.4
     - libtau
     - gsl 1.8 [win]
     - gsl 2.4 [not win]
-    - opencv 2.4.8 [py2k and osx]
-    - opencv 2.4.6 [py2k and linux32]
-    - opencv 3.1.0 [py2k and linux64]
-    - numpy 1.11* [py2k and linux64]
-    - opencv-nopython 2.4.9 [py3k or win]
-    - protobuf 3.5.1
+    - opencv 3.3.1
+    - protobuf 3.4.1
     - openmpi [osx]
     - mpich2 [linux]
 
