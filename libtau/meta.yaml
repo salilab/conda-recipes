@@ -1,12 +1,11 @@
 package:
   name: libtau
-  version: "1.0.1"
+  version: "1.0.2"
 
 source:
-  fn: libTAU-1.0.1.zip
-  url: http://integrativemodeling.org/libTAU/libTAU-1.0.1.zip
-  md5: 060c4a271063dc239d6646d3bbe25b01
-  sha256: 8aa352b35370fb6048d9387fcfe01f76d33d65b3f7aaa70e3fb95a7f2b687b12
+  fn: libTAU-src-1.0.2.tar.gz
+  # Source is not public; manually copy the .tar.gz into conda src_cache
+  url: https://integrativemodeling.org/libTAU/libTAU-src-1.0.2.tar.gz
 
 build:
   number: 0
@@ -17,6 +16,10 @@ build:
 requirements:
   build:
     - python [win]
+    - scons
+    - boost
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
 
 about:
   home: https://integrativemodeling.org/libTAU.html
