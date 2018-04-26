@@ -25,3 +25,14 @@ about:
   home: https://integrativemodeling.org/libTAU.html
   license: Binary distribution only
   summary: "Support library needed for MultiFit"
+  description: >
+    libTAU is a support library needed for MultiFit, provided by
+    [Haim Wolfson's group](http://bioinfo3d.cs.tau.ac.il/) at
+    [Tel Aviv University](https://www.tau.ac.il/). It is not open source,
+    but we have permission to distribute its binaries with MultiFit and IMP.
+
+    See [the libTAU website](https://integrativemodeling.org/libTAU.html)
+    for more details.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
