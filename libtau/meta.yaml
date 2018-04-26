@@ -6,6 +6,8 @@ source:
   fn: libTAU-src-1.0.2.tar.gz
   # Source is not public; manually copy the .tar.gz into conda src_cache
   url: https://integrativemodeling.org/libTAU/libTAU-src-1.0.2.tar.gz
+  patches:
+    - scons-env.patch [osx]
 
 build:
   number: 0

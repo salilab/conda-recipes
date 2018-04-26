@@ -1,0 +1,17 @@
+Index: SConstruct
+===================================================================
+--- SConstruct	(revision 2128)
++++ SConstruct	(working copy)
+@@ -1,3 +1,4 @@
++import os
+ # Include build utility functions:
+ from tools import *
+ 
+@@ -9,6 +10,7 @@
+ add_common_variables(vars)
+ 
+ env = MyEnvironment(variables=vars)
++env['ENV'] = os.environ
+ Help(vars.GenerateHelpText(env))
+ 
+ env['VERSION'] = '1.0.1'
