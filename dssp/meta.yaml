@@ -10,7 +10,7 @@ source:
     - dssp-boost-tr1.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -20,7 +20,7 @@ requirements:
     - zlib 1.2.11
     - bzip2 1.0.6
   run:
-    - boost 1.65.1
+    - libboost 1.65.1
     - zlib 1.2.11
     - bzip2 1.0.6
 

@@ -8,7 +8,7 @@ source:
   sha256: 442ef4fffb2ad6e4141e5a7902993ae6a4e73f7cb641fae1010bb586f6ca5e3f
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -21,7 +21,7 @@ requirements:
     - mpfr
     - zlib
   run:
-    - boost 1.65.1
+    - libboost 1.65.1
     - gmp
     - mpfr
     - zlib
