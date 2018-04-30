@@ -9,16 +9,14 @@ source:
   patches:
     - cgal-test.patch [not win]
     - cgal-test-dos.patch [win]
-    - cgal-4.11.patch
-    - domino-no-inline.patch
+    - cgal-4.11.patch [not win]
+    - cgal-4.11-dos.patch [win]
+    - domino-no-inline.patch [not win]
     - imp-directories.patch [win]
 
 build:
   number: 3
   detect_binary_files_with_prefix: True [not win]
-  features:
-    - vc9 [win and py27]
-    - vc14 [win and py36]
 
 requirements:
   build:
@@ -27,13 +25,12 @@ requirements:
     - python
     - swig
     - cgal 4.12
-    - cmake [not win]
-    - cmake-mac [win]
-    - boost 1.61.0 [win]
-    - boost 1.65.1 [not win]
+    - cmake
+    - boost 1.65.1
     - hdf5 1.10.1
     - fftw 3.3.4
-    - libtau 1.0.2
+    - libtau 1.0.1 [win]
+    - libtau 1.0.2 [not win]
     - gsl 1.8 [win]
     - gsl 2.4 [not win]
     - opencv 3.3.1
@@ -45,11 +42,11 @@ requirements:
   run:
     - python
     - cgal 4.12
-    - boost 1.61.0 [win]
-    - boost 1.65.1 [not win]
+    - boost 1.65.1
     - hdf5 1.10.1
     - fftw 3.3.4
-    - libtau 1.0.2
+    - libtau 1.0.1 [win]
+    - libtau 1.0.2 [not win]
     - gsl 1.8 [win]
     - gsl 2.4 [not win]
     - opencv 3.3.1
