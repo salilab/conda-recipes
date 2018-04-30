@@ -9,25 +9,19 @@ source:
 
 build:
   number: 3
-  features:
-    - vc9 [win and py27]
-    - vc14 [win and py36]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - python [win]
-    - cmake [not win]
-    - cmake-mac [win]
-    - boost 1.61.0 [win]
-    - boost 1.65.1 [not win]
+    - cmake
+    - boost 1.65.1
     - gmp
     - mpfr
     - zlib
   run:
-    - boost 1.61.0 [win]
-    - boost 1.65.1 [not win]
+    - boost 1.65.1
     - gmp
     - mpfr
     - zlib
