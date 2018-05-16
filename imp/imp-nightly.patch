@@ -1,8 +1,49 @@
+diff --git a/imp/imp-nightly.patch b/imp/imp-nightly.patch
+index 1238af1..e69de29 100644
+--- a/imp/imp-nightly.patch
++++ b/imp/imp-nightly.patch
+@@ -1,36 +0,0 @@
+-diff --git a/imp/meta.yaml b/imp/meta.yaml
+-index 6cbdff4..7eef16a 100644
+---- a/imp/meta.yaml
+-+++ b/imp/meta.yaml
+-@@ -1,18 +1,15 @@
+- package:
+--  name: imp
+--  version: "2.8.0"
+-+  name: imp-nightly
+-+  version: "20170906"
+- 
+- source:
+--  fn: imp-2.8.0.tar.gz
+--  url: https://integrativemodeling.org/2.8.0/download/imp-2.8.0.tar.gz
+--  sha256: 83a23c56f0be9de8900d0edd3978eb8c2637e6d5086f7ef7e2cd61f0b7a5aa80
+-+  fn: imp-20170906.develop.0cee1a5.tar.gz
+-+  url: https://integrativemodeling.org/nightly/download/imp-20170906.develop.0cee1a5.tar.gz
+-   patches:
+--    - cgal-test.patch [linux]
+--    - cgal-test-dos.patch [win]
+-     - imp-directories.patch [win]
+- 
+- build:
+--  number: 2
+-+  number: 0
+-   detect_binary_files_with_prefix: True [not win]
+-   features:
+-     - vc9 [win and py27]
+-@@ -23,6 +20,7 @@ requirements:
+-     - python
+-     - swig
+-     - cgal 4.10
+-+    - eigen
+-     - cmake [not win]
+-     - cmake-mac [win]
+-     - boost 1.61.0 [win]
 diff --git a/imp/meta.yaml b/imp/meta.yaml
-index 6cbdff4..7eef16a 100644
+index 6e0c180..b5e4af3 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
-@@ -1,18 +1,15 @@
+@@ -1,21 +1,15 @@
  package:
 -  name: imp
 -  version: "2.8.0"
@@ -16,21 +57,24 @@ index 6cbdff4..7eef16a 100644
 +  fn: imp-20170906.develop.0cee1a5.tar.gz
 +  url: https://integrativemodeling.org/nightly/download/imp-20170906.develop.0cee1a5.tar.gz
    patches:
--    - cgal-test.patch [linux]
+-    - cgal-test.patch [not win]
 -    - cgal-test-dos.patch [win]
+-    - cgal-4.11.patch [not win]
+-    - cgal-4.11-dos.patch [win]
+-    - domino-no-inline.patch [not win]
      - imp-directories.patch [win]
  
  build:
--  number: 2
+-  number: 4
 +  number: 0
    detect_binary_files_with_prefix: True [not win]
-   features:
-     - vc9 [win and py27]
-@@ -23,6 +20,7 @@ requirements:
-     - python
+ 
+ requirements:
+@@ -25,6 +19,7 @@ requirements:
+     - python {{ python }}
      - swig
-     - cgal 4.10
+     - cgal 4.12.*
 +    - eigen
-     - cmake [not win]
-     - cmake-mac [win]
-     - boost 1.61.0 [win]
+     - cmake
+     - boost 1.65.1.*
+     - hdf5 1.10.1.*
