@@ -12,10 +12,11 @@ source:
     - cgal-4.11.patch [not win]
     - cgal-4.11-dos.patch [win]
     - domino-no-inline.patch [not win]
+    - search-path-nulls.patch [not win]
     - imp-directories.patch [win]
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
