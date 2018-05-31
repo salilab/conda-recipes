@@ -1,45 +1,47 @@
 package:
   name: modeller
-  version: "9.19"
+  version: "9.20"
 
 source:
-  fn: modeller-9.19-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/9.19/modeller-9.19-mac.pax.gz [osx]
-  sha256: 408ebe4176d31709fb897cfc0b5775770e5faaa94edc6eaea9ccc5bd8db6d87e [osx]
-  fn: modeller-9.19.tar.gz [linux]
-  url: https://salilab.org/modeller/9.19/modeller-9.19.tar.gz [linux]
-  sha256: 28be10ca2f4d34836875da6eeed5ffd86256cc75255137c96e001e881685ac4b [linux]
-  fn: modeller9.19-32bit.zip [win32]
-  url: https://salilab.org/modeller/9.19/modeller9.19-32bit.zip [win32]
-  sha256: 006f225c4c1265e984133757168895d4677b08def4ffbd281bd7425d29600312 [win32]
-  fn: modeller9.19-64bit.zip [win64]
-  url: https://salilab.org/modeller/9.19/modeller9.19-64bit.zip [win64]
-  sha256: 49d24561f62a579a57b6da1276a5a3302603299487cbfc50d5c9235d70a31fd5 [win64]
+  fn: modeller-9.20-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/9.20/modeller-9.20-mac.pax.gz [osx]
+  sha256: 161c8d5576a52ead4a90d775549cbc772c33cba71500be33c5e21af75da33729 [osx]
+  fn: modeller-9.20.tar.gz [linux]
+  url: https://salilab.org/modeller/9.20/modeller-9.20.tar.gz [linux]
+  sha256: 00f276666a74fb5759de0988f17964ba10df3bb1a9f4e17a749dc6be91393a1a [linux]
+  fn: modeller9.20-32bit.zip [win32]
+  url: https://salilab.org/modeller/9.20/modeller9.20-32bit.zip [win32]
+  sha256: 7cc54fe46403dfc8184fa26b9ee45a394f484620a70b59949f57e72e0f6af5e2 [win32]
+  fn: modeller9.20-64bit.zip [win64]
+  url: https://salilab.org/modeller/9.20/modeller9.20-64bit.zip [win64]
+  sha256: d3c4878f18ba99a20bd15545a1348f32e80c9abf0fed6e77633e290bc4ebd7ed [win64]
 
 build:
   number: 1
   rpaths: [linux]
-    - lib/modeller-9.19/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-9.19/lib/i386-intel8/ [linux32]
-    - lib/hdf5-1818 [linux]
+    - lib/modeller-9.20/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-9.20/lib/i386-intel8/ [linux32]
+    - lib/hdf5-1820 [linux]
 
 requirements:
+  host:
+    - python {{ python }}
   build:
-    - python
+    - python {{ python }}
     - swig [unix]
     - setuptools
     - glib [unix]
-    - hdf5-1818 [unix]
+    - hdf5-1820 [unix]
 
   run:
-    - python
-    - hdf5-1818 [unix]
+    - python {{ python }}
+    - hdf5-1820 [unix]
     - vs2010_runtime [win32]
 
 test:
   # Command line tool
   commands:
-    - mod9.19 --cflags --libs
+    - mod9.20 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
@@ -49,3 +51,29 @@ about:
   home: https://salilab.org
   license: Free for academic use
   summary: "Comparative modeling by satisfaction of spatial restraints"
+  description: >
+    MODELLER is used for homology or comparative modeling of protein
+    three-dimensional structures (1,2). The user provides an alignment of a
+    sequence to be modeled with known related structures and MODELLER
+    automatically calculates a model containing all non-hydrogen atoms.
+    MODELLER implements comparative protein structure modeling by satisfaction
+    of spatial restraints (3,4), and can perform many additional tasks,
+    including de novo modeling of loops in protein structures, optimization
+    of various models of protein structure with respect to a flexibly defined
+    objective function, multiple alignment of protein sequences and/or
+    structures, clustering, searching of sequence databases, comparison of
+    protein structures, etc.
+
+    1. B. Webb, A. Sali. Comparative Protein Structure Modeling Using Modeller.
+       Current Protocols in Bioinformatics 54, John Wiley & Sons, Inc.,
+       5.6.1-5.6.37, 2016.
+
+    2. M.A. Marti-Renom, A. Stuart, A. Fiser, R. Sánchez, F. Melo, A. Sali.
+       Comparative protein structure modeling of genes and genomes.
+       Annu. Rev. Biophys. Biomol. Struct. 29, 291-325, 2000.
+
+    3. A. Sali & T.L. Blundell. Comparative protein modelling by satisfaction
+       of spatial restraints. J. Mol. Biol. 234, 779-815, 1993.
+
+    4. A. Fiser, R.K. Do, & A. Sali. Modeling of loops in protein structures,
+       Protein Science 9. 1753-1773, 2000.
