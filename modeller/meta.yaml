@@ -26,13 +26,13 @@ build:
 requirements:
   host:
     - python {{ python }}
+    - hdf5-1820 [unix]
   build:
     - python {{ python }}
     - swig [unix]
     - setuptools
     - pkg-config [unix]
     - glib 2.31.2 [unix]
-    - hdf5-1820 [unix]
 
   run:
     - python {{ python }}
