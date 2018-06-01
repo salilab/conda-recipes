@@ -1,6 +1,8 @@
 #!/bin/bash
 
 modtop=${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}
+# Help pkg-config to find glib .pc file
+export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
 
 if [ `uname -s` = "Darwin" ]; then
   tar -xzf *.pax.gz
@@ -61,7 +63,7 @@ else
 
   # Bundle glib so we don't need it as a runtime dependency (since it pulls in
   # gettext which might interfere with the system copy)
-  cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+  cp ${BUILD_PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
 
   # Remove bundled HDF5; use the conda package instead
   rm -f ${modtop}/lib/${exetype}/*hdf5*
@@ -71,6 +73,7 @@ mv ${modtop}/bin/mod${PKG_VERSION} ${PREFIX}/bin
 perl -pi -e "s#^MODINSTALL(.*)=.*#MODINSTALL\$1=/opt/anaconda1anaconda2anaconda3/lib/${PKG_NAME}-${PKG_VERSION}#" ${PREFIX}/bin/mod${PKG_VERSION}
 
 # Put pure Python interface in the standard search paths
+mkdir -p ${SP_DIR}
 ln -s ${modtop}/modlib/modeller ${SP_DIR}
 
 perl -pi -e "s/^exetype =.*$/exetype = \"${exetype}\"/" \
@@ -116,6 +119,7 @@ else
 fi
 
 # Add pkg-config support
+mkdir -p ${PREFIX}/lib/pkgconfig/
 cat <<END > ${PREFIX}/lib/pkgconfig/modeller.pc
 prefix=${PREFIX}
 exec_prefix=${PREFIX}
