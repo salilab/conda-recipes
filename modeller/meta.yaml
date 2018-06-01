@@ -30,6 +30,7 @@ requirements:
     - python {{ python }}
     - swig [unix]
     - setuptools
+    - pkg-config [unix]
     - glib [unix]
     - hdf5-1820 [unix]
 
@@ -39,6 +40,8 @@ requirements:
     - vs2010_runtime [win32]
 
 test:
+  requires:
+    - pkg-config [unix]
   # Command line tool
   commands:
     - mod9.20 --cflags --libs
