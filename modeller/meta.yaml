@@ -31,7 +31,7 @@ requirements:
     - swig [unix]
     - setuptools
     - pkg-config [unix]
-    - glib 2.31.2 [unix] # use salilab glib package
+    - glib 2.31.2 [unix]
     - hdf5-1820 [unix]
 
   run:
