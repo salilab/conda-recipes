@@ -80,3 +80,8 @@ about:
 
     4. A. Fiser, R.K. Do, & A. Sali. Modeling of loops in protein structures,
        Protein Science 9. 1753-1773, 2000.
+
+    See [the Modeller website](https://salilab.org/modeller/) for more details.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
