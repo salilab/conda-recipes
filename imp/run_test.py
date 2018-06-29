@@ -3,6 +3,7 @@ import IMP.core
 import IMP.atom
 import IMP.algebra
 import IMP.domino
+import IMP.npctransport
 import IMP.rmf
 import IMP.test
 import RMF
@@ -36,3 +37,6 @@ os.unlink("test.rmf")
 
 # Make sure that IMP.domino was built with HDF5 support
 x = IMP.domino.ReadHDF5AssignmentContainer
+
+# Make sure that IMP.npctransport has full protobuf support
+x = IMP.npctransport.Configuration

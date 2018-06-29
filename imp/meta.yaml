@@ -1,22 +1,16 @@
 package:
   name: imp
-  version: "2.8.0"
+  version: "2.9.0"
 
 source:
-  fn: imp-2.8.0.tar.gz
-  url: https://integrativemodeling.org/2.8.0/download/imp-2.8.0.tar.gz
-  sha256: 83a23c56f0be9de8900d0edd3978eb8c2637e6d5086f7ef7e2cd61f0b7a5aa80
+  fn: imp-2.9.0.tar.gz
+  url: https://integrativemodeling.org/2.9.0/download/imp-2.9.0.tar.gz
+  sha256: 4fb6f15a2e598cecfd374c701ba5f59fb39d28b02ec44e9ef162dc8cf8e33fd0
   patches:
-    - cgal-test.patch [not win]
-    - cgal-test-dos.patch [win]
-    - cgal-4.11.patch [not win]
-    - cgal-4.11-dos.patch [win]
-    - domino-no-inline.patch [not win]
-    - search-path-nulls.patch [not win]
     - imp-directories.patch [win]
 
 build:
-  number: 5
+  number: 1
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
@@ -28,16 +22,17 @@ requirements:
     - python {{ python }}
     - swig
     - cgal 4.12.*
+    - eigen
     - cmake
     - boost 1.65.1.*
-    - hdf5 1.10.1.*
+    - hdf5 1.10.2.*
     - fftw 3.3.4.*
     - libtau 1.0.1.* [win]
     - libtau 1.0.2.* [not win]
     - gsl 1.8.* [win]
     - gsl 2.4.* [not win]
-    - opencv 3.3.1.*
-    - protobuf 3.4.1.*  # 3.5.1 is available but opencv needs 3.4.1
+    - opencv 3.4.1.*
+    - protobuf 3.5.2.*
     - openmpi [osx]
     - mpich2 [linux]
       # For windows, need to install Microsoft MPI
@@ -46,14 +41,14 @@ requirements:
     - python {{ python }}
     - cgal 4.12.*
     - libboost 1.65.1.*
-    - hdf5 1.10.1.*
+    - hdf5 1.10.2.*
     - fftw 3.3.4.*
     - libtau 1.0.1.* [win]
     - libtau 1.0.2.* [not win]
     - gsl 1.8.* [win]
     - gsl 2.4.* [not win]
-    - opencv 3.3.1.*
-    - protobuf 3.4.1.*
+    - opencv 3.4.1.*
+    - protobuf 3.5.2.*
     - openmpi [osx]
     - mpich2 [linux]
 
@@ -65,6 +60,8 @@ test:
     - IMP.cgal
     - IMP.cnmultifit
     - IMP.em2d
+    - IMP.npc
+    - IMP.npctransport
     - IMP.rmf
     - IMP.mpi
     - IMP.spb
