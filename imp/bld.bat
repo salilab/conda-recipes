@@ -38,18 +38,27 @@ cd build
 :: path otherwise the HDF5_found test fails
 if "%VisualStudioVersion%" == "" (
   mkdir include
-  copy %RECIPE_DIR%\msvc2008-stdint\stdint.h %LIBRARY_INC%\stdint.h
+  copy %RECIPE_DIR%\msvc2008-stdint\stdint.h %BUILD_PREFIX%\Library\include\stdint.h
   if errorlevel 1 exit 1
 )
 
-cmake -DPYTHON_LIBRARY="%PREFIX%\libs\python%PY_VER_NO_DOT%.lib" -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" -DOPENCV22_LIBRARIES="%LIBRARY_LIB%\opencv_core249.lib;%LIBRARY_LIB%\opencv_imgproc249.lib;%LIBRARY_LIB%\opencv_highgui249.lib;%LIBRARY_LIB%\opencv_contrib249.lib" -DHDF5_LIBRARIES="%LIBRARY_LIB:\=/%/hdf5.lib" -DHDF5_FOUND=TRUE -DHDF5_INCLUDE_DIRS="%LIBRARY_INC:\=/%" -DHDF5_INCLUDE_DIR="%LIBRARY_INC:\=/%" -G "NMake Makefiles" ..
+:: Older Python versions need to use our opencv-nopython package
+set OPENCV_VER="331"
+if "%CONDA_PY%" == "27" (
+  set OPENCV_VER="249"
+)
+if "%CONDA_PY%" == "34" (
+  set OPENCV_VER="249"
+)
+
+cmake -DPYTHON_LIBRARY="%PREFIX%\libs\python%PY_VER_NO_DOT%.lib" -DCMAKE_PREFIX_PATH="%BUILD_PREFIX:\=/%\Library" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" -Dopencv_core_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_core%OPENCV_VER%.lib" -Dopencv_imgproc_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgproc%OPENCV_VER%.lib" -Dopencv_highgui_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_highgui%OPENCV_VER%.lib" -Dopencv_imgcodecs_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgcodecs%OPENCV_VER%.lib" -DHDF5_LIBRARIES="%BUILD_PREFIX:\=/%/Library/lib/hdf5.lib" -DHDF5_FOUND=TRUE -DHDF5_INCLUDE_DIRS="%BUILD_PREFIX:\=/%/Library/include" -DHDF5_INCLUDE_DIR="%BUILD_PREFIX:\=/%/Library/include" -Dprotobuf_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/libprotobuf.lib" -G "NMake Makefiles" ..
 if errorlevel 1 exit 1
 
 nmake install
 if errorlevel 1 exit 1
 
 :: Patch IMP Python module to add paths containing Anaconda DLLs to search path
-python "%RECIPE_DIR%\add_dll_search_path.py" "%SP_DIR%\IMP" "%LIBRARY_BIN%" "%LIBRARY_LIB%" "%SP_DIR%\IMP\__init__.py"
+python "%RECIPE_DIR%\add_dll_search_path.py" "%SP_DIR%\IMP" "%PREFIX%\Library\bin" "%PREFIX%\Library\lib" "%SP_DIR%\IMP\__init__.py"
 if errorlevel 1 exit 1
 
 :: Add wrappers to path for each command line tool
