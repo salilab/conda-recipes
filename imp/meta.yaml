@@ -22,10 +22,12 @@ requirements:
     - {{ compiler('cxx') }}
     - python {{ python }}
     - swig
-    - cgal 4.12.*
+    - cgal 4.10.* [win]
+    - cgal 4.12.* [not win]
     - eigen
     - cmake
-    - boost 1.65.1.*
+    - boost 1.61.0.* [win]
+    - boost 1.65.1.* [not win]
     - hdf5 1.10.2.*
     - fftw 3.3.4.*
     - libtau 1.0.1.* [win]
@@ -40,8 +42,10 @@ requirements:
 
   run:
     - python {{ python }}
-    - cgal 4.12.*
-    - libboost 1.65.1.*
+    - cgal 4.10.* [win]
+    - cgal 4.12.* [not win]
+    - boost 1.61.0.* [win]
+    - libboost 1.65.1.* [not win]
     - hdf5 1.10.2.*
     - fftw 3.3.4.*
     - libtau 1.0.1.* [win]
