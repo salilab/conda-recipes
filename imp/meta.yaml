@@ -34,8 +34,12 @@ requirements:
     - libtau 1.0.2.* [not win]
     - gsl 1.8.* [win]
     - gsl 2.4.* [not win]
-    - opencv 3.4.1.*
-    - protobuf 3.5.2.*
+    - opencv 3.4.1.* [not win]
+    - protobuf 3.5.2.* [not win]
+    - opencv-nopython 2.4.9.* [win and (py27 or py34)]
+    - protobuf 3.5.2.* [win and (py27 or py34)]
+    - opencv 3.3.1.* [win and not (py27 or py34)]
+    - protobuf 3.4.1.* [win and not (py27 or py34)]
     - openmpi [osx]
     - mpich2 [linux]
       # For windows, need to install Microsoft MPI
@@ -52,8 +56,12 @@ requirements:
     - libtau 1.0.2.* [not win]
     - gsl 1.8.* [win]
     - gsl 2.4.* [not win]
-    - opencv 3.4.1.*
-    - protobuf 3.5.2.*
+    - opencv 3.4.1.* [not win]
+    - protobuf 3.5.2.* [not win]
+    - opencv-nopython 2.4.9.* [win and (py27 or py34)]
+    - protobuf 3.5.2.* [win and (py27 or py34)]
+    - opencv 3.3.1.* [win and not (py27 or py34)]
+    - protobuf 3.4.1.* [win and not (py27 or py34)]
     - openmpi [osx]
     - mpich2 [linux]
 
