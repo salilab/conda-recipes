@@ -18,6 +18,10 @@ mkdir tools\dev_tools\python_tools
 copy modules\rmf\dependency\RMF\tools\dev_tools\python_tools\* tools\dev_tools\python_tools\
 if errorlevel 1 exit 1
 
+:: add Python script to fix npctransport protobuf headers
+copy "%RECIPE_DIR%\patch_protoc.py" modules\npctransport\patch_protoc.py
+if errorlevel 1 exit 1
+
 :: build app wrapper
 copy "%RECIPE_DIR%\app_wrapper.c" .
 cl app_wrapper.c shell32.lib

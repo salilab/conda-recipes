@@ -8,6 +8,7 @@ source:
   sha256: 4fb6f15a2e598cecfd374c701ba5f59fb39d28b02ec44e9ef162dc8cf8e33fd0
   patches:
     - imp-directories.patch [win]
+    - npctransport-dos.patch [win]
 
 build:
   number: 1
