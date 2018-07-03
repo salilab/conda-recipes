@@ -9,6 +9,7 @@ source:
   patches:
     - imp-directories.patch [win]
     - npctransport-dos.patch [win]
+    - vs2008-ice-dos.patch [win and py27]
 
 build:
   number: 1
