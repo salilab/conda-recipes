@@ -1,40 +1,28 @@
 diff --git a/imp/meta.yaml b/imp/meta.yaml
-index 9fd0c5d..6e9bd1d 100644
+index 19e2789..cc59403 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
-@@ -1,22 +1,15 @@
+@@ -1,18 +1,16 @@
  package:
 -  name: imp
--  version: "2.8.0"
+-  version: "2.9.0"
 +  name: imp-nightly
-+  version: "20170906"
++  version: "20180713"
  
  source:
--  fn: imp-2.8.0.tar.gz
--  url: https://integrativemodeling.org/2.8.0/download/imp-2.8.0.tar.gz
--  sha256: 83a23c56f0be9de8900d0edd3978eb8c2637e6d5086f7ef7e2cd61f0b7a5aa80
-+  fn: imp-20170906.develop.0cee1a5.tar.gz
-+  url: https://integrativemodeling.org/nightly/download/imp-20170906.develop.0cee1a5.tar.gz
+-  fn: imp-2.9.0.tar.gz
+-  url: https://integrativemodeling.org/2.9.0/download/imp-2.9.0.tar.gz
+-  sha256: 4fb6f15a2e598cecfd374c701ba5f59fb39d28b02ec44e9ef162dc8cf8e33fd0
++  fn: imp-20180713.develop.7914a99.tar.gz
++  url: https://integrativemodeling.org/nightly/download/imp-20180713.develop.7914a99.tar.gz
    patches:
--    - cgal-test.patch [not win]
--    - cgal-test-dos.patch [win]
--    - cgal-4.11.patch [not win]
--    - cgal-4.11-dos.patch [win]
--    - domino-no-inline.patch [not win]
--    - search-path-nulls.patch [not win]
      - imp-directories.patch [win]
+-    - npctransport-dos.patch [win]
+     - vs2008-ice-dos.patch [win and py27]
  
  build:
--  number: 5
+-  number: 1
 +  number: 0
    detect_binary_files_with_prefix: True [not win]
  
  requirements:
-@@ -28,6 +21,7 @@ requirements:
-     - python {{ python }}
-     - swig
-     - cgal 4.12.*
-+    - eigen
-     - cmake
-     - boost 1.65.1.*
-     - hdf5 1.10.1.*
