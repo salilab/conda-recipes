@@ -8,7 +8,7 @@ source:
   sha256: 442ef4fffb2ad6e4141e5a7902993ae6a4e73f7cb641fae1010bb586f6ca5e3f
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   build:
@@ -16,14 +16,14 @@ requirements:
     - {{ compiler('cxx') }}
     - python [win]
     - cmake
-    - boost 1.65.1.*
+    - boost 1.67.0.*
     - gmp 6.1.2.* [not win]
     - gmp 5.0.1.* [win]
     - mpfr 4.0.1.* [not win]
     - mpfr 3.0.0.* [win]
     - zlib 1.2.11.*
   run:
-    - libboost 1.65.1.*
+    - libboost 1.67.0.*
     - gmp 6.1.2.* [not win]
     - gmp 5.0.1.* [win]
     - mpfr 4.0.1.* [not win]
