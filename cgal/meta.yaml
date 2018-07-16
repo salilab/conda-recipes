@@ -16,14 +16,14 @@ requirements:
     - {{ compiler('cxx') }}
     - python [win]
     - cmake
-    - boost 1.65.1
+    - boost 1.65.1.*
     - gmp 6.1.2.* [not win]
     - gmp 5.0.1.* [win]
     - mpfr 4.0.1.* [not win]
     - mpfr 3.0.0.* [win]
     - zlib 1.2.11.*
   run:
-    - libboost 1.65.1
+    - libboost 1.65.1.*
     - gmp 6.1.2.* [not win]
     - gmp 5.0.1.* [win]
     - mpfr 4.0.1.* [not win]
