@@ -8,22 +8,24 @@ source:
   sha256: fc403b8c26365c11bd9522929aef0c3b51dff860fddc8ac446a980acec5a3d44
 
 build:
-  number: 1
+  number: 2
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python }}
     - numpy
-    - modeller 9.19
+    - modeller 9.20.*
+    - glib
+  build:
+    - {{ compiler('c') }}
+    - python {{ python }}
     - cmake [not osx]
     - cmake-mac [osx]
     - swig
-    - glib
-
   run:
-    - python
+    - python {{ python }}
     - numpy
-    - modeller 9.19
+    - modeller 9.20.*
 
 about:
   home: https://salilab.org/mdt/
