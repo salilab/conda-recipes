@@ -5,6 +5,11 @@ if "%ARCH%" == "64" (
   set EXETYPE=i386-w32
 )
 
+:: Supplement the released package with extensions built for Python 3.7
+mkdir lib\%EXETYPE%\python3.7
+copy "%RECIPE_DIR%\w%ARCH%_py37_modeller.pyd" "lib\%EXETYPE%\python3.7\_modeller.pyd"
+if errorlevel 1 exit 1
+
 set SOVERSION=11
 
 :: temporarily rename to avoid conflict with python%PY_VER%\_modeller.pyd
