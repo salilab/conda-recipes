@@ -21,7 +21,7 @@ index 19e2789..cc59403 100644
      - vs2008-ice-dos.patch [win and py27]
  
  build:
--  number: 1
+-  number: 2
 +  number: 0
    detect_binary_files_with_prefix: True [not win]
  
