@@ -1,26 +1,26 @@
 package:
   name: modeller
-  version: "9.20"
+  version: "9.21"
 
 source:
-  fn: modeller-9.20-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/9.20/modeller-9.20-mac.pax.gz [osx]
-  sha256: 161c8d5576a52ead4a90d775549cbc772c33cba71500be33c5e21af75da33729 [osx]
-  fn: modeller-9.20.tar.gz [linux]
-  url: https://salilab.org/modeller/9.20/modeller-9.20.tar.gz [linux]
-  sha256: 00f276666a74fb5759de0988f17964ba10df3bb1a9f4e17a749dc6be91393a1a [linux]
-  fn: modeller9.20-32bit.zip [win32]
-  url: https://salilab.org/modeller/9.20/modeller9.20-32bit.zip [win32]
-  sha256: 7cc54fe46403dfc8184fa26b9ee45a394f484620a70b59949f57e72e0f6af5e2 [win32]
-  fn: modeller9.20-64bit.zip [win64]
-  url: https://salilab.org/modeller/9.20/modeller9.20-64bit.zip [win64]
-  sha256: d3c4878f18ba99a20bd15545a1348f32e80c9abf0fed6e77633e290bc4ebd7ed [win64]
+  fn: modeller-9.21-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/9.21/modeller-9.21-mac.pax.gz [osx]
+  sha256: 4c7c56e12472f8077515c57681315a9981c4da6d3237a3d63d3c9775393c15dd [osx]
+  fn: modeller-9.21.tar.gz [linux]
+  url: https://salilab.org/modeller/9.21/modeller-9.21.tar.gz [linux]
+  sha256: 386d7c0d67642ea967ab179ac5918c93d38f4e34d4919ed04fb7f150c88553ff [linux]
+  fn: modeller9.21-32bit.zip [win32]
+  url: https://salilab.org/modeller/9.21/modeller9.21-32bit.zip [win32]
+  sha256: 281da558d51a5b7942b9e01ff7c21b7dd881e4bb3ade128b1c1469e50945d062 [win32]
+  fn: modeller9.21-64bit.zip [win64]
+  url: https://salilab.org/modeller/9.21/modeller9.21-64bit.zip [win64]
+  sha256: 8f046996a61c7f3f8a4a3a1b50c618db635f34bc1cafac1823177c8600bac023 [win64]
 
 build:
   number: 1
   rpaths: [linux]
-    - lib/modeller-9.20/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-9.20/lib/i386-intel8/ [linux32]
+    - lib/modeller-9.21/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-9.21/lib/i386-intel8/ [linux32]
     - lib/hdf5-1820 [linux]
 
 requirements:
@@ -44,7 +44,7 @@ test:
     - pkg-config [unix]
   # Command line tool
   commands:
-    - mod9.20 --cflags --libs
+    - mod9.21 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
