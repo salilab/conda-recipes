@@ -1,18 +1,17 @@
 package:
   name: imp
-  version: "2.9.0"
+  version: "2.10.0"
 
 source:
-  fn: imp-2.9.0.tar.gz
-  url: https://integrativemodeling.org/2.9.0/download/imp-2.9.0.tar.gz
-  sha256: 4fb6f15a2e598cecfd374c701ba5f59fb39d28b02ec44e9ef162dc8cf8e33fd0
+  fn: imp-2.10.0.tar.gz
+  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz
+  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3
   patches:
     - imp-directories.patch [win]
-    - npctransport-dos.patch [win]
     - vs2008-ice-dos.patch [win and py27]
 
 build:
-  number: 2
+  number: 1
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
