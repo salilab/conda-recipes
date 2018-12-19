@@ -11,7 +11,7 @@ nmake install
 if errorlevel 1 exit 1
 
 :: Remove build path from cmake files
-:python "%RECIPE_DIR%\remove-cmake-build-path.py" "%PREFIX%" "%BUILD_PREFIX%"
+python "%RECIPE_DIR%\remove-cmake-build-path.py" "%PREFIX%" "%BUILD_PREFIX%\Library"
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.
