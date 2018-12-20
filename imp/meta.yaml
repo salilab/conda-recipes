@@ -3,9 +3,12 @@ package:
   version: "2.10.0"
 
 source:
-  fn: imp-2.10.0.tar.gz
-  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz
-  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3
+  fn: imp-2.10.0.tar.gz [not win]
+  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz [not win]
+  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3 [not win]
+  fn: imp-2.10.0.zip [win]
+  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.zip [win]
+  sha256: b7821ca4c479354f74412f5250620a206d4f6fa61f028ced5d38babe9de77e2e [win]
   patches:
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
@@ -22,11 +25,12 @@ requirements:
     - {{ compiler('cxx') }}
     - python {{ python }}
     - swig
-    - cgal 4.10.* [win]
+    - cgal 4.12.* [win]
     - cgal 4.12.* [not win]
     - eigen
     - cmake
-    - boost 1.61.0.* [win]
+    - boost 1.61.0.* [win and py2]
+    - boost 1.67.0.* [win and py3]
     - boost 1.67.0.* [not win]
     - hdf5 1.10.2.*
     - fftw 3.3.4.*
@@ -38,17 +42,19 @@ requirements:
     - protobuf 3.6.1.* [not win]
     - opencv-nopython 2.4.9.* [win and (py27 or py34)]
     - protobuf 3.5.2.* [win and (py27 or py34)]
-    - opencv 3.3.1.* [win and not (py27 or py34)]
-    - protobuf 3.4.1.* [win and not (py27 or py34)]
+    - opencv 3.4.1.* [win64 and not (py27 or py34)]
+    - opencv 3.4.2.* [win32 and not (py27 or py34)]
+    - protobuf 3.6.1.* [win and not (py27 or py34)]
     - openmpi [osx]
     - mpich2 [linux]
       # For windows, need to install Microsoft MPI
 
   run:
     - python {{ python }}
-    - cgal 4.10.* [win]
+    - cgal 4.12.* [win]
     - cgal 4.12.* [not win]
-    - boost 1.61.0.* [win]
+    - boost 1.61.0.* [win and py2]
+    - boost 1.67.0.* [win and py3]
     - libboost 1.67.0.* [not win]
     - hdf5 1.10.2.*
     - fftw 3.3.4.*
@@ -60,8 +66,9 @@ requirements:
     - protobuf 3.6.1.* [not win]
     - opencv-nopython 2.4.9.* [win and (py27 or py34)]
     - protobuf 3.5.2.* [win and (py27 or py34)]
-    - opencv 3.3.1.* [win and not (py27 or py34)]
-    - protobuf 3.4.1.* [win and not (py27 or py34)]
+    - opencv 3.4.1.* [win64 and not (py27 or py34)]
+    - opencv 3.4.2.* [win32 and not (py27 or py34)]
+    - protobuf 3.6.1.* [win and not (py27 or py34)]
     - openmpi [osx]
     - mpich2 [linux]
 

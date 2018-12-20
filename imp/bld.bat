@@ -42,8 +42,14 @@ if "%VisualStudioVersion%" == "" (
   if errorlevel 1 exit 1
 )
 
+:: Help cmake to find CGAL
+set CGAL_DIR=%BUILD_PREFIX%\Library\lib\cmake\CGAL
+
 :: Older Python versions need to use our opencv-nopython package
-set OPENCV_VER="331"
+set OPENCV_VER="342"
+if "%Platform%" == "X64" (
+  set OPENCV_VER="341"
+)
 if "%CONDA_PY%" == "27" (
   set OPENCV_VER="249"
 )
