@@ -57,7 +57,13 @@ if "%CONDA_PY%" == "34" (
   set OPENCV_VER="249"
 )
 
-cmake -DPYTHON_LIBRARY="%PREFIX%\libs\python%PY_VER_NO_DOT%.lib" -DCMAKE_PREFIX_PATH="%BUILD_PREFIX:\=/%\Library" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" -Dopencv_core_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_core%OPENCV_VER%.lib" -Dopencv_imgproc_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgproc%OPENCV_VER%.lib" -Dopencv_highgui_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_highgui%OPENCV_VER%.lib" -Dopencv_imgcodecs_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgcodecs%OPENCV_VER%.lib" -DHDF5_LIBRARIES="%BUILD_PREFIX:\=/%/Library/lib/hdf5.lib" -DHDF5_FOUND=TRUE -DHDF5_INCLUDE_DIRS="%BUILD_PREFIX:\=/%/Library/include" -DHDF5_INCLUDE_DIR="%BUILD_PREFIX:\=/%/Library/include" -Dprotobuf_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/libprotobuf.lib" -G "NMake Makefiles" ..
+:: VS2008 throws an internal compiler error trying to compile isd_all, so
+:: split into separate files
+if "%CONDA_PY%" == "27" (
+  set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=isd"
+)
+
+cmake -DPYTHON_LIBRARY="%PREFIX%\libs\python%PY_VER_NO_DOT%.lib" -DCMAKE_PREFIX_PATH="%BUILD_PREFIX:\=/%\Library" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" -Dopencv_core_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_core%OPENCV_VER%.lib" -Dopencv_imgproc_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgproc%OPENCV_VER%.lib" -Dopencv_highgui_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_highgui%OPENCV_VER%.lib" -Dopencv_imgcodecs_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgcodecs%OPENCV_VER%.lib" -DHDF5_LIBRARIES="%BUILD_PREFIX:\=/%/Library/lib/hdf5.lib" -DHDF5_FOUND=TRUE -DHDF5_INCLUDE_DIRS="%BUILD_PREFIX:\=/%/Library/include" -DHDF5_INCLUDE_DIR="%BUILD_PREFIX:\=/%/Library/include" -Dprotobuf_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/libprotobuf.lib" %PERCPPCOMP% -G "NMake Makefiles" ..
 if errorlevel 1 exit 1
 
 nmake install
