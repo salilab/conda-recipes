@@ -1,8 +1,8 @@
 diff --git a/imp/meta.yaml b/imp/meta.yaml
-index 19e2789..cc59403 100644
+index ad36377..ae5c8ac 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
-@@ -1,17 +1,16 @@
+@@ -1,11 +1,10 @@
  package:
 -  name: imp
 -  version: "2.10.0"
@@ -10,13 +10,15 @@ index 19e2789..cc59403 100644
 +  version: "20180713"
  
  source:
--  fn: imp-2.10.0.tar.gz
--  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz
--  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3
+-  fn: imp-2.10.0.tar.gz [not win]
+-  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz [not win]
+-  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3 [not win]
 +  fn: imp-20180713.develop.7914a99.tar.gz
 +  url: https://integrativemodeling.org/nightly/download/imp-20180713.develop.7914a99.tar.gz
-   patches:
-     - imp-directories.patch [win]
+   fn: imp-2.10.0.zip [win]
+   url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.zip [win]
+   sha256: b7821ca4c479354f74412f5250620a206d4f6fa61f028ced5d38babe9de77e2e [win]
+@@ -14,7 +13,7 @@ source:
      - vs2008-ice-dos.patch [win and py27]
  
  build:
