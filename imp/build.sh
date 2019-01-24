@@ -14,7 +14,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Our Mac build system isn't that powerful; don't overload it
   NUMTASKS=2
 else
-  NUMTASKS=4
+  NUMTASKS=8
 fi
 
 mkdir build && cd build
@@ -25,3 +25,6 @@ cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
       ${EXTRA_CMAKE_FLAGS} ..
 make -j${NUMTASKS}
 make install
+
+# Remove build path from cmake files
+python "${RECIPE_DIR}/remove-build-path.py" "${PREFIX}/lib/cmake/IMP/IMPConfig.cmake" "${BUILD_PREFIX}" "${PREFIX}"
