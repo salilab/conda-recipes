@@ -8,6 +8,7 @@ import IMP.rmf
 import IMP.test
 import RMF
 import os
+import re
 
 # Make sure that install prefix is set correctly
 d = IMP.test.get_data_path('linux.words')
@@ -40,3 +41,23 @@ x = IMP.domino.ReadHDF5AssignmentContainer
 
 # Make sure that IMP.npctransport has full protobuf support
 x = IMP.npctransport.Configuration
+
+def test_cmake_file(cmake):
+    """Make sure that all paths in the cmake file exist."""
+    vars = {}
+    r = re.compile('set\s*\(\s*(\S+(DIR|PATH))\s*(\S+)', flags=re.IGNORECASE)
+    with open(cmake) as fh:
+        for line in fh:
+            m = r.search(line)
+            if m:
+                val = m.group(3)
+                if val[0] == '"' and val[-1] == '"':
+                    val = val[1:-1]
+                vars[m.group(1)] = val
+    bad = [i for i in vars.items() if not os.path.exists(i[1])]
+    if bad:
+        raise ValueError("The following paths in the cmake file do not exist: " 
+                         + "; ".join("%s = %s" % i for i in bad))
+
+test_cmake_file(os.path.join(os.environ['PREFIX'], 'lib', 'cmake',
+                             'IMP', 'IMPConfig.cmake'))
