@@ -75,6 +75,9 @@ requirements:
     - mpich2 [linux]
 
 test:
+  # Need Eigen to test IMPConfig.cmake
+  requires:
+    - eigen
   # Python imports
   imports:
     - IMP
