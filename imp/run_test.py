@@ -45,7 +45,8 @@ x = IMP.npctransport.Configuration
 def test_cmake_file(cmake):
     """Make sure that all paths in the cmake file exist."""
     vars = {}
-    r = re.compile('set\s*\(\s*(\S+(DIR|PATH))\s*(\S+)', flags=re.IGNORECASE)
+    r = re.compile('set\s*\(\s*(\S+(DIR|PATH|LIBRARIES))\s*(\S+)',
+                   flags=re.IGNORECASE)
     with open(cmake) as fh:
         for line in fh:
             m = r.search(line)
@@ -53,11 +54,15 @@ def test_cmake_file(cmake):
                 val = m.group(3)
                 if val[0] == '"' and val[-1] == '"':
                     val = val[1:-1]
-                vars[m.group(1)] = val
-    bad = [i for i in vars.items() if not os.path.exists(i[1])]
+                vars[m.group(1)] = val.split(";")
+    # Don't check any empty paths, or paths that reference other
+    # variables ($) since we don't substitute those
+    bad = [(key,val) for (key,val) in vars.items()
+           if not all(not d or '$' in d or os.path.exists(d) for d in val)]
     if bad:
-        raise ValueError("The following paths in the cmake file do not exist: " 
-                         + "; ".join("%s = %s" % i for i in bad))
+        raise ValueError("The following paths in the cmake file do not exist: "
+                         + "; ".join("%s = %s" % (key, ";".join(val))
+                                     for key,val in bad))
 
 test_cmake_file(os.path.join(os.environ['PREFIX'], 'lib', 'cmake',
                              'IMP', 'IMPConfig.cmake'))
