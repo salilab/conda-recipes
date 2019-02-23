@@ -1,14 +1,14 @@
 package:
   name: imp
-  version: "2.10.0"
+  version: "2.10.1"
 
 source:
-  fn: imp-2.10.0.tar.gz [not win]
-  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz [not win]
-  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3 [not win]
-  fn: imp-2.10.0.zip [win]
-  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.zip [win]
-  sha256: b7821ca4c479354f74412f5250620a206d4f6fa61f028ced5d38babe9de77e2e [win]
+  fn: imp-2.10.1.tar.gz [not win]
+  url: https://integrativemodeling.org/2.10.1/download/imp-2.10.1.tar.gz [not win]
+  sha256: 53a99ae24c3c2bdabfcfa04a94df42b5f034ef689284351034bc82105daea5ec [not win]
+  fn: imp-2.10.1.zip [win]
+  url: https://integrativemodeling.org/2.10.1/download/imp-2.10.1.zip [win]
+  sha256: d93ccf25bef0fae6077fe18601a36ea4d914332bb17619afa564c861869cdd29 [win]
   patches:
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
