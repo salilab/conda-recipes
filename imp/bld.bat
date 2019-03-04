@@ -83,7 +83,7 @@ if errorlevel 1 exit 1
 for /f %%f in ('dir /b *.exe') do copy "%SRC_DIR%\app_wrapper.exe" "%PREFIX%\%%f"
 if errorlevel 1 exit 1
 
-# Remove build path from cmake files
+:: Remove build path from cmake files
 python "%RECIPE_DIR%\remove-build-path.py" "%PREFIX%\lib\cmake\IMP\IMPConfig.cmake" "%BUILD_PREFIX%" "%PREFIX%"
 if errorlevel 1 exit 1
 
