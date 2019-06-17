@@ -5,7 +5,7 @@ image, use:
     sudo docker build -t conda linux-64
 
 The `mac-setup.sh` script sets up a minimal conda environment on a Mac,
-running OS X 10.9 in a VirtualBox image (10.9 is the oldest version supported
+running OS X 10.10 in a VirtualBox image (10.10 is the oldest version supported
 by Anaconda). It assumes the Mac has Homebrew installed, and so hides the
 Homebrew packages to avoid contaminating the conda build environment.
 
