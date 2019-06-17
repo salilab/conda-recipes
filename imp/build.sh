@@ -17,11 +17,19 @@ else
   NUMTASKS=8
 fi
 
+# Don't waste time looking for a Python major version we know isn't right
+if [ "${PY3K}" = "1" ]; then
+  USE_PYTHON2=off
+else
+  USE_PYTHON2=on
+fi
+
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
       -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \
+      -DUSE_PYTHON2=${USE_PYTHON2} \
       ${EXTRA_CMAKE_FLAGS} ..
 make -j${NUMTASKS}
 make install
