@@ -11,6 +11,7 @@ source:
   sha256: 59d919cf6c34d55b9735b0fa64928a4fac11f4273cb9513ef065fadf5bfd45bc [win]
   patches:
     - imp-cmake.patch [not win]
+    - imp-cmake-pathsep.patch [win]
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
 
