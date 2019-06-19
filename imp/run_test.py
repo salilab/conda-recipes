@@ -9,6 +9,7 @@ import IMP.test
 import RMF
 import os
 import re
+import sys
 
 # Make sure that install prefix is set correctly
 d = IMP.test.get_data_path('linux.words')
@@ -64,5 +65,6 @@ def test_cmake_file(cmake):
                          + "; ".join("%s = %s" % (key, ";".join(val))
                                      for key,val in bad))
 
-test_cmake_file(os.path.join(os.environ['PREFIX'], 'lib', 'cmake',
+envname = 'LIBRARY_PREFIX' if sys.platform == 'win32' else 'PREFIX'
+test_cmake_file(os.path.join(os.environ[envname], 'lib', 'cmake',
                              'IMP', 'IMPConfig.cmake'))
