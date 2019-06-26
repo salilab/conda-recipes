@@ -1,8 +1,8 @@
 diff --git a/imp/meta.yaml b/imp/meta.yaml
-index 42eebd9..9663ec5 100644
+index 42eebd9..22003ff 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
-@@ -1,11 +1,10 @@
+@@ -1,22 +1,19 @@
  package:
 -  name: imp
 -  version: "2.11.0"
@@ -18,7 +18,10 @@ index 42eebd9..9663ec5 100644
    fn: imp-2.11.0.zip [win]
    url: https://integrativemodeling.org/2.11.0/download/imp-2.11.0.zip [win]
    sha256: 59d919cf6c34d55b9735b0fa64928a4fac11f4273cb9513ef065fadf5bfd45bc [win]
-@@ -16,7 +15,7 @@ source:
+   patches:
+-    - imp-cmake.patch [not win]
+-    - imp-cmake-pathsep.patch [win]
+     - imp-directories.patch [win]
      - vs2008-ice-dos.patch [win and py27]
  
  build:
