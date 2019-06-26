@@ -1,28 +1,28 @@
 diff --git a/imp/meta.yaml b/imp/meta.yaml
-index ad36377..ae5c8ac 100644
+index 42eebd9..9663ec5 100644
 --- a/imp/meta.yaml
 +++ b/imp/meta.yaml
 @@ -1,11 +1,10 @@
  package:
 -  name: imp
--  version: "2.10.0"
+-  version: "2.11.0"
 +  name: imp-nightly
-+  version: "20180713"
++  version: "20190626"
  
  source:
--  fn: imp-2.10.0.tar.gz [not win]
--  url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.tar.gz [not win]
--  sha256: ddb76e7fd7eb6c7ac23e4fb6f2561aeb64bf0d372b0ef2456dd244f73f498cd3 [not win]
-+  fn: imp-20180713.develop.7914a99.tar.gz
-+  url: https://integrativemodeling.org/nightly/download/imp-20180713.develop.7914a99.tar.gz
-   fn: imp-2.10.0.zip [win]
-   url: https://integrativemodeling.org/2.10.0/download/imp-2.10.0.zip [win]
-   sha256: b7821ca4c479354f74412f5250620a206d4f6fa61f028ced5d38babe9de77e2e [win]
-@@ -14,7 +13,7 @@ source:
+-  fn: imp-2.11.0.tar.gz [not win]
+-  url: https://integrativemodeling.org/2.11.0/download/imp-2.11.0.tar.gz [not win]
+-  sha256: 93231e07a07b741403b27a50bb935abecee21a17c1514cf0f060402e37acd908 [not win]
++  fn: imp-20190626.develop.e9a45de.tar.gz [not win]
++  url: https://integrativemodeling.org/nightly/download/imp-20190626.develop.e9a45de.tar.gz [not win]
+   fn: imp-2.11.0.zip [win]
+   url: https://integrativemodeling.org/2.11.0/download/imp-2.11.0.zip [win]
+   sha256: 59d919cf6c34d55b9735b0fa64928a4fac11f4273cb9513ef065fadf5bfd45bc [win]
+@@ -16,7 +15,7 @@ source:
      - vs2008-ice-dos.patch [win and py27]
  
  build:
--  number: 1
+-  number: 2
 +  number: 0
    detect_binary_files_with_prefix: True [not win]
  
