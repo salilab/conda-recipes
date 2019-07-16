@@ -1,22 +1,20 @@
 package:
   name: imp
-  version: "2.11.0"
+  version: "2.11.1"
 
 source:
-  fn: imp-2.11.0.tar.gz [not win]
-  url: https://integrativemodeling.org/2.11.0/download/imp-2.11.0.tar.gz [not win]
-  sha256: 93231e07a07b741403b27a50bb935abecee21a17c1514cf0f060402e37acd908 [not win]
-  fn: imp-2.11.0.zip [win]
-  url: https://integrativemodeling.org/2.11.0/download/imp-2.11.0.zip [win]
-  sha256: 59d919cf6c34d55b9735b0fa64928a4fac11f4273cb9513ef065fadf5bfd45bc [win]
+  fn: imp-2.11.1.tar.gz [not win]
+  url: https://integrativemodeling.org/2.11.1/download/imp-2.11.1.tar.gz [not win]
+  sha256: 1777ef37aaf79d37c737923c56b9f2f27dc84cb7ab0f4f56fd146c90168ece45 [not win]
+  fn: imp-2.11.1.zip [win]
+  url: https://integrativemodeling.org/2.11.1/download/imp-2.11.1.zip [win]
+  sha256: c75c1d40bc23a62ec7e976704d12adb92646421e8eb1d267fa2cf2561974b50d [win]
   patches:
-    - imp-cmake.patch [not win]
-    - imp-cmake-pathsep.patch [win]
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
 
 build:
-  number: 2
+  number: 1
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
@@ -29,7 +27,8 @@ requirements:
     - swig
     - cgal 4.10.* [win and py27]
     - cgal 4.12.* [win and not py27]
-    - cgal 4.12.* [not win]
+    - cgal 4.14.* [linux]
+    - cgal 4.12.* [osx]
     - eigen
     - cmake
     - boost 1.61.0.* [win and py27]
@@ -58,7 +57,8 @@ requirements:
     - python {{ python }}
     - cgal 4.10.* [win and py27]
     - cgal 4.12.* [win and not py27]
-    - cgal 4.12.* [not win]
+    - cgal 4.14.* [linux]
+    - cgal 4.12.* [osx]
     - boost 1.61.0.* [win and py27]
     - boost 1.67.0.* [win and not py27]
     - libboost 1.67.0.* [not win]
