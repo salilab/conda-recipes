@@ -59,10 +59,13 @@ if "%CONDA_PY%" == "34" (
   set OPENCV_VER="249"
 )
 
+:: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
+set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
+
 :: VS2008 throws an internal compiler error trying to compile isd_all, so
 :: split into separate files
 if "%CONDA_PY%" == "27" (
-  set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=isd"
+  set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=isd:cgal"
 )
 
 :: Don't waste time looking for a Python major version we know isn't right
