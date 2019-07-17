@@ -1,7 +1,6 @@
-mkdir %SCRIPTS%
-copy /y bin\*.dll %SCRIPTS%\
-copy /y bin\cmake.exe %SCRIPTS%\
-xcopy share %PREFIX%\share /E /I
+copy /y bin\*.dll %LIBRARY_PREFIX%\bin\
+copy /y bin\cmake.exe %LIBRARY_PREFIX%\bin\
+xcopy share %LIBRARY_PREFIX%\share /E /I
 
 if errorlevel 1 exit 1
 

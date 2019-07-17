@@ -1,19 +1,22 @@
 package:
   name: cmake-mac
-  version: 3.2.2
+  version: 3.14.6
 
 source:
-  fn: cmake-3.2.2.tar.gz [osx]
-  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz [osx]
-  md5: 2da57308071ea98b10253a87d2419281 [osx]
-  fn: cmake-3.2.2-win32-x86.zip [win]
-  url: http://www.cmake.org/files/v3.2/cmake-3.2.2-win32-x86.zip [win]
-  sha256: 8728119bbb48468ab45230a579463729e7b12d6babfa1ad77e771b239b5430db [win]
+  fn: cmake-3.14.6.tar.gz [not win]
+  url: https://github.com/Kitware/CMake/releases/download/v3.14.6/cmake-3.14.6.tar.gz [not win]
+  sha256: 4e8ea11cabe459308671b476469eace1622e770317a15951d7b55a82ccaaccb9 [not win]
+  fn: cmake-3.14.6-win32-x86.zip [win32]
+  url: https://github.com/Kitware/CMake/releases/download/v3.14.6/cmake-3.14.6-win32-x86.zip [win32]
+  sha256: 0000cd8753860658f9eb76909ce1948d904d2f0bb653196e08559f9b16b7218a [win32]
+  fn: cmake-3.14.6-win64-x64.zip [win64]
+  url: https://github.com/Kitware/CMake/releases/download/v3.14.6/cmake-3.14.6-win64-x64.zip [win64]
+  sha256: de8b307391f739b288df1c9edb48e144f31ce1628b907eb37f76ce5025666123 [win64]
 
 test:
   commands:
     - cmake --help
 
 about:
-  home: http://www.cmake.org/
+  home: https://www.cmake.org/
   license: BSD
