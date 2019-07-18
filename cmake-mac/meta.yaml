@@ -20,3 +20,11 @@ test:
 about:
   home: https://www.cmake.org/
   license: BSD
+  description: >
+    This is a rebuild of the standard conda `cmake` package. That one doesn't
+    work on Mac OS X 10.6, and is an older version for Python 2.7 on Windows.
+    This is rebuilt on an OS X 10.6 machine, so we can build IMP for older
+    Macs (and Windows).
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
