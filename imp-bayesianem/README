@@ -1,0 +1,1 @@
+Use conda-build 3.17.8; newer conda-builds take FOREVER to do the overlinking check
