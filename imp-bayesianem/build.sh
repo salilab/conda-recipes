@@ -5,7 +5,7 @@ export CMAKE_PREFIX_PATH=${BUILD_PREFIX}
 export CGAL_DIR=${CMAKE_PREFIX_PATH}/lib/cmake/CGAL
 
 # Get CMake script for out of tree build against IMP
-cp "${RECIPE_DIR}/CMakeLists.txt" .
+cp "${RECIPE_DIR}/CMakeLists.txt" "${RECIPE_DIR}/UseIMP.cmake" .
 
 # Set sensible version number
 echo "master-d6ad29b5" > VERSION
