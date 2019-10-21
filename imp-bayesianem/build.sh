@@ -8,7 +8,7 @@ export CGAL_DIR=${CMAKE_PREFIX_PATH}/lib/cmake/CGAL
 cp "${RECIPE_DIR}/CMakeLists.txt" "${RECIPE_DIR}/UseIMP.cmake" .
 
 # Set sensible version number
-echo "master-d6ad29b5" > VERSION
+echo "master-9bd15b71" > VERSION
 
 if [ `uname -s` = "Darwin" ]; then
   PYINC=`echo ${BUILD_PREFIX}/include/python${PY_VER}*`
