@@ -36,7 +36,7 @@ test:
 
 about:
   home: https://gitlab.pasteur.fr/rpellari/bayesianem
-  license: LGPL/GPL
+  license: LGPL
   summary: "IMP module for Bayesian modeling with cryo-EM maps"
   description: >
     This is an addon module for the Integrative Modeling Platform (IMP).
