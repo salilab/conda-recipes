@@ -1,11 +1,11 @@
 package:
   name: imp-bayesianem
-  version: "20191018.d6ad29b5"
+  version: "20191021.9bd15b71"
 
 source:
   fn: bayesianem-master.tar.gz
   url: https://gitlab.pasteur.fr/rpellari/bayesianem/-/archive/master/bayesianem-master.tar.gz
-  sha256: 26389966f6ad685f6028c378cb93e763f7488b3c548f42745d8d00a60b6383cc
+  sha256: 224e61276bae8a59f495f74f5ff07b997c98d630b9ce0b6cee40783885727d82
 
 build:
   number: 0
