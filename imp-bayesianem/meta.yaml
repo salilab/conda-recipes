@@ -32,6 +32,7 @@ test:
   imports:
     - IMP.atom
     - IMP.bayesianem
+    - IMP.bayesianem.restraint
 
 about:
   home: https://gitlab.pasteur.fr/rpellari/bayesianem
