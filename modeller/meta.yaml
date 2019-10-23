@@ -37,7 +37,6 @@ requirements:
   run:
     - python {{ python }}
     - hdf5-1820 [unix]
-    - vs2010_runtime [win32]
 
 test:
   requires:
