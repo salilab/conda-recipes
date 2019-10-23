@@ -5,7 +5,7 @@ if "%ARCH%" == "64" (
   set EXETYPE=i386-w32
 )
 
-set SOVERSION=11
+set SOVERSION=12
 
 :: temporarily rename to avoid conflict with python%PY_VER%\_modeller.pyd
 move lib\%EXETYPE%\python2.3\_modeller.pyd lib\%EXETYPE%\python2.3\_modeller23.pyd

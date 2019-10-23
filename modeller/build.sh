@@ -20,7 +20,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
-  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.11"
+  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.12"
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
