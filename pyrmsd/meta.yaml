@@ -1,0 +1,56 @@
+package:
+  name: pyrmsd
+  version: "20191028.552d3cb"
+
+source:
+  fn: pyRMSD-master.zip
+  url: https://github.com/salilab/pyRMSD/archive/master.zip
+  sha256: 1c0300e0ea09002f2ece7cbd5ba8634f841763fc3121a3c56b0f6f72dfac0f7f
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: True [not win]
+
+requirements:
+  host:
+    - python {{ python }}
+    - numpy
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  run:
+    - python {{ python }}
+    - numpy
+
+test:
+  source_files:
+    - src/calculators/test/
+    - pyRMSD/test/
+  # Python imports
+  imports:
+    - pyRMSD.RMSDCalculator
+    - pyRMSD.availableCalculators
+    - pyRMSD.matrixHandler
+    - pyRMSD.utils.proteinReading
+
+about:
+  home: https://github.com/victor-gil-sepulveda/pyRMSD
+  license: MIT-like
+  summary: "Efficiently calculate RMSDs for large structure sets"
+  description: >
+    pyRMSD is a small Python package that aims to offer an integrative
+    and efficient way of performing RMSD calculations of large sets of
+    structures. It is specially tuned to do fast collective RMSD
+    calculations, as pairwise RMSD matrices.
+
+    This package includes some minor bug fixes and Python 3 support
+    from https://github.com/salilab/pyRMSD. Note that it does not currently
+    include any CUDA calculators.
+
+    See [the pyRMSD website](https://github.com/victor-gil-sepulveda/pyRMSD)
+    and the [publication](https://doi.org/10.1093/bioinformatics/btt402)
+    for more details.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
