@@ -12,14 +12,15 @@ source:
   sha256: 442ef4fffb2ad6e4141e5a7902993ae6a4e73f7cb641fae1010bb586f6ca5e3f [win and py27]
 
 build:
-  number: 1 [not win or not py27]
-  number: 7 [win and py27]
+  number: 8
 
 requirements:
+  host:
+    - python {{ python }} [win]
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - python [win]
+    - python {{ python }} [win]
     - cmake [not win or not py27]
     - cmake-mac [win and py27]
     - boost 1.67.0.*
@@ -29,6 +30,7 @@ requirements:
     - mpfr 3.0.0.* [win]
     - zlib 1.2.11.*
   run:
+    - python {{ python }} [win]
     - libboost 1.67.0.*
     - gmp 6.1.2.* [not win]
     - gmp 5.0.1.* [win]
