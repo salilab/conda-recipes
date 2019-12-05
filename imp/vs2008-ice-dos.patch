@@ -2,7 +2,7 @@ diff --git a/tools/build/make_swig_wrapper.py b/tools/build/make_swig_wrapper.py
 index b7a05a1475..c15801639a 100755
 --- a/tools/build/make_swig_wrapper.py
 +++ b/tools/build/make_swig_wrapper.py
-@@ -108,6 +108,23 @@ def patch_file(infile, out, options):
+@@ -108,6 +108,32 @@ def patch_file(infile, out, options):
          line = line.replace('"swig::SwigPyIterator *"', repl2)
          line = line.replace(orig, repl)
          line = line.replace("wrap.h-in", "wrap.h")
@@ -23,6 +23,15 @@ index b7a05a1475..c15801639a 100755
 +        line = line.replace(
 +                    '((IMP::core::RigidBodyMember const *)arg1)->show()',
 +                    'arg1->show(std::cout)')
++        line = line.replace(
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9)',
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,"GaussianEMRestraint%1%")')
++        line = line.replace(
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8)',
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,false,"GaussianEMRestraint%1%")')
++        line = line.replace(
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7)',
++            'new IMP::bayesianem::GaussianEMRestraint(arg1,arg2,arg3,arg4,arg5,arg6,arg7,true,false,"GaussianEMRestraint%1%")')
          # for some reason swig has issues with directors and VersionInfo
          # when %extend is used
          line = line.replace(" VersionInfo ", " IMP::VersionInfo ")

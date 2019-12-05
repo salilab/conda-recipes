@@ -1,14 +1,14 @@
 package:
   name: imp
-  version: "2.11.1"
+  version: "2.12.0"
 
 source:
-  fn: imp-2.11.1.tar.gz [not win]
-  url: https://integrativemodeling.org/2.11.1/download/imp-2.11.1.tar.gz [not win]
-  sha256: 1777ef37aaf79d37c737923c56b9f2f27dc84cb7ab0f4f56fd146c90168ece45 [not win]
-  fn: imp-2.11.1.zip [win]
-  url: https://integrativemodeling.org/2.11.1/download/imp-2.11.1.zip [win]
-  sha256: c75c1d40bc23a62ec7e976704d12adb92646421e8eb1d267fa2cf2561974b50d [win]
+  fn: imp-2.12.0.tar.gz [not win]
+  url: https://integrativemodeling.org/2.12.0/download/imp-2.12.0.tar.gz [not win]
+  sha256: 4e7a3103773961d381cf61242060d1d6ba986d971d06fa9ce151adb00de5e837 [not win]
+  fn: imp-2.12.0.zip [win]
+  url: https://integrativemodeling.org/2.12.0/download/imp-2.12.0.zip [win]
+  sha256: 27d1f042de8311d16a8210e8aeb4c4a3e543f77c2115da09047f92007b4ca5aa [win]
   patches:
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
@@ -39,7 +39,7 @@ requirements:
     - gsl 2.4.* [not win]
     - opencv 3.4.2.* [not win]
     - protobuf 3.6.1.* [linux32]
-    - protobuf 3.8.0.* [not win and not linux32]
+    - protobuf 3.10.1.* [not win and not linux32]
     - opencv 3.4.1.* [win64 and not py27]
     - opencv 3.4.2.* [win32 and not py27]
     - opencv-nopython 2.4.9.* [win and py27]
@@ -64,7 +64,7 @@ requirements:
     - gsl 2.4.* [not win]
     - opencv 3.4.2.* [not win]
     - protobuf 3.6.1.* [linux32]
-    - protobuf 3.8.0.* [not win and not linux32]
+    - protobuf 3.10.1.* [not win and not linux32]
     - opencv 3.4.1.* [win64 and not py27]
     - opencv 3.4.2.* [win32 and not py27]
     - opencv-nopython 2.4.9.* [win and py27]
@@ -87,6 +87,7 @@ test:
     - IMP.em2d
     - IMP.npc
     - IMP.npctransport
+    - IMP.bayesianem
     - IMP.rmf
     - IMP.mpi
     - IMP.spb
