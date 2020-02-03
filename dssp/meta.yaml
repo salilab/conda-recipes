@@ -10,19 +10,19 @@ source:
     - dssp-boost-tr1.patch
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - boost 1.65.1
-    - zlib 1.2.11
-    - bzip2 1.0.6
+    - boost 1.67.0.*
+    - zlib 1.2.11.*
+    - bzip2 1.0.8.*
   run:
-    - libboost 1.65.1
-    - zlib 1.2.11
-    - bzip2 1.0.6
+    - libboost 1.67.0.*
+    - zlib 1.2.11.*
+    - bzip2 1.0.8.*
 
 about:
   home: http://swift.cmbi.ru.nl/gv/dssp/
