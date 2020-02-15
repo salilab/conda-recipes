@@ -1,0 +1,30 @@
+package:
+  name: rmf
+  version: "1.0"
+
+source:
+  fn: rmf.zip
+  url: https://salilab.org/~ben/rmf-1.0.zip
+
+build:
+  number: 0
+
+requirements:
+  host:
+    - python {{ python }}
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - python {{ python }}
+    - swig
+    - cmake
+    - boost 1.67.0.*
+    - hdf5 1.10.2.*
+
+  run:
+    - python {{ python }}
+
+about:
+  home: https://github.com/salilab/rmf/
+  license: Apache
+  summary: The library to support reading and writing of RMF files
