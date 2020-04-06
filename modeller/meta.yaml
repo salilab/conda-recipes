@@ -1,32 +1,32 @@
 package:
   name: modeller
-  version: "9.23"
+  version: "9.24"
 
 source:
-  fn: modeller-9.23-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/9.23/modeller-9.23-mac.pax.gz [osx]
-  sha256: 4b8069126c1772c395d8b3945977a9f7813392441fb93ca74aa111e7d9d3e782 [osx]
-  fn: modeller-9.23.tar.gz [linux]
-  url: https://salilab.org/modeller/9.23/modeller-9.23.tar.gz [linux]
-  sha256: 7fa0b268a2c3feb400d96962cd61d617b91fa6295b4bcc11eb466df20f5dabc3 [linux]
-  fn: modeller9.23-32bit.zip [win32]
-  url: https://salilab.org/modeller/9.23/modeller9.23-32bit.zip [win32]
-  sha256: 5ee3090c112bd8305d069d3f83c4b456c72c86da7ed3afac6d3bc3d94e0804ed [win32]
-  fn: modeller9.23-64bit.zip [win64]
-  url: https://salilab.org/modeller/9.23/modeller9.23-64bit.zip [win64]
-  sha256: 63f33ba1780ae95a2b9eed488b6f8e9a84b4954a9b5e3ed08019781674ceb04b [win64]
+  fn: modeller-9.24-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/9.24/modeller-9.24-mac.pax.gz [osx]
+  sha256: b7437a97a6f3a157305b8f08396408cdbaa6fed2ac44bcdf96840e62617d6a55 [osx]
+  fn: modeller-9.24.tar.gz [linux]
+  url: https://salilab.org/modeller/9.24/modeller-9.24.tar.gz [linux]
+  sha256: a0b6c8d85282a298482b4bf22302f98cdd4043829e8180b7cbff93da06da2c72 [linux]
+  fn: modeller9.24-32bit.zip [win32]
+  url: https://salilab.org/modeller/9.24/modeller9.24-32bit.zip [win32]
+  sha256: fc8ddcbc6e160a579cced8230d5af34efd7925b6e448e59836d05a7dbf010208 [win32]
+  fn: modeller9.24-64bit.zip [win64]
+  url: https://salilab.org/modeller/9.24/modeller9.24-64bit.zip [win64]
+  sha256: e8b573d97dd99b3a09ca916c2e8253de2001fb08346b3e7482d17db3a9ef60c4 [win64]
 
 build:
   number: 1
   rpaths: [linux]
-    - lib/modeller-9.23/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-9.23/lib/i386-intel8/ [linux32]
-    - lib/hdf5-1820 [linux]
+    - lib/modeller-9.24/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-9.24/lib/i386-intel8/ [linux32]
+    - lib/hdf5-1105 [linux]
 
 requirements:
   host:
     - python {{ python }}
-    - hdf5-1820 [unix]
+    - hdf5-1105 [unix]
   build:
     - python {{ python }}
     - swig [unix]
@@ -36,14 +36,14 @@ requirements:
 
   run:
     - python {{ python }}
-    - hdf5-1820 [unix]
+    - hdf5-1105 [unix]
 
 test:
   requires:
     - pkg-config [unix]
   # Command line tool
   commands:
-    - mod9.23 --cflags --libs
+    - mod9.24 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
