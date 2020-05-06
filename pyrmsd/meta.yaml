@@ -6,6 +6,8 @@ source:
   fn: pyRMSD-master.zip
   url: https://github.com/salilab/pyRMSD/archive/b74e6627153088b2d9d5d28d4ee04db8a9ef23ff.zip
   sha256: 9caff7169127781b76f6ecf93c6a0c479ff3da92a6ac459d74767f1293e92c3c
+  patches:
+    - msvc-compile.patch [win]
 
 build:
   number: 0
