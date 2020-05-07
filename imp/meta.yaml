@@ -1,20 +1,22 @@
 package:
   name: imp
-  version: "2.12.0"
+  version: "2.13.0"
 
 source:
-  fn: imp-2.12.0.tar.gz [not win]
-  url: https://integrativemodeling.org/2.12.0/download/imp-2.12.0.tar.gz [not win]
-  sha256: 4e7a3103773961d381cf61242060d1d6ba986d971d06fa9ce151adb00de5e837 [not win]
-  fn: imp-2.12.0.zip [win]
-  url: https://integrativemodeling.org/2.12.0/download/imp-2.12.0.zip [win]
-  sha256: 27d1f042de8311d16a8210e8aeb4c4a3e543f77c2115da09047f92007b4ca5aa [win]
+  fn: imp-2.13.0.tar.gz [not win]
+  url: https://integrativemodeling.org/2.13.0/download/imp-2.13.0.tar.gz [not win]
+  sha256: 528aeed272e35d79028af0e215a41c086c09782cef59ee3f983d52bff8653bfc [not win]
+  fn: imp-2.13.0.zip [win]
+  url: https://integrativemodeling.org/2.13.0/download/imp-2.13.0.zip [win]
+  sha256: 3391de5be09e5826fc63c54521809eb1bfa1c27abbe903271ab78b68a148ba1a [win]
   patches:
+    - module-version.patch [not win]
+    - module-version-dos.patch [win]
     - imp-directories.patch [win]
     - vs2008-ice-dos.patch [win and py27]
 
 build:
-  number: 3
+  number: 0
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
@@ -98,6 +100,7 @@ test:
     - IMP.npc
     - IMP.npctransport
     - IMP.bayesianem
+    - IMP.sampcon
     - IMP.rmf
     - IMP.mpi
     - IMP.spb
