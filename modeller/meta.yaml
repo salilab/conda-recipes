@@ -15,6 +15,9 @@ source:
   fn: modeller9.24-64bit.zip [win64]
   url: https://salilab.org/modeller/9.24/modeller9.24-64bit.zip [win64]
   sha256: e8b573d97dd99b3a09ca916c2e8253de2001fb08346b3e7482d17db3a9ef60c4 [win64]
+  patches:
+    - search-path.patch [not win]
+    - search-path-win.patch [win]
 
 build:
   number: 1
