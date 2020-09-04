@@ -40,6 +40,9 @@ if [ `uname -s` = "Darwin" ]; then
   mv ${modtop}/lib/mac10v4/_modeller.so ${modtop}/syspython
   perl -pi -e "s#^exec#export PYTHONPATH=${modtop}/syspython\\nexec#" ${modtop}/bin/mod${PKG_VERSION}
 
+  # Apply patches
+  (cd ${modtop} && patch -p1 < ${RECIPE_DIR}/search-path.patch || exit 1) || exit 1
+
   # Add extra padding to the Python extension so that install_name_tool works
   (cd ${modtop} && patch -p1 < ${RECIPE_DIR}/swig-mac.patch || exit 1) || exit 1
 else

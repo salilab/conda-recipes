@@ -16,8 +16,10 @@ source:
   url: https://salilab.org/modeller/9.25/modeller9.25-64bit.zip [win64]
   sha256: ba2864dd5f6dd10446b5c0a783fd4179060bb01d7c6f8089a18c4d3a62a0dc62 [win64]
   patches:
-    - search-path.patch [not win]
-    - search-path-win.patch [win]
+    # On Mac pax.gz isn't extracted before patching, so we have to apply
+    # this patch ourselves in build.sh
+    - search-path.patch [not win32 and not osx]
+    - search-path-win.patch [win32]
 
 build:
   number: 1
