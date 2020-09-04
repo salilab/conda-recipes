@@ -1,20 +1,20 @@
 package:
   name: modeller
-  version: "9.24"
+  version: "9.25"
 
 source:
-  fn: modeller-9.24-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/9.24/modeller-9.24-mac.pax.gz [osx]
-  sha256: b7437a97a6f3a157305b8f08396408cdbaa6fed2ac44bcdf96840e62617d6a55 [osx]
-  fn: modeller-9.24.tar.gz [linux]
-  url: https://salilab.org/modeller/9.24/modeller-9.24.tar.gz [linux]
-  sha256: a0b6c8d85282a298482b4bf22302f98cdd4043829e8180b7cbff93da06da2c72 [linux]
-  fn: modeller9.24-32bit.zip [win32]
-  url: https://salilab.org/modeller/9.24/modeller9.24-32bit.zip [win32]
-  sha256: fc8ddcbc6e160a579cced8230d5af34efd7925b6e448e59836d05a7dbf010208 [win32]
-  fn: modeller9.24-64bit.zip [win64]
-  url: https://salilab.org/modeller/9.24/modeller9.24-64bit.zip [win64]
-  sha256: e8b573d97dd99b3a09ca916c2e8253de2001fb08346b3e7482d17db3a9ef60c4 [win64]
+  fn: modeller-9.25-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/9.25/modeller-9.25-mac.pax.gz [osx]
+  sha256: be8123b6b546a4eb14ddaa4105097d2434c147aaa5b9078246f203a06e92153c [osx]
+  fn: modeller-9.25.tar.gz [linux]
+  url: https://salilab.org/modeller/9.25/modeller-9.25.tar.gz [linux]
+  sha256: 636567f5541809a298373724abae6775be20833f9400a4bc5e1f1c122b88a8ec [linux]
+  fn: modeller9.25-32bit.zip [win32]
+  url: https://salilab.org/modeller/9.25/modeller9.25-32bit.zip [win32]
+  sha256: 59196335d405fea4a4184787cbbb6f2775232ee1c3c7bfdc41af4fa9ad883200 [win32]
+  fn: modeller9.25-64bit.zip [win64]
+  url: https://salilab.org/modeller/9.25/modeller9.25-64bit.zip [win64]
+  sha256: ba2864dd5f6dd10446b5c0a783fd4179060bb01d7c6f8089a18c4d3a62a0dc62 [win64]
   patches:
     - search-path.patch [not win]
     - search-path-win.patch [win]
@@ -22,8 +22,8 @@ source:
 build:
   number: 1
   rpaths: [linux]
-    - lib/modeller-9.24/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-9.24/lib/i386-intel8/ [linux32]
+    - lib/modeller-9.25/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-9.25/lib/i386-intel8/ [linux32]
     - lib/hdf5-1105 [linux]
 
 requirements:
@@ -46,7 +46,7 @@ test:
     - pkg-config [unix]
   # Command line tool
   commands:
-    - mod9.24 --cflags --libs
+    - mod9.25 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
