@@ -11,6 +11,7 @@ source:
   sha256: 3391de5be09e5826fc63c54521809eb1bfa1c27abbe903271ab78b68a148ba1a [win]
   patches:
     - module-version.patch
+    - imp-back-inserter.patch
     - imp-directories.patch [win64]
     - vs2008-ice-dos.patch [win and py27]
 

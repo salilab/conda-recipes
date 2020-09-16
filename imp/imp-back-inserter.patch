@@ -1,0 +1,48 @@
+diff --git a/modules/rmf/dependency/RMF/src/avrocpp/api/buffer/detail/BufferDetail.hh b/modules/rmf/dependency/RMF/src/avrocpp/api/buffer/detail/BufferDetail.hh
+index 4997eac721..33f948fb88 100644
+--- a/modules/rmf/dependency/RMF/src/avrocpp/api/buffer/detail/BufferDetail.hh
++++ b/modules/rmf/dependency/RMF/src/avrocpp/api/buffer/detail/BufferDetail.hh
+@@ -30,6 +30,7 @@
+ #include <exception>
+ #include <cassert>
+ #include <deque>
++#include <iterator>
+ 
+ /**
+  * \file BufferDetail.hh
+diff --git a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/JsonCodec.cc b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/JsonCodec.cc
+index 9d5f7a8d53..395345936b 100644
+--- a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/JsonCodec.cc
++++ b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/JsonCodec.cc
+@@ -21,6 +21,7 @@
+ #include <string>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <ctype.h>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+diff --git a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ResolvingDecoder.cc b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ResolvingDecoder.cc
+index adc8ffc34f..549ceac07e 100644
+--- a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ResolvingDecoder.cc
++++ b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ResolvingDecoder.cc
+@@ -22,6 +22,7 @@
+ #include <stack>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <ctype.h>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+diff --git a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ValidatingCodec.cc b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ValidatingCodec.cc
+index 2f465ee6fc..00ab7e0eb7 100644
+--- a/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ValidatingCodec.cc
++++ b/modules/rmf/dependency/RMF/src/avrocpp/impl/parsing/ValidatingCodec.cc
+@@ -21,6 +21,7 @@
+ #include <string>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+ #include <boost/weak_ptr.hpp>
