@@ -59,7 +59,10 @@ if "%CONDA_PY%" == "34" (
   set OPENCV_VER="249"
 )
 if "%CONDA_PY%" == "38" (
-  set OPENCV_VER="401"
+  set OPENCV_VER="249"
+  if "%Platform%" == "X64" (
+    set OPENCV_VER="401"
+  )
 )
 
 :: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
