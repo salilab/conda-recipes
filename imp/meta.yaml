@@ -27,8 +27,8 @@ requirements:
     - python {{ python }}
     - swig
     - cgal 4.12.* [win and py27]
-    - cgal 4.14.* [py < 38 and (not win or not py27)]
-    - cgal 5.0.2.* [py >= 38]
+    - cgal 4.14.* [osx or (py < 38 and (not win or not py27))]
+    - cgal 5.0.2.* [py >= 38 and not osx]
     - eigen
     - cmake [not win or not py27]
     - cmake-mac [win and py27]
@@ -62,8 +62,8 @@ requirements:
   run:
     - python {{ python }}
     - cgal 4.12.* [win and py27]
-    - cgal 4.14.* [py < 38 and (not win or not py27)]
-    - cgal 5.0.2.* [py >= 38]
+    - cgal 4.14.* [osx or (py < 38 and (not win or not py27))]
+    - cgal 5.0.2.* [py >= 38 and not osx]
     - boost 1.67.0.* [py < 38]
     - boost 1.71.0.* [py >= 38]
     - libboost 1.71.0.* [py >= 38]
