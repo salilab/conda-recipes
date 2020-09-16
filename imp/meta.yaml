@@ -11,6 +11,7 @@ source:
   sha256: 3391de5be09e5826fc63c54521809eb1bfa1c27abbe903271ab78b68a148ba1a [win]
   patches:
     - module-version.patch
+    - imp-clang-10.patch
     - imp-back-inserter.patch
     - imp-directories.patch [win64]
     - vs2008-ice-dos.patch [win and py27]
@@ -88,6 +89,7 @@ requirements:
     - protobuf 3.5.2.* [win and py27]
     - protobuf 3.6.1.* [win and not py27 and py < 38]
     - protobuf 3.12.4.* [win and not py27 and py >= 38]
+    - llvm-openmp [osx]
     - openmpi 4.0.2.* [osx]
     - mpich2 1.4.1.* [linux32]
     - mpich 3.2.1.* [linux64 and py < 38]
