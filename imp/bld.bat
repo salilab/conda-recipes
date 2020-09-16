@@ -58,6 +58,9 @@ if "%CONDA_PY%" == "27" (
 if "%CONDA_PY%" == "34" (
   set OPENCV_VER="249"
 )
+if "%CONDA_PY%" == "38" (
+  set OPENCV_VER="401"
+)
 
 :: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
 set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
