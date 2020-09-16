@@ -10,10 +10,8 @@ source:
   url: https://integrativemodeling.org/2.13.0/download/imp-2.13.0.zip [win]
   sha256: 3391de5be09e5826fc63c54521809eb1bfa1c27abbe903271ab78b68a148ba1a [win]
   patches:
-    - module-version.patch [not win32]
-    - module-version-dos.patch [win32]
+    - module-version.patch
     - imp-directories.patch [win64]
-    - imp-directories-dos.patch [win32]
     - vs2008-ice-dos.patch [win and py27]
 
 build:
