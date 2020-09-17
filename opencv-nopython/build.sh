@@ -23,6 +23,7 @@ cmake                                                               \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_opencv_python=OFF \
     -DBUILD_opencv_java=OFF \
+    -DBUILD_opencv_legacy=OFF \
     -DBUILD_JPEG=OFF \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \

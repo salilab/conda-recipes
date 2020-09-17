@@ -9,7 +9,7 @@ source:
     sha256: 803010848154988e9cbda8b3fa857fcbb27382c2946ed729e1a7e40600bb4c71
 
 build:
-    number: 6
+    number: 7
     features:
       - vc9 [win and py27]
       - vc14 [win and py35]
@@ -19,15 +19,15 @@ requirements:
         - python [win]
         - cmake [not win]
         - cmake-mac [win]
-        - jpeg 9b
-        - zlib 1.2.11
-        - libpng 1.6.32
-        - libtiff 4.0.8
+        - jpeg 9b.*
+        - zlib 1.2.11.*
+        - libpng 1.6.37.*
+        - libtiff 4.1.0.*
     run:
-        - jpeg 9b
-        - zlib 1.2.11
-        - libpng 1.6.32
-        - libtiff 4.0.8
+        - jpeg 9b.*
+        - zlib 1.2.11.*
+        - libpng 1.6.37.*
+        - libtiff 4.1.0.*
 
 about:
     home: http://opencv.org/
