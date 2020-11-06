@@ -2,7 +2,7 @@ The `linux-64` directory contains files to set up Docker images that
 can be used to build conda packages for 64-bit Linux. To build a Docker
 image, use:
 
-    sudo podman build -t conda linux-64
+    podman build -t conda linux-64
 
 The `mac-setup.sh` script sets up a minimal conda environment on a Mac,
 running OS X 10.10 in a VirtualBox image (10.10 is the oldest version supported
