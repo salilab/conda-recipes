@@ -73,7 +73,7 @@ else
 fi
 
 mv ${modtop}/bin/mod${PKG_VERSION} ${PREFIX}/bin
-perl -pi -e "s#^MODINSTALL(.*)=.*#MODINSTALL\$1=/opt/anaconda1anaconda2anaconda3/lib/${PKG_NAME}-${PKG_VERSION}#" ${PREFIX}/bin/mod${PKG_VERSION}
+perl -pi -e "s#^MODINSTALL(.*)=.*#MODINSTALL\$1=${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}#" ${PREFIX}/bin/mod${PKG_VERSION}
 
 # Put pure Python interface in the standard search paths
 mkdir -p ${SP_DIR}
