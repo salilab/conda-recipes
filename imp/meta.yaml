@@ -11,8 +11,8 @@ source:
   sha256: 64f3f44b45c5b8844c8249f0dba340833b1c2d20e66b74496fb48714fabc93f6 [win]
   patches:
     - bc-clustering.patch [osx]
-    - imp-directories.patch [win64]
-    - vs2008-ice-dos.patch [win and py27]
+    - imp-directories.patch [win]
+    - vs2008-ice.patch [win and py27]
 
 build:
   number: 0
