@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HDF5_VERSION="1105"
-MODELLER_VERSION="9.25"
+HDF5_VERSION="1106"
+MODELLER_VERSION="10.0"
 
 PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
 

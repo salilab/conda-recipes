@@ -8,13 +8,13 @@ source:
   sha256: 94b3dbd3050be14568ed613cc1d534e11ef37cb32a646116f35ef66cab5c187c
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 9.25.*
+    - modeller 10.0.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -25,7 +25,7 @@ requirements:
   run:
     - python {{ python }}
     - numpy
-    - modeller 9.25.*
+    - modeller 10.0.*
 
 about:
   home: https://salilab.org/mdt/
