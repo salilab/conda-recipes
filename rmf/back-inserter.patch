@@ -1,0 +1,58 @@
+commit 12993d005e64af3510512f1e23931f82fdf70c29
+Author: Ben Webb <ben@salilab.org>
+Date:   Wed Sep 16 16:52:17 2020 -0700
+
+    Add missing #include <iterator>
+    
+    Compilation fails (at least on 64-bit Windows)
+    claiming that it can't find std::back_inserter,
+    so add the necessary header.
+
+diff --git a/src/avrocpp/api/buffer/detail/BufferDetail.hh b/src/avrocpp/api/buffer/detail/BufferDetail.hh
+index 4997eac7..33f948fb 100644
+--- a/src/avrocpp/api/buffer/detail/BufferDetail.hh
++++ b/src/avrocpp/api/buffer/detail/BufferDetail.hh
+@@ -30,6 +30,7 @@
+ #include <exception>
+ #include <cassert>
+ #include <deque>
++#include <iterator>
+ 
+ /**
+  * \file BufferDetail.hh
+diff --git a/src/avrocpp/impl/parsing/JsonCodec.cc b/src/avrocpp/impl/parsing/JsonCodec.cc
+index 9d5f7a8d..39534593 100644
+--- a/src/avrocpp/impl/parsing/JsonCodec.cc
++++ b/src/avrocpp/impl/parsing/JsonCodec.cc
+@@ -21,6 +21,7 @@
+ #include <string>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <ctype.h>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+diff --git a/src/avrocpp/impl/parsing/ResolvingDecoder.cc b/src/avrocpp/impl/parsing/ResolvingDecoder.cc
+index adc8ffc3..549ceac0 100644
+--- a/src/avrocpp/impl/parsing/ResolvingDecoder.cc
++++ b/src/avrocpp/impl/parsing/ResolvingDecoder.cc
+@@ -22,6 +22,7 @@
+ #include <stack>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <ctype.h>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+diff --git a/src/avrocpp/impl/parsing/ValidatingCodec.cc b/src/avrocpp/impl/parsing/ValidatingCodec.cc
+index 2f465ee6..00ab7e0e 100644
+--- a/src/avrocpp/impl/parsing/ValidatingCodec.cc
++++ b/src/avrocpp/impl/parsing/ValidatingCodec.cc
+@@ -21,6 +21,7 @@
+ #include <string>
+ #include <map>
+ #include <algorithm>
++#include <iterator>
+ #include <boost/shared_ptr.hpp>
+ #include <boost/make_shared.hpp>
+ #include <boost/weak_ptr.hpp>

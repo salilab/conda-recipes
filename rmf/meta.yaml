@@ -5,6 +5,8 @@ package:
 source:
   fn: rmf.zip
   url: https://salilab.org/~ben/rmf-1.0.zip
+  patches:
+    - back-inserter.patch
 
 build:
   number: 0
@@ -18,8 +20,10 @@ requirements:
     - python {{ python }}
     - swig
     - cmake
-    - boost 1.67.0.*
-    - hdf5 1.10.2.*
+    - boost 1.67.0.* [py < 38]
+    - boost 1.71.0.* [py >= 38]
+    - hdf5 1.10.2.* [py < 38]
+    - hdf5 1.10.4.* [py >= 38]
 
   run:
     - python {{ python }}
