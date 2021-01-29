@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SOVERSION=13
+
 modtop=${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}
 # Help pkg-config to find glib .pc file
 export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
@@ -20,7 +22,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
-  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.12"
+  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
