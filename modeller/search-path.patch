@@ -38,7 +38,7 @@
 -    if dpath not in sys.path:
 -        # Insert *after* first entry, so as not to break parallel module's
 -        # propagation of the first entry (that containing the running script's
--        # directory) to slaves
+-        # directory) to workers
 -        sys.path.insert(1, dpath)
 -    try:
 -        import os
