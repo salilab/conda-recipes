@@ -18,8 +18,7 @@ source:
   patches:
     # On Mac pax.gz isn't extracted before patching, so we have to apply
     # this patch ourselves in build.sh
-    - search-path.patch [not win32 and not osx]
-    - search-path-win.patch [win32]
+    - search-path.patch [not osx]
 
 build:
   number: 1
