@@ -32,7 +32,7 @@ requirements:
     - python {{ python }}
     - hdf5-1106 [unix]
   build:
-    - {{ compiler('c') }}
+    - {{ compiler('c') }} [linux]
     - python {{ python }}
     - swig [unix]
     - setuptools
