@@ -62,7 +62,7 @@
 -            for (n, pathcomp) in enumerate(sys.path):
 -                if srch.match(pathcomp):
 -                    modpath = os.path.join(pathcomp, 'python%d.%d' % api_ver)
--                    if modpath not in sys.path:
+-                    if modpath not in sys.path and os.path.exists(modpath):
 -                        sys.path.insert(n, modpath)
 -                    break
 -            del re, n, pathcomp, os, srch
