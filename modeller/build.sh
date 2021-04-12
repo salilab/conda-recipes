@@ -13,6 +13,12 @@ if [ `uname -s` = "Darwin" ]; then
   # Remove bundled HDF5 libraries; use those in the conda package instead
   rm -f Library/modeller-*/lib/mac10v4/libhdf5*
 
+  # On Apple Silicon remove old Intel-only binaries which might otherwise
+  # confuse install_name_tool
+  if [ `uname -m` = "arm64" ]; then
+    (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
+  fi
+
   # Move from .dmg location to Anaconda path
   mv Library/modeller* ${PREFIX}/lib
 
@@ -22,7 +28,11 @@ if [ `uname -s` = "Darwin" ]; then
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
-  libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
+  if [ `uname -m` = "arm64" ]; then
+    libs="glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
+  else
+    libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
+  fi
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
@@ -35,6 +45,13 @@ if [ `uname -s` = "Darwin" ]; then
     for lib in hdf5_hl.100 hdf5.103; do
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1106/lib${lib}.dylib ${bin}
     done
+
+    # install_name_tool invalidates signatures, so resign
+    # cp && mv is needed to work around a MacOS bug:
+    # "the codesign_allocate helper tool cannot be found or used"
+    if [ `uname -m` = "arm64" ]; then
+      cp ${bin} ${bin}.new && mv ${bin}.new ${bin} && codesign -f -s - ${bin} || exit 1
+    fi
   done
 
   # Have modXXX find the _modeller.so built against the system Python
@@ -111,6 +128,11 @@ if [ `uname -s` = "Darwin" ]; then
   for lib in glib-2.0.0 intl.8; do
     install_name_tool -change @rpath/./lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${SP_DIR}/_modeller*.so
   done
+  if [ `uname -m` = "arm64" ]; then
+    for bin in ${SP_DIR}/_modeller*.so; do
+      cp ${bin} ${bin}.new && mv ${bin}.new ${bin} && codesign -f -s - ${bin} || exit 1
+    done
+  fi
 
   # Put libraries in more usual locations
   ln -sf ${modtop}/lib/${exetype}/libmodeller.*.dylib ${PREFIX}/lib
