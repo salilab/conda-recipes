@@ -1,0 +1,66 @@
+diff -Nur hdf5-1.10.6/src/H5CXprivate.h hdf5-1.10.6-patched/src/H5CXprivate.h
+--- hdf5-1.10.6/src/H5CXprivate.h	2019-12-19 08:38:30.000000000 -0800
++++ hdf5-1.10.6-patched/src/H5CXprivate.h	2021-04-12 11:15:35.583620317 -0700
+@@ -140,6 +140,18 @@
+ /* "Setter" routines for LAPL properties cached in API context */
+ H5_DLL herr_t H5CX_set_nlinks(size_t nlinks);
+ 
++H5_DLL herr_t
++H5CX_set_apl(hid_t *acspl_id, const H5P_libclass_t *libclass,
++    hid_t
++#ifndef H5_HAVE_PARALLEL
++   H5_ATTR_UNUSED
++#endif /* H5_HAVE_PARALLEL */
++   loc_id, hbool_t
++#ifndef H5_HAVE_PARALLEL
++   H5_ATTR_UNUSED
++#endif /* H5_HAVE_PARALLEL */
++   is_collective);
++
+ /* "Setter" routines for cached DXPL properties that must be returned to application */
+ #ifdef H5_HAVE_PARALLEL
+ H5_DLL void H5CX_set_mpio_actual_chunk_opt(H5D_mpio_actual_chunk_opt_mode_t chunk_opt);
+diff -Nur hdf5-1.10.6/src/H5Fsuper.c hdf5-1.10.6-patched/src/H5Fsuper.c
+--- hdf5-1.10.6/src/H5Fsuper.c	2019-12-19 08:38:30.000000000 -0800
++++ hdf5-1.10.6-patched/src/H5Fsuper.c	2021-04-12 11:06:52.579992113 -0700
+@@ -54,6 +54,7 @@
+ /********************/
+ static herr_t H5F__super_ext_create(H5F_t *f, H5O_loc_t *ext_ptr);
+ static herr_t H5F__update_super_ext_driver_msg(H5F_t *f);
++herr_t H5O__fsinfo_set_version(H5F_t *f, H5O_fsinfo_t *fsinfo);
+ 
+ 
+ /*********************/
+diff -Nur hdf5-1.10.6/src/H5Odeprec.c hdf5-1.10.6-patched/src/H5Odeprec.c
+--- hdf5-1.10.6/src/H5Odeprec.c	2019-12-19 08:38:30.000000000 -0800
++++ hdf5-1.10.6-patched/src/H5Odeprec.c	2021-04-12 11:16:52.381035020 -0700
+@@ -32,6 +32,7 @@
+ /* Headers */
+ /***********/
+ #include "H5private.h"      /* Generic Functions    */
++#include "H5CXprivate.h"    /* API Contexts         */
+ #include "H5Eprivate.h"     /* Error handling       */
+ #include "H5Opkg.h"         /* Object headers       */
+ 
+diff -Nur hdf5-1.10.6/src/H5Oint.c hdf5-1.10.6-patched/src/H5Oint.c
+--- hdf5-1.10.6/src/H5Oint.c	2019-12-19 08:38:30.000000000 -0800
++++ hdf5-1.10.6-patched/src/H5Oint.c	2021-04-12 11:19:13.980644583 -0700
+@@ -32,6 +32,7 @@
+ /***********/
+ #include "H5private.h"          /* Generic Functions                        */
+ #include "H5Eprivate.h"         /* Error handling                           */
++#include "H5CXprivate.h"
+ #include "H5Fprivate.h"         /* File access                              */
+ #include "H5FLprivate.h"        /* Free lists                               */
+ #include "H5FOprivate.h"        /* File objects                             */
+diff -Nur hdf5-1.10.6/src/H5Rint.c hdf5-1.10.6-patched/src/H5Rint.c
+--- hdf5-1.10.6/src/H5Rint.c	2019-12-19 08:38:30.000000000 -0800
++++ hdf5-1.10.6-patched/src/H5Rint.c	2021-04-12 11:20:41.269278134 -0700
+@@ -23,6 +23,7 @@
+ /***********/
+ #include "H5private.h"          /* Generic Functions                        */
+ #include "H5ACprivate.h"        /* Metadata cache                           */
++#include "H5CXprivate.h"
+ #include "H5Dprivate.h"         /* Datasets                                 */
+ #include "H5Eprivate.h"         /* Error handling                           */
+ #include "H5Gprivate.h"         /* Groups                                   */
