@@ -1,0 +1,20 @@
+diff --git a/modules/rmf/dependency/RMF/CMakeLists.txt b/modules/rmf/dependency/RMF/CMakeLists.txt
+index 28214b67ea..a5e811f70d 100644
+--- a/modules/rmf/dependency/RMF/CMakeLists.txt
++++ b/modules/rmf/dependency/RMF/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8)
++cmake_minimum_required(VERSION 2.8.12)
+ project(RMF)
+ 
+ # needs to be in main CMakeLists.txt
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ab7192e957..90bfdfb8ff 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8.3)
++cmake_minimum_required(VERSION 2.8.12)
+ 
+ project(IMP)
+ 
