@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/salilab/rmf/archive/93c97f15fc70a3377c2fcfbd49908ba19e8e14ce.zip
-  sha256: 8739533ef0395924a88755838dc717d837b8c7aa979820d161264fc060ee0841
+  url: https://github.com/salilab/rmf/archive/refs/tags/{{ version }}.tar.gz
+  sha256: d93f5939052f8edce62dab8e4e292962b5ceb36a2d5aa064f73abfa55db91f0e
 
 build:
   number: 0
