@@ -4,14 +4,24 @@ SOVERSION=13
 
 modtop=${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION}
 # Help pkg-config to find glib .pc file
-export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
+export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig
 
 if [ `uname -s` = "Darwin" ]; then
   tar -xzf *.pax.gz
   mkdir -p ${PREFIX}/lib
 
-  # Remove bundled HDF5 libraries; use those in the conda package instead
+  # Remove bundled HDF5/glib/intl libraries; use those in the conda
+  # packages instead
   rm -f Library/modeller-*/lib/mac10v4/libhdf5*
+  rm -f Library/modeller-*/lib/mac10v4/libglib-*.dylib
+  rm -f Library/modeller-*/lib/mac10v4/libintl.*.dylib
+  rm -f Library/modeller-*/lib/mac10v4/libpcre.*.dylib
+
+  # On Apple Silicon remove old Intel-only binaries which might otherwise
+  # confuse install_name_tool
+  if [ `uname -m` = "arm64" ]; then
+    (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
+  fi
 
   # On Apple Silicon remove old Intel-only binaries which might otherwise
   # confuse install_name_tool
@@ -22,22 +32,24 @@ if [ `uname -s` = "Darwin" ]; then
   # Move from .dmg location to Anaconda path
   mv Library/modeller* ${PREFIX}/lib
 
-  # Note that we keep the glib that is already bundled with Modeller, since
-  # it is newer than that in Anaconda
-
   # Change library paths accordingly
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
   if [ `uname -m` = "arm64" ]; then
-    libs="glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
+    exetype="mac11arm64-gnu"
+    libs="saxs modeller.${SOVERSION}"
   else
-    libs="ifcore imf irc svml intlc glib-2.0.0 intl.8 saxs modeller.${SOVERSION}"
+    libs="ifcore imf irc svml intlc saxs modeller.${SOVERSION}"
   fi
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
   done
   for bin in ${modtop}/bin/mod*_* ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
+    if [ `uname -m` = "arm64" ]; then
+      lipo -extract arm64 -output ${bin}.arm64 ${bin} && mv ${bin}.arm64 ${bin}
+    fi
+
     for lib in ${libs}; do
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${bin}
     done
@@ -45,12 +57,15 @@ if [ `uname -s` = "Darwin" ]; then
     for lib in hdf5_hl.100 hdf5.103; do
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1106/lib${lib}.dylib ${bin}
     done
+    # Point to glib/intl libs in conda package
+    for lib in glib-2.0.0 intl.8; do
+      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/lib${lib}.dylib ${bin}
+    done
 
-    # install_name_tool invalidates signatures, so resign
-    # cp && mv is needed to work around a MacOS bug:
-    # "the codesign_allocate helper tool cannot be found or used"
+    # install_name_tool invalidates signatures, so just remove them
+    # (conda should add them back at install time)
     if [ `uname -m` = "arm64" ]; then
-      cp ${bin} ${bin}.new && mv ${bin}.new ${bin} && codesign -f -s - ${bin} || exit 1
+      mv ${bin} ${bin}.new && codesign_allocate -r -i ${bin}.new -o ${bin} && rm -f ${bin}.new || exit 1
     fi
   done
 
@@ -85,7 +100,7 @@ else
 
   # Bundle glib so we don't need it as a runtime dependency (since it pulls in
   # gettext which might interfere with the system copy)
-  cp ${BUILD_PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+  cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
 
   # Remove bundled HDF5; use the conda package instead
   rm -f ${modtop}/lib/${exetype}/*hdf5*
@@ -123,17 +138,6 @@ rm -rf include
 ln -sf ${PREFIX}/include/modeller include
 
 if [ `uname -s` = "Darwin" ]; then
-  # Make Python extension link against glib and intl bundled with Modeller,
-  # not from Anaconda
-  for lib in glib-2.0.0 intl.8; do
-    install_name_tool -change @rpath/./lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${SP_DIR}/_modeller*.so
-  done
-  if [ `uname -m` = "arm64" ]; then
-    for bin in ${SP_DIR}/_modeller*.so; do
-      cp ${bin} ${bin}.new && mv ${bin}.new ${bin} && codesign -f -s - ${bin} || exit 1
-    done
-  fi
-
   # Put libraries in more usual locations
   ln -sf ${modtop}/lib/${exetype}/libmodeller.*.dylib ${PREFIX}/lib
   ln -sf ${modtop}/lib/${exetype}/libmodeller.dylib ${PREFIX}/lib

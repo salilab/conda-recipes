@@ -28,19 +28,17 @@ build:
     - lib/hdf5-1106 [linux]
 
 requirements:
-  host:
-    - python {{ python }}
-    - hdf5-1106 [unix]
   build:
-    - {{ compiler('c') }} [linux]
-    - python {{ python }}
+    - {{ compiler('c') }}
     - swig [unix]
+  host:
+    - python
     - setuptools
     - pkg-config [unix]
-    - glib 2.31.2 [unix]
-
+    - hdf5-1106 [unix]
+    - glib >=2.68.1
   run:
-    - python {{ python }}
+    - python
     - hdf5-1106 [unix]
 
 test:
