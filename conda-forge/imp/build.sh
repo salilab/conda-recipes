@@ -16,9 +16,10 @@ fi
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch:cnmultifit \
       -G Ninja \
+      -DIMP_USE_SYSTEM_RMF=on -DIMP_USE_SYSTEM_IHM=on \
       -DCMAKE_PREFIX_PATH=${PREFIX} \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DUSE_PYTHON2=${USE_PYTHON2} \
       ..
-ninja install -j${CPU_COUNT}
+ninja install

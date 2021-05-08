@@ -31,7 +31,9 @@ requirements:
   host:
     - python
     - numpy
-    - boost
+    - rmf
+    - ihm
+    - boost-cpp
     - hdf5
     - protobuf
     - libopencv
@@ -49,7 +51,9 @@ requirements:
   run:
     - python
     - {{ pin_compatible('numpy') }}
-    - boost
+    - ihm
+    - rmf
+    - boost-cpp
     - hdf5
     - fftw
     - gsl
