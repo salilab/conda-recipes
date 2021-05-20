@@ -30,7 +30,8 @@ requirements:
     - boost-cpp
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
-    - protobuf
+    # Help out the solver to get a working combination of protobuf and opencv
+    - protobuf >=3.17.0
     # We only need the library; we don't use the OpenCV Python wrappers
     - libopencv
     - eigen
@@ -54,8 +55,7 @@ requirements:
     - libopencv
     - openmpi [osx]
     - mpich [linux64]
-    # Don't need to pin protobuf because libopencv already pins libprotobuf
-    - protobuf
+    - {{ pin_compatible('protobuf', max_pin='x.x') }}
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
     - {{ pin_compatible('fftw', max_pin='x.x') }}
