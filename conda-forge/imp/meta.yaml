@@ -51,8 +51,9 @@ requirements:
   run:
     - python
     - {{ pin_compatible('numpy') }}
+    # RMF does not pin its exports, but we link against the C++ DSO
+    - {{ pin_compatible('rmf', max_pin='x.x') }}
     - ihm
-    - rmf
     - boost-cpp
     - hdf5
     - fftw
