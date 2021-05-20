@@ -36,6 +36,7 @@ requirements:
     - eigen
     # Force usage of conda-forge fftw, not salilab
     - fftw >3.3.4
+    - libtau
     - gsl
     - cgal-cpp
     - openmpi [osx]
@@ -56,6 +57,7 @@ requirements:
     - {{ pin_compatible('fftw', max_pin='x.x') }}
     - {{ pin_compatible('gsl', max_pin='x.x') }}
     - {{ pin_compatible('libopencv', max_pin='x.x') }}
+    - {{ pin_compatible('libtau', max_pin='x.x') }}
     - {{ pin_compatible('openmpi', max_pin='x.x') }} [osx]
     - {{ pin_compatible('mpich', max_pin='x.x') }} [linux64]
 
@@ -76,11 +78,13 @@ test:
     - IMP.rmf
     - IMP.mpi
     - IMP.spb
+    - IMP.cnmultifit
     - RMF
   # Command line tools
   commands:
     - foxs --help
     - spb_test_score --help
+    - cnmultifit --help
 
 about:
   home: https://integrativemodeling.org
