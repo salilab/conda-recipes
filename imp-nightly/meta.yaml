@@ -50,16 +50,17 @@ requirements:
     - ihm
     - gmp
     - mpfr
+    # No need to pin packages that define run_exports
+    - libopencv
+    - openmpi [osx]
+    - mpich [linux64]
     # Don't need to pin protobuf because libopencv already pins libprotobuf
     - protobuf
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
     - {{ pin_compatible('fftw', max_pin='x.x') }}
     - {{ pin_compatible('gsl', max_pin='x.x') }}
-    - {{ pin_compatible('libopencv', max_pin='x.x') }}
     - {{ pin_compatible('libtau', max_pin='x.x') }}
-    - {{ pin_compatible('openmpi', max_pin='x.x') }} [osx]
-    - {{ pin_compatible('mpich', max_pin='x.x') }} [linux64]
 
 test:
   # Need Eigen to test IMPConfig.cmake
