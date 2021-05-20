@@ -4,7 +4,11 @@ image, use:
 
     podman build -t conda linux-64
     podman build -t miniforge miniforge
-    podman build -t mambaforge mambaforge
+
+To build with mambaforge and podman, run the centos:7 image and then install
+mambaforge and configure it:
+yum install -y patch curl && curl -L -o mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/4.10.1-1/Mambaforge-4.10.1-1-Linux-x86_64.sh && echo "565f98a7c67bf045fd8ddc56699b8933f83c8c5ed8ef2d5a9c49123aec4e11c2  mambaforge.sh" | sha256sum -c --status && bash ./mambaforge.sh -b -p /root/mambaforge && rm -f mambaforge.sh && /root/mambaforge/bin/conda init bash && /root/mambaforge/bin/mamba install -y boa
+bash
 
 The `mac-setup.sh` script sets up a minimal conda environment on a Mac,
 running OS X 10.10 in a VirtualBox image (10.10 is the oldest version supported
