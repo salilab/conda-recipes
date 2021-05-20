@@ -4,6 +4,7 @@ image, use:
 
     podman build -t conda linux-64
     podman build -t miniforge miniforge
+    podman build -t mambaforge mambaforge
 
 The `mac-setup.sh` script sets up a minimal conda environment on a Mac,
 running OS X 10.10 in a VirtualBox image (10.10 is the oldest version supported
