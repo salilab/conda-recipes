@@ -36,6 +36,10 @@ requirements:
     - protobuf >=3.11.0  # [py == 27]
     # We only need the library; we don't use the OpenCV Python wrappers
     - libopencv
+    # We don't need matplotlib to build IMP, but we include it here so that
+    # the resulting IMP package can be installed alongside matplotlib
+    # (otherwise IMP pulls in a newer Boost, which is incompatible)
+    - matplotlib   # [py == 27]
     - eigen
     # Force usage of conda-forge fftw, not salilab
     - fftw >3.3.4
