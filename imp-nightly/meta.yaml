@@ -1,10 +1,10 @@
 package:
   name: imp-nightly
-  version: 20210519
+  version: 20210520
 
 source:
-  fn: imp-20210519.develop.d63e9b2723.tar.gz
-  url: https://integrativemodeling.org/nightly/download/imp-20210519.develop.d63e9b2723.tar.gz
+  fn: imp-20210520.develop.520389195e.tar.gz
+  url: https://integrativemodeling.org/nightly/download/imp-20210520.develop.520389195e.tar.gz
   patches:
     - bc-clustering.patch [osx]
     - imp-directories.patch [win]
@@ -40,9 +40,7 @@ requirements:
     - libtau
     - gsl
     - cgal-cpp
-    - openmpi [osx]
-    - mpich [linux64]
-      # For windows, need to install Microsoft MPI
+    - mpich [not win32]
 
   run:
     - python
@@ -53,8 +51,7 @@ requirements:
     - mpfr
     # No need to pin packages that define run_exports
     - libopencv
-    - openmpi [osx]
-    - mpich [linux64]
+    - mpich [not win32]
     - {{ pin_compatible('protobuf', max_pin='x.x') }}
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
