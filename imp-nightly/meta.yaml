@@ -25,13 +25,15 @@ requirements:
     - ninja
   host:
     - python
-    - rmf
-    - ihm
+    # RMF and IHM are only built for Python 3
+    - rmf  # [py > 27]
+    - ihm  # [py > 27]
     - boost-cpp
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
     # Help out the solver to get a working combination of protobuf and opencv
-    - protobuf >=3.17.0
+    - protobuf >=3.17.0  # [py > 27]
+    - protobuf >=3.11.0  # [py == 27]
     # We only need the library; we don't use the OpenCV Python wrappers
     - libopencv
     - eigen
@@ -45,8 +47,8 @@ requirements:
   run:
     - python
     # RMF does not pin its exports, but we link against the C++ DSO
-    - {{ pin_compatible('rmf', max_pin='x.x') }}
-    - ihm
+    - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
+    - ihm  # [py > 27]
     - gmp
     - mpfr
     # No need to pin packages that define run_exports
