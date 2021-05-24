@@ -1,10 +1,13 @@
+{% set version = "2.15.0" %}
+
 package:
-  name: imp-nightly
-  version: 20210520
+  name: imp
+  version: {{ version }}
 
 source:
-  fn: imp-20210520.develop.520389195e.tar.gz
-  url: https://integrativemodeling.org/nightly/download/imp-20210520.develop.520389195e.tar.gz
+  fn: imp-{{ version }}.tar.gz
+  url: https://integrativemodeling.org/{{ version }}/download/imp-{{ version }}.tar.gz
+  sha256: be2c13c95e4347f2fa4fe4f845a109464e9b95c6a417e286ba57aa79a7cd1a16
   patches:
     - bc-clustering.patch [osx]
     - imp-directories.patch [win]
