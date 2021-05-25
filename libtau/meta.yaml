@@ -17,11 +17,12 @@ build:
 
 requirements:
   build:
-    - python [win]
     - scons
-    - boost
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+  host:
+    - python [win]
+    - boost
 
 about:
   home: https://integrativemodeling.org/libTAU.html
