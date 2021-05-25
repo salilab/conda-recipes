@@ -28,7 +28,6 @@ cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
       -DIMP_USE_SYSTEM_RMF=${SYS_IHM_RMF} \
       -DIMP_USE_SYSTEM_IHM=${SYS_IHM_RMF} \
       ${CMAKE_ARGS} \
-      -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \
       -DUSE_PYTHON2=${USE_PYTHON2} \
       ${EXTRA_CMAKE_FLAGS} ..
 ninja install
