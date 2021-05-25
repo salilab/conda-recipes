@@ -3,14 +3,8 @@
 # Find packages in Anaconda locations
 export CGAL_DIR=${PREFIX}/lib/cmake/CGAL
 
-if [ `uname -s` = "Darwin" ]; then
-  PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
-  EXTRA_CMAKE_FLAGS="-DPYTHON_INCLUDE_DIR=${PYINC}"
-  # Make sure the default encoding for files opened by Python 3 is UTF8
-  export LANG=en_US.UTF-8
-  # Help ld to find opencv libs
-  export LDFLAGS="-L${PREFIX}/lib"
-fi
+# Make sure the default encoding for files opened by Python 3 is UTF8
+export LANG=en_US.UTF-8
 
 # Don't waste time looking for a Python major version we know isn't right
 if [ "${PY3K}" = "1" ]; then
