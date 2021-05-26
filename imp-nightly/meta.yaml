@@ -10,6 +10,9 @@ source:
   sha256: be2c13c95e4347f2fa4fe4f845a109464e9b95c6a417e286ba57aa79a7cd1a16
   patches:
     - clang-6-cpp14.patch
+    - cmake-w32-deps.patch
+    - sfmap-swap.patch
+    - anon-export-fix.patch
     - bc-clustering.patch [osx]
     - imp-directories.patch [win]
 
