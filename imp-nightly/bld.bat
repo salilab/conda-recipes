@@ -92,6 +92,10 @@ if errorlevel 1 exit 1
 for /f %%f in ('dir /b *.exe') do copy "%SRC_DIR%\app_wrapper.exe" "%PREFIX%\%%f"
 if errorlevel 1 exit 1
 
+:: Fix paths in cmake files (must be /-separated, not \)
+python "%RECIPE_DIR%\fix-cmake-paths.py" "%LIBRARY_PREFIX%\lib\cmake\IMP\IMPConfig.cmake"
+if errorlevel 1 exit 1
+
 :: Add more build steps here, if they are necessary.
 
 :: See
