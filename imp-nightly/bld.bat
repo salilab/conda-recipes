@@ -68,7 +68,7 @@ cmake -DUSE_PYTHON2=%USE_PYTHON2% %OLDPYTHON% ^
       -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
       -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch ^
       -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
-      -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" ^
+      -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR:\=/%" ^
       -DIMP_USE_SYSTEM_RMF=%SYS_IHM_RMF% ^
       -DIMP_USE_SYSTEM_IHM=%SYS_IHM_RMF% ^
       -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" ^
@@ -90,10 +90,6 @@ if errorlevel 1 exit 1
 
 :: Handle C++ tools (all files with .exe extension)
 for /f %%f in ('dir /b *.exe') do copy "%SRC_DIR%\app_wrapper.exe" "%PREFIX%\%%f"
-if errorlevel 1 exit 1
-
-:: Fix paths in cmake files (must be /-separated, not \)
-python "%RECIPE_DIR%\fix-cmake-paths.py" "%LIBRARY_PREFIX%\lib\cmake\IMP\IMPConfig.cmake"
 if errorlevel 1 exit 1
 
 :: Add more build steps here, if they are necessary.
