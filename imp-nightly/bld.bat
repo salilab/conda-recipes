@@ -36,25 +36,11 @@ mkdir build
 cd build
 
 :: Help cmake to find CGAL
-set CGAL_DIR=%BUILD_PREFIX%\Library\lib\cmake\CGAL
+set CGAL_DIR=%PREFIX%\Library\lib\cmake\CGAL
 
-:: Older Python versions need to use our opencv-nopython package
-set OPENCV_VER="342"
-if "%Platform%" == "X64" (
-  set OPENCV_VER="341"
-)
-if "%CONDA_PY%" == "27" (
-  set OPENCV_VER="249"
-)
-if "%CONDA_PY%" == "34" (
-  set OPENCV_VER="249"
-)
-if "%CONDA_PY%" == "38" (
-  set OPENCV_VER="249"
-  if "%Platform%" == "X64" (
-    set OPENCV_VER="401"
-  )
-)
+:: Help cmake to find OpenCV
+python "%RECIPE_DIR%\find_opencv_libs.py" "%PREFIX%"
+if errorlevel 1 exit 1
 
 :: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
 set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
@@ -67,17 +53,29 @@ if "%CONDA_PY%" == "27" (
 
 :: Don't waste time looking for a Python major version we know isn't right
 set USE_PYTHON2=on
-:: Help cmake to find NumPy in Anaconda location
-set NUMPY_INC="-DPython2_NumPy_INCLUDE_DIR=%BUILD_PREFIX%\lib\site-packages\numpy\core\include"
 if "%PY3K%" == "1" (
   set USE_PYTHON2=off
-  set NUMPY_INC="-DPython3_NumPy_INCLUDE_DIR=%BUILD_PREFIX%\lib\site-packages\numpy\core\include"
 )
 
-cmake -DUSE_PYTHON2=%USE_PYTHON2% %OLDPYTHON% %NUMPY_INC% -DCMAKE_PREFIX_PATH="%BUILD_PREFIX:\=/%;%BUILD_PREFIX:\=/%\Library" -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" -Dopencv_core_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_core%OPENCV_VER%.lib" -Dopencv_imgproc_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgproc%OPENCV_VER%.lib" -Dopencv_highgui_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_highgui%OPENCV_VER%.lib" -Dopencv_imgcodecs_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/opencv_imgcodecs%OPENCV_VER%.lib" -DHDF5_LIBRARIES="%BUILD_PREFIX:\=/%/Library/lib/hdf5.lib" -DHDF5_FOUND=TRUE -DHDF5_INCLUDE_DIRS="%BUILD_PREFIX:\=/%/Library/include" -DHDF5_INCLUDE_DIR="%BUILD_PREFIX:\=/%/Library/include" -Dprotobuf_LIBRARY="%BUILD_PREFIX:\=/%/Library/lib/libprotobuf.lib" %PERCPPCOMP% -G "NMake Makefiles" ..
+set SYS_IHM_RMF=on
+if "%CONDA_PY%" == "27" (
+  :: ihm and RMF aren't built for Python 2, so use those bundled with
+  :: IMP instead
+  set SYS_IHM_RMF=off
+)
+
+cmake -DUSE_PYTHON2=%USE_PYTHON2% %OLDPYTHON% ^
+      -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
+      -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch ^
+      -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
+      -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR%" ^
+      -DIMP_USE_SYSTEM_RMF=%SYS_IHM_RMF% ^
+      -DIMP_USE_SYSTEM_IHM=%SYS_IHM_RMF% ^
+      -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" ^
+      %PERCPPCOMP% -G Ninja ..
 if errorlevel 1 exit 1
 
-nmake install
+ninja install
 if errorlevel 1 exit 1
 
 :: Patch IMP Python module to add paths containing Anaconda DLLs to search path
