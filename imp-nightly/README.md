@@ -28,11 +28,13 @@ To build with these, first delete `$HOME/conda_build_config.yaml`, then
 Build IMP with `conda build -c salilab --python=2.7 imp-nightly`.
 
 We only build Python 2.7 packages for Mac and Linux. On Windows it requires
-using an ancient C++ compiler which fails to build big chunks of the IMP code.
+using an ancient C++ compiler which fails to build big chunks of the IMP code,
+and few or no users use the Python 2 Windows package anyway.
 
 ## Mac/Linux
 
-We build for Mac or Linux on a stock macOS or Fedora box.
+We build for Mac or Linux on a stock macOS 10.10 or CentOS 7 box
+(with the `patch` RPM installed).
 
 ## Windows
 
