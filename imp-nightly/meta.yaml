@@ -32,6 +32,9 @@ requirements:
     - ninja
   host:
     - python
+    # We don't include numpy support on Python 2 because it isn't pinned
+    # by conda-forge; we don't want to unnecessarily restrict installation
+    - numpy  # [py > 27]
     # RMF and IHM are only built for Python 3
     - rmf  # [py > 27]
     - ihm  # [py > 27]
@@ -58,6 +61,7 @@ requirements:
 
   run:
     - python
+    - {{ pin_compatible('numpy') }}  # [py > 27]
     # RMF does not pin its exports, but we link against the C++ DSO
     - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
     - ihm  # [py > 27]
