@@ -61,7 +61,9 @@ requirements:
     # RMF does not pin its exports, but we link against the C++ DSO
     - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
     - ihm  # [py > 27]
-    - gmp
+    # CGAL code pulls in mpfr and gmp (on Linux/Mac) or mpir (on Windows)
+    - gmp   # [not win]
+    - mpir  # [win]
     - mpfr
     # No need to pin packages that define run_exports
     - libopencv
