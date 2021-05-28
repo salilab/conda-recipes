@@ -25,16 +25,32 @@ Build IMP with `conda build -c salilab imp-nightly`.
 
 conda-forge no longer supports Python 2, but does still retain the packages.
 To build with these, first delete `$HOME/conda_build_config.yaml`, then
-Build IMP with `conda build -c salilab --python=2.7 imp-nightly`.
+build IMP with `conda build -c salilab --python=2.7 imp-nightly`.
 
 We only build Python 2.7 packages for Mac and Linux. On Windows it requires
 using an ancient C++ compiler which fails to build big chunks of the IMP code,
 and few or no users use the Python 2 Windows package anyway.
 
-## Mac/Linux
+## Mac
 
-We build for Mac or Linux on a stock macOS 10.10 or CentOS 7 box
-(with the `patch` RPM installed).
+We build for Mac in a Vagrant macOS 10.13 image.
+
+conda-build can fail on this system during its overlinking check, due
+to a broken macOS symlink:
+
+      File "/Users/vagrant/miniforge3/lib/python3.9/site-packages/conda_build/post.py", line 1223, in check_overlinking
+        return check_overlinking_impl(m.get_value('package/name'),
+      File "/Users/vagrant/miniforge3/lib/python3.9/site-packages/conda_build/post.py", line 1117, in check_overlinking_impl
+        with open(os.path.join(sysroot, f), 'rb') as tbd_fh:
+    FileNotFoundError: [Errno 2] No such file or directory: '/System/Library/Frameworks/System.framework/System.tbd'
+
+To work around, modify `~/miniforge3/lib/python3.9/site-packages/conda_build/post.py`
+and wrap this open call to catch `FileNotFoundError` and return `lines=[]`.
+
+## Linux
+
+We build for Linux in the docker/podman `centos:7` container.
+First run `yum install patch` to get RPMs not in the base image.
 
 ## Windows
 
@@ -44,6 +60,11 @@ together with
 [Build Tools for Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/).
 See [this blog post](https://beenje.github.io/blog/posts/how-to-setup-a-windows-vm-to-build-conda-packages/)
 for more details.
+
+Some versions of miniforge fail to install the menu entries needed to activate
+conda. Work around this by running from a command prompt
+
+    C:\Windows\System32\cmd.exe /K C:\Users\IEUser\miniforge\Scripts\activate.bat C:\Users\IEUser\miniforge
 
 ## Nightly builds
 
