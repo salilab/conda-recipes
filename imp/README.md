@@ -22,13 +22,13 @@ and put in the home directory. Edit the `python:`, `python_impl:` and
 `numpy:` sections to only include the Python versions desired (we generally
 build for the two latest Python versions).
 
-Build IMP with `conda build -c salilab imp-nightly`.
+Build IMP with `conda build -c salilab imp`.
 
 ## Building for Python 2
 
 conda-forge no longer supports Python 2, but does still retain the packages.
 To build with these, first delete `$HOME/conda_build_config.yaml`, then
-build IMP with `conda mambabuild -c salilab --python=2.7 imp-nightly`.
+build IMP with `conda mambabuild -c salilab --python=2.7 imp`.
 
 Note that `mambabuild` is like `build` but it uses `mamba` rather than `conda`
 to solve dependencies. This is a **lot** faster and also seems to do a better
