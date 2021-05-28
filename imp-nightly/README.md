@@ -68,5 +68,7 @@ conda. Work around this by running from a command prompt
 
 ## Nightly builds
 
-`meta.yaml` in this directory tracks the latest stable release, and needs
-to be modified to make nightly builds.
+`meta.yaml` in this directory is set up to track the latest stable release,
+but can be modified to make an `imp-nightly` package which tracks the most
+recent nightly build (develop branch). To do so, change the `version`
+and `nightly_hash` variables appropriately following the comments in this file.
