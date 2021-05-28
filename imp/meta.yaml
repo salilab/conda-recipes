@@ -1,65 +1,99 @@
-{% set PY_VER_MAJOR = PY_VER[0] %}
-{% set PY_VER_MINOR = PY_VER[2] %}
+# To make a nightly build package, set version to date (e.g. '20210413')
+# and nightly_hash to the corresponding git hash (e.g. '182d9373c4')
+{% set version = "2.15.0" %}
+{% set nightly_hash = '' %}
+
 
 package:
+{% if nightly_hash == '' %}
   name: imp
-  version: "2.14.0"
+{% else %}
+  name: imp-nightly
+{% endif %}
+  version: {{ version }}
 
 source:
-  fn: imp-2.14.0.tar.gz [not win]
-  url: https://integrativemodeling.org/2.14.0/download/imp-2.14.0.tar.gz [not win]
-  sha256: 67c7b5c4a57949786cd65d9f918694b59c9f11f5cf1515b8d13970a908e58126 [not win]
-  fn: imp-2.14.0.zip [win]
-  url: https://integrativemodeling.org/2.14.0/download/imp-2.14.0.zip [win]
-  sha256: 64f3f44b45c5b8844c8249f0dba340833b1c2d20e66b74496fb48714fabc93f6 [win]
+{% if nightly_hash == '' %}
+  fn: imp-{{ version }}.tar.gz
+  url: https://integrativemodeling.org/{{ version }}/download/imp-{{ version }}.tar.gz
+  sha256: be2c13c95e4347f2fa4fe4f845a109464e9b95c6a417e286ba57aa79a7cd1a16
+{% else %}
+  fn: imp-{{ version }}.develop.{{ nightly_hash }}.tar.gz
+  url: https://integrativemodeling.org/nightly/download/imp-{{ version }}.develop.{{ nightly_hash }}.tar.gz
+{% endif %}
   patches:
+{% if nightly_hash == '' %}
+    - clang-6-cpp14.patch
+    - cmake-w32-deps.patch
+    - sfmap-swap.patch
+    - anon-export-fix.patch
     - bc-clustering.patch [osx]
+{% endif %}
     - imp-directories.patch [win]
-    - vs2008-ice.patch [win and py27]
 
 build:
   number: 0
-  string: py{{ PY_VER_MAJOR }}{{ PY_VER_MINOR }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   detect_binary_files_with_prefix: True [not win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - python {{ python }}
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
+    - pkg-config [not win]
     - swig
-    - cgal
-    - eigen
-    - cmake [not win or not py27]
-    - cmake-mac [win and py27]
-    - boost
+    - cmake
+    - ninja
+  host:
+    - python
+    # We don't include numpy support on Python 2 because it isn't pinned
+    # by conda-forge; we don't want to unnecessarily restrict installation
+    - numpy  # [py > 27]
+    # RMF and IHM are only built for Python 3
+    - rmf  # [py > 27]
+    - ihm  # [py > 27]
+    - boost-cpp
     - hdf5
-    - fftw
+    # We need both the libprotobuf library and the Python wrappers
+    # Help out the solver to get a working combination of protobuf and opencv
+    - protobuf >=3.17.0  # [py > 27]
+    - protobuf >=3.11.0  # [py == 27]
+    # We only need the library; we don't use the OpenCV Python wrappers
+    - libopencv
+    # We don't need matplotlib to build IMP, but we include it here so that
+    # the resulting IMP package can be installed alongside matplotlib
+    # (otherwise IMP pulls in a newer Boost, which is incompatible)
+    - matplotlib   # [py == 27]
+    - eigen
+    # Force usage of conda-forge fftw, not salilab
+    - fftw >3.3.4
     - libtau
     - gsl
-    - protobuf
-    - opencv-nopython [(win and py27) or (osx and py >= 38) or (win32 and py >= 38)]
-    - opencv [not ((win and py27) or (osx and py >= 38) or (win32 and py >= 38))]
-    - openmpi [osx]
-    - mpich2 [linux32]
-    - mpich [linux64]
-      # For windows, need to install Microsoft MPI
+    - cgal-cpp
+    - mpich [not win]
+    - msmpi [win]
 
   run:
-    - python {{ python }}
-    - {{ pin_compatible('cgal', max_pin='x.x') }}
-    - {{ pin_compatible('boost', max_pin='x.x.x') }}
+    - python
+    - {{ pin_compatible('numpy') }}  # [py > 27]
+    # RMF does not pin its exports, but we link against the C++ DSO
+    - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
+    - ihm  # [py > 27]
+    # CGAL code pulls in mpfr and gmp (on Linux/Mac) or mpir (on Windows)
+    - gmp   # [not win]
+    - mpir  # [win]
+    - mpfr
+    # No need to pin packages that define run_exports
+    - libopencv
+    - mpich [not win]
+    - msmpi [win]
+    - {{ pin_compatible('protobuf', max_pin='x.x') }}
+    - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
     - {{ pin_compatible('fftw', max_pin='x.x') }}
-    - {{ pin_compatible('libtau', max_pin='x.x') }}
     - {{ pin_compatible('gsl', max_pin='x.x') }}
-    - {{ pin_compatible('opencv-nopython', max_pin='x.x') }} [(win and py27) or (osx and py >= 38) or (win32 and py >= 38)]
-    - {{ pin_compatible('opencv', max_pin='x.x') }} [not ((win and py27) or (osx and py >= 38) or (win32 and py >= 38))]
-    - {{ pin_compatible('protobuf', max_pin='x.x') }}
-    - llvm-openmp [osx]
-    - {{ pin_compatible('openmpi', max_pin='x.x') }} [osx]
-    - {{ pin_compatible('mpich2', max_pin='x.x') }} [linux32]
-    - {{ pin_compatible('mpich', max_pin='x.x') }} [linux64]
+    - {{ pin_compatible('libtau', max_pin='x.x') }}
 
 test:
   # Need Eigen to test IMPConfig.cmake
@@ -70,7 +104,6 @@ test:
     - IMP
     - IMP.atom
     - IMP.cgal
-    - IMP.cnmultifit
     - IMP.em2d
     - IMP.npc
     - IMP.npctransport
@@ -79,16 +112,20 @@ test:
     - IMP.rmf
     - IMP.mpi
     - IMP.spb
+    - IMP.cnmultifit
     - RMF
   # Command line tools
   commands:
-    - cnmultifit --help
     - foxs --help
     - spb_test_score --help
+    - cnmultifit --help
 
 about:
   home: https://integrativemodeling.org
-  license: LGPL/GPL
+  license: GPL-3.0-or-later
+  license_file:
+    - COPYING.LGPL
+    - COPYING.GPL
   summary: "The Integrative Modeling Platform"
   description: >
     IMP's broad goal is to contribute to a comprehensive structural
@@ -105,3 +142,9 @@ about:
 
     If you have problems with this conda package, please
     [open an issue](https://github.com/salilab/conda-recipes/issues).
+  doc_url: https://integrativemodeling.org/doc.html
+  dev_url: https://github.com/salilab/imp/
+
+extra:
+  recipe-maintainers:
+    - benmwebb

@@ -43,6 +43,18 @@ x = IMP.domino.ReadHDF5AssignmentContainer
 # Make sure that IMP.npctransport has full protobuf support
 x = IMP.npctransport.Configuration
 
+# Make sure that Python 3 builds include numpy support
+if sys.version_info[0] >= 3:
+    m = IMP.Model()
+    p1 = IMP.Particle(m)
+    d1 = IMP.core.XYZ.setup_particle(p1)
+    p2 = IMP.Particle(m)
+    spheres = m._get_spheres_numpy()
+    # Should be a single xyz coordinate (spheres[0])
+    # and a single (undef) radius (spheres[1])
+    assert spheres[0].shape == (1,3)
+    assert spheres[1].shape == (1,)
+
 def test_cmake_file(cmake):
     """Make sure that all paths in the cmake file exist."""
     vars = {}
