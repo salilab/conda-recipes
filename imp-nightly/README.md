@@ -12,6 +12,9 @@ distribution on each build platform. We find that conda often gets confused
 (generates incorrect dependencies, particularly when switching between Python
 2 and Python 3) so we generally install a fresh copy for each build.
 
+Use `conda install boa` to get conda-build and mamba installed in the conda
+environment.
+
 ## Building for Python 3
 
 Download `conda_build_config.yaml` from the [conda-forge-pinning-feedstock](https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/master/recipe/conda_build_config.yaml)
@@ -25,7 +28,12 @@ Build IMP with `conda build -c salilab imp-nightly`.
 
 conda-forge no longer supports Python 2, but does still retain the packages.
 To build with these, first delete `$HOME/conda_build_config.yaml`, then
-build IMP with `conda build -c salilab --python=2.7 imp-nightly`.
+build IMP with `conda mambabuild -c salilab --python=2.7 imp-nightly`.
+
+Note that `mambabuild` is like `build` but it uses `mamba` rather than `conda`
+to solve dependencies. This is a **lot** faster and also seems to do a better
+job of avoiding broken dependencies. (It doesn't appear to work properly on
+Windows yet though.)
 
 We only build Python 2.7 packages for Mac and Linux. On Windows it requires
 using an ancient C++ compiler which fails to build big chunks of the IMP code,
