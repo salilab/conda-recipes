@@ -122,8 +122,10 @@ test:
 
 about:
   home: https://integrativemodeling.org
-  license: LGPL/GPL
-  license_file: COPYING.LGPL
+  license: GPL-3.0-or-later
+  license_file:
+    - COPYING.LGPL
+    - COPYING.GPL
   summary: "The Integrative Modeling Platform"
   description: >
     IMP's broad goal is to contribute to a comprehensive structural
