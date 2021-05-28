@@ -27,11 +27,6 @@ copy "%RECIPE_DIR%\app_wrapper.c" .
 cl app_wrapper.c shell32.lib
 if errorlevel 1 exit 1
 
-:: add path to Python .lib for Python 2.7 builds to help build python-ihm
-if "%PY3K%" == "0" (
-  set OLDPYTHON="-DPYTHON_LIBRARIES=%PREFIX:\=/%/libs/python27.lib"
-)
-
 mkdir build
 cd build
 
@@ -45,32 +40,12 @@ if errorlevel 1 exit 1
 :: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
 set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
 
-:: VS2008 throws an internal compiler error trying to compile isd_all, so
-:: split into separate files
-if "%CONDA_PY%" == "27" (
-  set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=isd:cgal"
-)
-
-:: Don't waste time looking for a Python major version we know isn't right
-set USE_PYTHON2=on
-if "%PY3K%" == "1" (
-  set USE_PYTHON2=off
-)
-
-set SYS_IHM_RMF=on
-if "%CONDA_PY%" == "27" (
-  :: ihm and RMF aren't built for Python 2, so use those bundled with
-  :: IMP instead
-  set SYS_IHM_RMF=off
-)
-
-cmake -DUSE_PYTHON2=%USE_PYTHON2% %OLDPYTHON% ^
+cmake -DUSE_PYTHON2=off ^
       -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
       -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch ^
       -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
       -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR:\=/%" ^
-      -DIMP_USE_SYSTEM_RMF=%SYS_IHM_RMF% ^
-      -DIMP_USE_SYSTEM_IHM=%SYS_IHM_RMF% ^
+      -DIMP_USE_SYSTEM_RMF=on -DIMP_USE_SYSTEM_IHM=on ^
       -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" ^
       %PERCPPCOMP% -G Ninja ..
 if errorlevel 1 exit 1
