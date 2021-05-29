@@ -16,12 +16,20 @@ else
   SYS_IHM_RMF=off
 fi
 
+# Don't build the scratch module
+DISABLED=scratch
+
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch \
+cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=${DISABLED} \
       -G Ninja \
       -DIMP_USE_SYSTEM_RMF=${SYS_IHM_RMF} \
       -DIMP_USE_SYSTEM_IHM=${SYS_IHM_RMF} \
       ${CMAKE_ARGS} \
       -DUSE_PYTHON2=${USE_PYTHON2} \
       ${EXTRA_CMAKE_FLAGS} ..
+
+# Make sure all modules we asked for were found (this is tested for
+# in the final package, but quicker to abort here if they're missing)
+python "${RECIPE_DIR}/check_disabled_modules.py" ${DISABLED} || exit 1
+
 ninja install

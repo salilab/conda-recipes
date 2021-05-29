@@ -40,14 +40,22 @@ if errorlevel 1 exit 1
 :: Avoid running out of memory (particularly on 32-bit) by splitting up IMP.cgal
 set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
 
+:: Don't build the scratch module
+DISABLED=scratch
+
 cmake -DUSE_PYTHON2=off ^
       -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
-      -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=scratch ^
+      -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=%DISABLED% ^
       -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
       -DCMAKE_INSTALL_PYTHONDIR="%SP_DIR:\=/%" ^
       -DIMP_USE_SYSTEM_RMF=on -DIMP_USE_SYSTEM_IHM=on ^
       -DCMAKE_CXX_FLAGS="/DBOOST_ALL_DYN_LINK /EHsc /D_HDF5USEDLL_ /DH5_BUILT_AS_DYNAMIC_LIB /DPROTOBUF_USE_DLLS /DWIN32 /DGSL_DLL /DMSMPI_NO_DEPRECATE_20 %EXTRA_CXX_FLAGS%" ^
       %PERCPPCOMP% -G Ninja ..
+if errorlevel 1 exit 1
+
+:: Make sure all modules we asked for were found (this is tested for
+:: in the final package, but quicker to abort here if they're missing)
+python "%RECIPE_DIR%\check_disabled_modules.py" %DISABLED%
 if errorlevel 1 exit 1
 
 ninja install
