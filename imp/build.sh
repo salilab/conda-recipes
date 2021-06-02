@@ -26,6 +26,8 @@ cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=${DISABLED} \
       -DIMP_USE_SYSTEM_IHM=${SYS_IHM_RMF} \
       ${CMAKE_ARGS} \
       -DUSE_PYTHON2=${USE_PYTHON2} \
+      -DPython3_FIND_FRAMEWORK=NEVER \
+      -DPython2_FIND_FRAMEWORK=NEVER \
       ${EXTRA_CMAKE_FLAGS} ..
 
 # Make sure all modules we asked for were found (this is tested for
