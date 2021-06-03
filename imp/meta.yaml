@@ -27,13 +27,13 @@ source:
     - cmake-w32-deps.patch
     - sfmap-swap.patch
     - anon-export-fix.patch
-    - bc-clustering.patch [osx]
+    - bc-clustering.patch  # [osx]
 {% endif %}
-    - imp-directories.patch [win]
+    - imp-directories.patch  # [win]
 
 build:
   number: 0
-  detect_binary_files_with_prefix: True [not win]
+  detect_binary_files_with_prefix: True  # [not win]
 
 requirements:
   build:
@@ -41,7 +41,7 @@ requirements:
     - {{ compiler('cxx') }}
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
-    - pkg-config [not win]
+    - pkg-config  # [not win]
     - swig
     - cmake
     - ninja
@@ -71,8 +71,8 @@ requirements:
     - libtau
     - gsl
     - cgal-cpp
-    - mpich [not win]
-    - msmpi [win]
+    - mpich  # [not win]
+    - msmpi  # [win]
 
   run:
     - python
@@ -86,8 +86,8 @@ requirements:
     - mpfr
     # No need to pin packages that define run_exports
     - libopencv
-    - mpich [not win]
-    - msmpi [win]
+    - mpich  # [not win]
+    - msmpi  # [win]
     - {{ pin_compatible('protobuf', max_pin='x.x') }}
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
