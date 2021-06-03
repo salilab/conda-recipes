@@ -41,7 +41,7 @@ if errorlevel 1 exit 1
 set PERCPPCOMP="-DIMP_PER_CPP_COMPILATION=cgal"
 
 :: Don't build the scratch module
-DISABLED=scratch
+set DISABLED="scratch"
 
 cmake -DUSE_PYTHON2=off ^
       -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
