@@ -88,6 +88,7 @@ requirements:
     - libopencv
     - mpich  # [not win]
     - msmpi  # [win]
+    - {{ pin_compatible('libprotobuf', max_pin='x.x') }}
     - {{ pin_compatible('protobuf', max_pin='x.x') }}
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
