@@ -120,6 +120,8 @@ test:
     - foxs --help
     - spb_test_score --help
     - cnmultifit --help
+    - imp_sampcon --help
+    - multifit --help
 
 about:
   home: https://integrativemodeling.org
