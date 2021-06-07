@@ -19,8 +19,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - python {{ python }}
-    - cmake [not osx]
-    - cmake-mac [osx]
+    - cmake
     - swig
   run:
     - python {{ python }}
