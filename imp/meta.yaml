@@ -57,6 +57,7 @@ requirements:
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
     # Help out the solver to get a working combination of protobuf and opencv
+    - libprotobuf
     - protobuf >=3.17.0  # [py > 27]
     - protobuf >=3.11.0  # [py == 27]
     # We only need the library; we don't use the OpenCV Python wrappers
@@ -70,7 +71,12 @@ requirements:
     - fftw >3.3.4
     - libtau
     - gsl
+    - libcblas
     - cgal-cpp
+    # CGAL code pulls in mpfr and gmp (on Linux/Mac) or mpir (on Windows)
+    - gmp   # [not win]
+    - mpir  # [win]
+    - mpfr
     - mpich  # [not win]
     - msmpi  # [win]
 
@@ -80,21 +86,10 @@ requirements:
     # RMF does not pin its exports, but we link against the C++ DSO
     - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
     - ihm  # [py > 27]
-    # CGAL code pulls in mpfr and gmp (on Linux/Mac) or mpir (on Windows)
-    - gmp   # [not win]
-    - mpir  # [win]
-    - mpfr
-    # No need to pin packages that define run_exports
-    - libopencv
-    - mpich  # [not win]
-    - msmpi  # [win]
-    - {{ pin_compatible('libprotobuf', max_pin='x.x') }}
-    - {{ pin_compatible('protobuf', max_pin='x.x') }}
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
-    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
-    - {{ pin_compatible('fftw', max_pin='x.x') }}
-    - {{ pin_compatible('gsl', max_pin='x.x') }}
     - {{ pin_compatible('libtau', max_pin='x.x') }}
+    - protobuf
+    - msmpi  # [win]
 
 test:
   # Need Eigen to test IMPConfig.cmake
