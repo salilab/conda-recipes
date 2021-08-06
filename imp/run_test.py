@@ -49,7 +49,7 @@ if sys.version_info[0] >= 3:
     p1 = IMP.Particle(m)
     d1 = IMP.core.XYZ.setup_particle(p1)
     p2 = IMP.Particle(m)
-    spheres = m._get_spheres_numpy()
+    spheres = m.get_spheres_numpy()
     # Should be a single xyz coordinate (spheres[0])
     # and a single (undef) radius (spheres[1])
     assert spheres[0].shape == (1,3)
