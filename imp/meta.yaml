@@ -60,9 +60,8 @@ requirements:
     - boost-cpp
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
-    # Help out the solver to get a working combination of protobuf and opencv
     - libprotobuf
-    - protobuf >=3.17.0  # [py > 27]
+    - protobuf # [py > 27]
     - protobuf >=3.11.0  # [py == 27]
     # We only need the library; we don't use the OpenCV Python wrappers
     - libopencv
