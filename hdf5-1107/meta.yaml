@@ -1,0 +1,39 @@
+package:
+  name: hdf5-1107 
+  version: "1.10.7"
+
+source:
+  fn: hdf5-1.10.7.tar.bz2
+  url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.7/src/hdf5-1.10.7.tar.bz2
+  sha256: 02018fac7e5efc496d9539a303cfb41924a5dadffab05df9812096e273efa55e
+
+requirements:
+  build:
+    - zlib
+
+  run:
+    - zlib
+
+about:
+  home: http://www.hdfgroup.org/HDF5/
+  license: BSD
+  summary: "HDF5 pinned at 1.10.7, for use with Modeller"
+  description: >
+    [HDF5](https://www.hdfgroup.org/HDF5/) is a data model, library, and file
+    format for storing and managing data. It supports an unlimited variety of
+    datatypes, and is designed for flexible and efficient I/O and for high
+    volume and complex data. HDF5 is portable and is extensible, allowing
+    applications to evolve in their use of HDF5. The HDF5 Technology suite
+    includes tools and applications for managing, manipulating, viewing,
+    and analyzing data in the HDF5 format.
+
+    There is already an HDF5 conda package; however, Modeller is built against
+    a specific version of HDF5 (and since Modeller is not open source, we
+    cannot recompile it). Rather than force everybody that wants to use
+    Modeller (and other packages that build on top of Modeller, such as MDT)
+    to downgrade their copy of HDF5, we provide a copy of the library pinned
+    at the version needed by Modeller. It installs in a non-standard location
+    so it won't conflict with the main HDF5 package.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
