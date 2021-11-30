@@ -1,6 +1,6 @@
 # This should be all the Python versions supported by conda
 python: 
-  - 2.7
+  - 2.7 [not win]
   - 3.5
   - 3.6
   - 3.7
