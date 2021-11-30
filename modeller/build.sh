@@ -49,7 +49,7 @@ if [ `uname -s` = "Darwin" ]; then
     done
     # Point to HDF5 libs in conda package
     for lib in hdf5_hl.100 hdf5.103; do
-      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1106/lib${lib}.dylib ${bin}
+      install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${PREFIX}/lib/hdf5-1107/lib${lib}.dylib ${bin}
     done
     # Point to glib/intl libs in conda package
     for lib in glib-2.0.0 intl.8; do
