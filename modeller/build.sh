@@ -23,12 +23,6 @@ if [ `uname -s` = "Darwin" ]; then
     (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
   fi
 
-  # On Apple Silicon remove old Intel-only binaries which might otherwise
-  # confuse install_name_tool
-  if [ `uname -m` = "arm64" ]; then
-    (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
-  fi
-
   # Move from .dmg location to Anaconda path
   mv Library/modeller* ${PREFIX}/lib
 
