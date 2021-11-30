@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HDF5_VERSION="1106"
-MODELLER_VERSION="10.0"
+HDF5_VERSION="1107"
+MODELLER_VERSION="10.2"
 
 PYINC=`echo ${PREFIX}/include/python${PY_VER}*`
 
@@ -10,6 +10,12 @@ cd build
 # Make sure we use the cmake-generated mdt_config.h, not the static version
 # (used by scons builds)
 rm ../src/mdt_config.h
+# When building with clang builds may fail with
+# ld: unknown option: -platform_version
+# To work around this, add
+# -DCMAKE_CXX_FLAGS="-mlinker-version=409"
+# See https://stackoverflow.com/questions/61103104/ld-unknown-option-platform-version-when-building-r-packages-from-source
+
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
       -DCMAKE_INSTALL_PYTHONDIR=${SP_DIR} \

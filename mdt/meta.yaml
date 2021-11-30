@@ -6,15 +6,17 @@ source:
   fn: mdt-5.5.tar.gz
   url: https://salilab.org/mdt/5.5/mdt-5.5.tar.gz
   sha256: 94b3dbd3050be14568ed613cc1d534e11ef37cb32a646116f35ef66cab5c187c
+  patches:
+    - mdt-hdf5-hl.patch
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 10.1.*
+    - modeller 10.2.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -24,7 +26,7 @@ requirements:
   run:
     - python {{ python }}
     - numpy
-    - modeller 10.1.*
+    - modeller 10.2.*
 
 about:
   home: https://salilab.org/mdt/

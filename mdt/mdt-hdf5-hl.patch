@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8ca8f27..017b45e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,7 +28,7 @@ if (NOT DEFINED CMAKE_INSTALL_PYTHONDIR)
+ endif()
+ 
+ find_package(HDF5 1.8 REQUIRED COMPONENTS C HL)
+-set(EXTRA_LIBS ${EXTRA_LIBS} ${HDF5_LIBRARIES})
++set(EXTRA_LIBS ${EXTRA_LIBS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+ include_directories(${HDF5_INCLUDE_DIRS})
+ 
+ find_package(GLIB REQUIRED)
