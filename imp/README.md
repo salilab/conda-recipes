@@ -22,6 +22,10 @@ and put in the home directory. Edit the `python:`, `python_impl:` and
 `numpy:` sections to only include the Python versions desired (we generally
 build for the two latest Python versions).
 
+If the conda-forge IMP package has any migrations applied
+(`imp-feedstock/.ci_support/migrations`) for example for new Python versions,
+you may need to manually apply those to the YAML file too.
+
 Build IMP with `conda build -c salilab imp`.
 
 ## Building for Python 2
