@@ -51,7 +51,7 @@ requirements:
     # by conda-forge; we don't want to unnecessarily restrict installation
     - numpy  # [py > 27]
     # RMF and IHM are only built for Python 3
-    - rmf  # [py > 27]
+    - rmf >=1.4  # [py > 27]
     - ihm  # [py > 27]
     - boost-cpp
     - hdf5
