@@ -87,6 +87,9 @@ requirements:
     - ihm  # [py > 27]
     - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
     - {{ pin_compatible('libtau', max_pin='x.x') }}
+    # We use pathlib which is part of the standard library in Python 3,
+    # but in a separate package in Python 2
+    - pathlib   # [py == 27]
     - protobuf
     - msmpi  # [win]
 
