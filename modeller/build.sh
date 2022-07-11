@@ -31,7 +31,7 @@ if [ `uname -s` = "Darwin" ]; then
   univ_exetype="mac10v4"
   if [ `uname -m` = "arm64" ]; then
     exetype="mac11arm64-gnu"
-    libs="saxs gcc_s.1.1 modeller.${SOVERSION}"
+    libs="saxs quadmath.0 modeller.${SOVERSION}"
   else
     libs="ifcore imf irc svml intlc saxs modeller.${SOVERSION}"
   fi
@@ -39,7 +39,14 @@ if [ `uname -s` = "Darwin" ]; then
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
   done
-  for bin in ${modtop}/bin/mod*_* ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
+  # Point py2_compat binary to bundled Python
+  for pyver in 2.6 2.7; do
+    install_name_tool -change \
+       /System/Library/Frameworks/Python.framework/Versions/${pyver}/Python \
+       ${modtop}/py2_compat/Python ${modtop}/py2_compat/mod*_*
+  done
+  for bin in ${modtop}/bin/mod*_* ${modtop}/py2_compat/mod*_* \
+      ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
     if [ `uname -m` = "arm64" ]; then
       lipo -extract arm64 -output ${bin}.arm64 ${bin} && mv ${bin}.arm64 ${bin}
     fi
@@ -66,7 +73,7 @@ if [ `uname -s` = "Darwin" ]; then
   # Have modXXX find the _modeller.so built against the system Python
   mkdir ${modtop}/syspython
   mv ${modtop}/lib/mac10v4/_modeller.so ${modtop}/syspython
-  perl -pi -e "s#^exec#export PYTHONPATH=${modtop}/syspython\\nexec#" ${modtop}/bin/mod${PKG_VERSION}
+  perl -pi -e "s,^# run the,export PYTHONPATH=${modtop}/syspython\\n\\n# run the," ${modtop}/bin/mod${PKG_VERSION}
 
   # Apply patches
   (cd ${modtop} && patch -p1 < ${RECIPE_DIR}/search-path.patch || exit 1) || exit 1
@@ -114,7 +121,7 @@ perl -pi -e "s/^exetype =.*$/exetype = \"${exetype}\"/" \
 cd ${modtop}/src/swig
 swig -python -keyword -nodefaultctor -nodefaultdtor -noproxy modeller.i
 python setup.py build
-cp build/lib.*${PY_VER}/_modeller*.so ${SP_DIR}
+cp build/lib.*/_modeller*.so ${SP_DIR}
 rm -rf build modeller_wrap.c
 
 # Make config.py

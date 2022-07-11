@@ -2,11 +2,11 @@ Index: setup.py
 ===================================================================
 --- orig/src/swig/setup.py	(revision 10999)
 +++ new/src/swig/setup.py	(working copy)
-@@ -28,6 +28,7 @@
+@@ -36,6 +36,7 @@
                  include_dirs=['../include', '../include/%s' % exetype] + \
                               glib['include_dirs'],
                  libraries=['modeller'] + glib['libraries'],
 +                extra_link_args=["-headerpad_max_install_names"],
-                 library_dirs=['../../lib/%s' % exetype] \
+                 library_dirs=['../../lib/%s' % exetype]
                               + glib.get('library_dirs', []))
  
