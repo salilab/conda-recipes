@@ -51,11 +51,9 @@ if [ `uname -s` = "Darwin" ]; then
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
   done
   # Point py2_compat binary to bundled Python
-  for pyver in 2.6 2.7; do
-    install_name_tool -change \
-       /System/Library/Frameworks/Python.framework/Versions/${pyver}/Python \
+  install_name_tool -change \
+       /Library/${PKG_NAME}-${PKG_VERSION}/py2_compat/Python \
        ${modtop}/py2_compat/Python ${modtop}/py2_compat/mod*_*
-  done
   for bin in ${modtop}/bin/mod*_* ${modtop}/py2_compat/mod*_* \
       ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
     for lib in ${libs}; do
