@@ -18,9 +18,11 @@ if [ `uname -s` = "Darwin" ]; then
   rm -f Library/modeller-*/lib/mac10v4/libpcre.*.dylib
 
   # On Apple Silicon remove old Intel-only binaries which might otherwise
-  # confuse install_name_tool
+  # confuse install_name_tool (or vice versa)
   if [ `uname -m` = "arm64" ]; then
     (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
+  else
+    (cd Library/modeller-*/lib/mac10v4 && rm -f libquadmath*)
   fi
 
   # Move from .dmg location to Anaconda path
@@ -35,6 +37,15 @@ if [ `uname -s` = "Darwin" ]; then
   else
     libs="ifcore imf irc svml intlc saxs modeller.${SOVERSION}"
   fi
+  for bin in ${modtop}/bin/mod*_* ${modtop}/py2_compat/mod*_* \
+      ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
+    # Get only the native arch for Modeller dylibs
+    if [ `uname -m` = "arm64" ]; then
+      lipo -extract arm64 -output ${bin}.arm64 ${bin} && mv ${bin}.arm64 ${bin}
+    else
+      lipo -extract i386 -extract x86_64 -output ${bin}.x64 ${bin} && mv ${bin}.x64 ${bin}
+    fi
+  done
   for lib in ${libs}; do
     install_name_tool -id ${modtop}/lib/${univ_exetype}/lib${lib}.dylib \
                           ${modtop}/lib/${univ_exetype}/lib${lib}.dylib
@@ -47,10 +58,6 @@ if [ `uname -s` = "Darwin" ]; then
   done
   for bin in ${modtop}/bin/mod*_* ${modtop}/py2_compat/mod*_* \
       ${modtop}/lib/${univ_exetype}/*.{dylib,so}; do
-    if [ `uname -m` = "arm64" ]; then
-      lipo -extract arm64 -output ${bin}.arm64 ${bin} && mv ${bin}.arm64 ${bin}
-    fi
-
     for lib in ${libs}; do
       install_name_tool -change /Library/${PKG_NAME}-${PKG_VERSION}/lib/${univ_exetype}/lib${lib}.dylib ${modtop}/lib/${univ_exetype}/lib${lib}.dylib ${bin}
     done
