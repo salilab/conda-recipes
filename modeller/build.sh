@@ -10,10 +10,11 @@ if [ `uname -s` = "Darwin" ]; then
   tar -xzf *.pax.gz
   mkdir -p ${PREFIX}/lib
 
-  # Remove bundled HDF5/glib/intl libraries; use those in the conda
+  # Remove bundled HDF5/glib/intl/iconv libraries; use those in the conda
   # packages instead
   rm -f Library/modeller-*/lib/mac10v4/libhdf5*
   rm -f Library/modeller-*/lib/mac10v4/libglib-*.dylib
+  rm -f Library/modeller-*/lib/mac10v4/libiconv.*.dylib
   rm -f Library/modeller-*/lib/mac10v4/libintl.*.dylib
   rm -f Library/modeller-*/lib/mac10v4/libpcre*.dylib
 
@@ -24,7 +25,7 @@ if [ `uname -s` = "Darwin" ]; then
   # On Apple Silicon remove old Intel-only binaries which might otherwise
   # confuse install_name_tool (or vice versa)
   if [ `uname -m` = "arm64" ]; then
-    (cd Library/modeller-*/lib/mac10v4 && rm -f libiconv* libifcore* libimf* libintlc* libirc* libsvml*)
+    (cd Library/modeller-*/lib/mac10v4 && rm -f libifcore* libimf* libintlc* libirc* libsvml*)
   else
     (cd Library/modeller-*/lib/mac10v4 && rm -f libquadmath*)
   fi
