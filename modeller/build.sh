@@ -17,6 +17,10 @@ if [ `uname -s` = "Darwin" ]; then
   rm -f Library/modeller-*/lib/mac10v4/libintl.*.dylib
   rm -f Library/modeller-*/lib/mac10v4/libpcre*.dylib
 
+  # Remove libmodeller symlink, so that install_name_tool doesn't replace it
+  # with a copy (restore it later on)
+  rm -f Library/modeller-*/lib/mac10v4/libmodeller.dylib
+
   # On Apple Silicon remove old Intel-only binaries which might otherwise
   # confuse install_name_tool (or vice versa)
   if [ `uname -m` = "arm64" ]; then
@@ -74,6 +78,9 @@ if [ `uname -s` = "Darwin" ]; then
       mv ${bin} ${bin}.new && codesign_allocate -r -i ${bin}.new -o ${bin} && rm -f ${bin}.new || exit 1
     fi
   done
+
+  # Put back libmodeller symlink
+  (cd ${modtop}/lib/${univ_exetype} && ln -sf libmodeller.*.dylib libmodeller.dylib)
 
   # Have modXXX find the _modeller.so built against the system Python
   mkdir ${modtop}/syspython
