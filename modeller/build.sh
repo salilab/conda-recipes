@@ -83,6 +83,9 @@ if [ `uname -s` = "Darwin" ]; then
   # Put back libmodeller symlink
   (cd ${modtop}/lib/${univ_exetype} && ln -sf libmodeller.*.dylib libmodeller.dylib)
 
+  # Make sure we don't still link against libs under /Library
+  otool -L ${modtop}/lib/${univ_exetype}/*.dylib|grep /Library && (echo "dylib paths under /Library found"; false)
+
   # Have modXXX find the _modeller.so built against the system Python
   mkdir ${modtop}/syspython
   mv ${modtop}/lib/mac10v4/_modeller.so ${modtop}/syspython

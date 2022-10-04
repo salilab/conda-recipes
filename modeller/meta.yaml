@@ -21,7 +21,7 @@ source:
     - search-path.patch [not osx]
 
 build:
-  number: 1
+  number: 2
   rpaths: [linux]
     - lib/modeller-10.3/lib/x86_64-intel8/ [linux64]
     - lib/modeller-10.3/lib/i386-intel8/ [linux32]
