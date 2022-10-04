@@ -15,7 +15,7 @@ if [ `uname -s` = "Darwin" ]; then
   rm -f Library/modeller-*/lib/mac10v4/libhdf5*
   rm -f Library/modeller-*/lib/mac10v4/libglib-*.dylib
   rm -f Library/modeller-*/lib/mac10v4/libintl.*.dylib
-  rm -f Library/modeller-*/lib/mac10v4/libpcre.*.dylib
+  rm -f Library/modeller-*/lib/mac10v4/libpcre*.dylib
 
   # On Apple Silicon remove old Intel-only binaries which might otherwise
   # confuse install_name_tool (or vice versa)
