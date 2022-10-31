@@ -39,7 +39,7 @@ requirements:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - pkg-config   # [not win]
-    - swig ==4.0.1
+    - swig
     - cmake
     - ninja
   host:
