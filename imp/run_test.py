@@ -11,6 +11,12 @@ import os
 import re
 import sys
 
+# Basic check of SWIG wrappers (this may segfault if packages like numpy are
+# not pinned correctly):
+m = IMP.Model()
+p = IMP.Particle(m)
+pi = p.get_index()
+
 # Make sure that install prefix is set correctly
 d = IMP.test.get_data_path('linux.words')
 fh = open(d)
