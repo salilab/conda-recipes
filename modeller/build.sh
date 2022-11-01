@@ -37,7 +37,7 @@ if [ `uname -s` = "Darwin" ]; then
   exetype="mac10v4-intel64"
   univ_exetype="mac10v4"
   if [ `uname -m` = "arm64" ]; then
-    exetype="mac11arm64-gnu"
+    exetype="mac12arm64-gnu"
     libs="saxs quadmath.0 modeller.${SOVERSION}"
   else
     libs="ifcore imf irc svml intlc saxs modeller.${SOVERSION}"
