@@ -10,13 +10,13 @@ source:
     - mdt-hdf5-hl.patch
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 10.2.*
+    - modeller 10.4.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -25,8 +25,8 @@ requirements:
     - swig
   run:
     - python {{ python }}
-    - numpy
-    - modeller 10.2.*
+    - {{ pin_compatible('numpy') }}
+    - modeller 10.4.*
 
 about:
   home: https://salilab.org/mdt/
