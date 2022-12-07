@@ -39,7 +39,7 @@ conda-forge no longer supports Python 2, but does still retain the packages.
 To build with these, first delete `$HOME/conda_build_config.yaml`, then
 build IMP with `conda mambabuild -c salilab --python=2.7 imp`.
 
-We only build Python 2.7 packages for Mac and Linux. On Windows it requires
+We only build Python 2.7 packages for Linux. On Windows it requires
 using an ancient C++ compiler which fails to build big chunks of the IMP code,
 and few or no users use the Python 2 Windows package anyway.
 
@@ -63,20 +63,6 @@ and wrap this open call to catch `FileNotFoundError` and return `lines=[]`.
 
 We build for Linux in the docker/podman `centos:7` container.
 First run `yum install patch` to get RPMs not in the base image.
-
-## Windows
-
-We build for Windows in a
-[Windows 10 virtual machine](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/)
-together with
-[Build Tools for Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/).
-See [this blog post](https://beenje.github.io/blog/posts/how-to-setup-a-windows-vm-to-build-conda-packages/)
-for more details.
-
-Some versions of miniforge fail to install the menu entries needed to activate
-conda. Work around this by running from a command prompt
-
-    C:\Windows\System32\cmd.exe /K C:\Users\IEUser\miniforge\Scripts\activate.bat C:\Users\IEUser\miniforge
 
 ## Nightly builds
 
