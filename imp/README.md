@@ -26,18 +26,18 @@ If the conda-forge IMP package has any migrations applied
 (`imp-feedstock/.ci_support/migrations`) for example for new Python versions,
 you may need to manually apply those to the YAML file too.
 
-Build IMP with `conda build -c salilab imp`.
+Build IMP with `conda mambabuild -c salilab imp`.
+
+Note that `mambabuild` is like `build` but it uses `mamba` rather than `conda`
+to solve dependencies. This is a **lot** faster and also seems to do a better
+job of avoiding broken dependencies. (It doesn't appear to work properly on
+Windows yet though.)
 
 ## Building for Python 2
 
 conda-forge no longer supports Python 2, but does still retain the packages.
 To build with these, first delete `$HOME/conda_build_config.yaml`, then
 build IMP with `conda mambabuild -c salilab --python=2.7 imp`.
-
-Note that `mambabuild` is like `build` but it uses `mamba` rather than `conda`
-to solve dependencies. This is a **lot** faster and also seems to do a better
-job of avoiding broken dependencies. (It doesn't appear to work properly on
-Windows yet though.)
 
 We only build Python 2.7 packages for Mac and Linux. On Windows it requires
 using an ancient C++ compiler which fails to build big chunks of the IMP code,
