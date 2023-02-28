@@ -61,6 +61,7 @@ requirements:
     # (otherwise IMP pulls in a newer Boost, which is incompatible)
     - matplotlib   # [py == 27]
     - eigen
+    - cereal
     # Force usage of conda-forge fftw, not salilab
     - fftw >3.3.4
     - libtau
