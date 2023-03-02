@@ -64,7 +64,7 @@ if sys.version_info[0] >= 3:
 def test_cmake_file(cmake):
     """Make sure that all paths in the cmake file exist."""
     vars = {}
-    r = re.compile('set\s*\(\s*(\S+(DIR|PATH|LIBRARIES))\s*(\S+)',
+    r = re.compile('set\s*\(\s*(\S+(DIR|DIRS|PATH|LIBRARIES))\s+(\S+)',
                    flags=re.IGNORECASE)
     with open(cmake) as fh:
         for line in fh:
