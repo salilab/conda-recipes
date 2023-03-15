@@ -16,6 +16,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - python {{ python }}
+    - numpy 1.20.*
     - swig
     - cmake
     - boost 1.73.0.*
