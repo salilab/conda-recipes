@@ -4,7 +4,9 @@ package:
 
 source:
   fn: dssp-3.0.0.tgz
-  url: ftp://ftp.cmbi.ru.nl/pub/software/dssp/dssp-3.0.0.tgz
+# url: ftp://ftp.cmbi.ru.nl/pub/software/dssp/dssp-3.0.0.tgz
+# Original site appears to be down - use our mirror:
+  url: https://salilab.org/dssp/dssp-3.0.0.tgz
   sha256: 25d39a2107767b622a59dd9fa790112c1516564b8518fc6ac0fab081d5ac3ab0
   patches:
     - dssp-boost-tr1.patch
