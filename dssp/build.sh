@@ -13,9 +13,11 @@ echo "BOOST_LIB_DIR=${BUILD_PREFIX}/lib" >> make.config
 # Use conda-provided cxx
 sed -i -e 's/^CXX/#CXX/' makefile
 
-# clang++ won't find std::tuple unless in C++11 mode
+# clang++ won't find std::tuple unless in C++11 mode;
+# don't compile with anything newer than C++11 since we use the removed
+# std::unary_function
 if [ `uname -s` = "Darwin" ]; then
-  CFLAGS="-std=c++11 ${CFLAGS}"
+  CFLAGS="-std=c++11 -Wno-enum-constexpr-conversion ${CFLAGS}"
 fi
 
 make -j4 install
