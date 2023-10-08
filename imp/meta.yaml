@@ -48,7 +48,8 @@ requirements:
     # RMF and IHM are only built for Python 3
     - rmf >=1.4  # [py > 27]
     - ihm  # [py > 27]
-    - boost-cpp
+    - libboost-devel  # [py > 27]
+    - boost-cpp # [py == 27]
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
     - libprotobuf
@@ -81,7 +82,7 @@ requirements:
     # RMF does not pin its exports, but we link against the C++ DSO
     - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
     - ihm  # [py > 27]
-    - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
+    - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }} # [py == 27]
     - {{ pin_compatible('libtau', max_pin='x.x') }}
     # We use pathlib which is part of the standard library in Python 3,
     # but in a separate package in Python 2
