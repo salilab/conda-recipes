@@ -11,10 +11,10 @@ source:
   sha256: ed08fcbbee1db095a2c243028b567569398e03dabfe2ad459dca1a5298bb8ac9 [linux]
   fn: modeller10.4-32bit.zip [win32]
   url: https://salilab.org/modeller/10.4/modeller10.4-32bit.zip [win32]
-  sha256: 333a882a820c429dcafeda6e6e3d41149deb361fd69bd3d758bbaf481fc3de79 [win32]
+  sha256: 60ecde4dfcc060134e43adbd02123ee3eeff2d04fcd00f91929d857b0219a4ee [win32]
   fn: modeller10.4-64bit.zip [win64]
   url: https://salilab.org/modeller/10.4/modeller10.4-64bit.zip [win64]
-  sha256: 17b3f668c54abdb0fdb444171867db1bc813ed1c7793cffc8dc9f4eed27da7eb [win64]
+  sha256: 0e08744f1814fb21466403a4fcca52cb5819645bd596cbcd43d1174ddcd458d4 [win64]
   patches:
     # On Mac pax.gz isn't extracted before patching, so we have to apply
     # this patch ourselves in build.sh
