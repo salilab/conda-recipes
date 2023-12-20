@@ -1,6 +1,6 @@
 # To make a nightly build package, set version to date (e.g. '20210413')
 # and nightly_hash to the corresponding git hash (e.g. '182d9373c4')
-{% set version = "2.19.0" %}
+{% set version = "2.20.0" %}
 {% set nightly_hash = '' %}
 
 
@@ -16,7 +16,7 @@ source:
 {% if nightly_hash == '' %}
   fn: imp-{{ version }}.tar.gz
   url: https://integrativemodeling.org/{{ version }}/download/imp-{{ version }}.tar.gz
-  sha256: 75529285e6d94ffe5b4246097d70e223d984947193226b39313c1a85bc011ddd
+  sha256: 471974494730005d6ab3e04ffbc0dc15381a4ae04a2c96afa59d04ec8435c82a
 {% else %}
   fn: imp-{{ version }}.develop.{{ nightly_hash }}.tar.gz
   url: https://integrativemodeling.org/nightly/download/imp-{{ version }}.develop.{{ nightly_hash }}.tar.gz
