@@ -1,10 +1,10 @@
 package:
   name: rmf
-  version: "1.0"
+  version: "1.6"
 
 source:
-  fn: rmf.zip
-  url: https://salilab.org/~ben/rmf-1.0.zip
+  fn: rmf-1.6.zip
+  url: https://salilab.org/~ben/rmf-1.6.zip
 
 build:
   number: 0
@@ -16,11 +16,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - python {{ python }}
-    - numpy 1.20.*
+    - numpy 1.23.*
     - swig
     - cmake
-    - boost 1.73.0.*
-    - hdf5 1.12.0.*
+    - boost 1.82.0.*
+    - hdf5 1.12.1.*
 
   run:
     - python {{ python }}
