@@ -1,0 +1,34 @@
+diff --git a/modules/kinematics/include/RRT.h b/modules/kinematics/include/RRT.h
+index 8dec5d14db..2608189510 100644
+--- a/modules/kinematics/include/RRT.h
++++ b/modules/kinematics/include/RRT.h
+@@ -107,7 +107,9 @@ class IMPKINEMATICSEXPORT RRT : public IMP::Sampler {
+     unsigned int number_of_collisions_;
+   };
+ 
++#ifndef SWIG
+   friend std::ostream& operator<<(std::ostream& s, const Parameters& p);
++#endif
+ 
+  public:
+   //! Constructor
+diff --git a/modules/saxs/include/FormFactorTable.h b/modules/saxs/include/FormFactorTable.h
+index 76bf6e6662..abbcd9b9bf 100644
+--- a/modules/saxs/include/FormFactorTable.h
++++ b/modules/saxs/include/FormFactorTable.h
+@@ -212,6 +212,7 @@ class IMPSAXSEXPORT FormFactorTable {
+     double excl_vol_;
+   };
+ 
++#ifndef SWIG
+   // read entry
+   friend std::istream& operator>>(
+       std::istream& s, AtomFactorCoefficients& atom_factor_coefficients);
+@@ -219,6 +220,7 @@ class IMPSAXSEXPORT FormFactorTable {
+   // write entry
+   friend std::ostream& operator<<(
+       std::ostream& s, const AtomFactorCoefficients& atom_factor_coefficients);
++#endif
+ 
+  private:
+   int read_form_factor_table(const std::string& table_name);

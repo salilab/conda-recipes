@@ -23,6 +23,7 @@ source:
 {% endif %}
   patches:
     - imp-directories.patch  # [win]
+    - imp-swig-nested-classes.patch
 
 build:
   number: 0
