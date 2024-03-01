@@ -8,15 +8,16 @@ source:
   sha256: 94b3dbd3050be14568ed613cc1d534e11ef37cb32a646116f35ef66cab5c187c
   patches:
     - mdt-hdf5-hl.patch
+    - mdt-cmake.patch
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 10.4.*
+    - modeller 10.5.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -26,7 +27,7 @@ requirements:
   run:
     - python {{ python }}
     - {{ pin_compatible('numpy') }}
-    - modeller 10.4.*
+    - modeller 10.5.*
 
 about:
   home: https://salilab.org/mdt/
