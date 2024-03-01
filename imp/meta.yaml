@@ -51,6 +51,7 @@ requirements:
     - ihm  # [py > 27]
     - libboost-devel  # [py > 27]
     - boost-cpp # [py == 27]
+    - libxcrypt # [py == 27]
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
     - libprotobuf
