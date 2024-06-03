@@ -33,16 +33,6 @@ to solve dependencies. This is a **lot** faster and also seems to do a better
 job of avoiding broken dependencies. (It doesn't appear to work properly on
 Windows yet though.)
 
-## Building for Python 2
-
-conda-forge no longer supports Python 2, but does still retain the packages.
-To build with these, first delete `$HOME/conda_build_config.yaml`, then
-build IMP with `conda mambabuild -c salilab --python=2.7 imp`.
-
-We only build Python 2.7 packages for Linux. On Windows it requires
-using an ancient C++ compiler which fails to build big chunks of the IMP code,
-and few or no users use the Python 2 Windows package anyway.
-
 ## Mac
 
 We build for Mac in a Vagrant macOS 10.13 image.

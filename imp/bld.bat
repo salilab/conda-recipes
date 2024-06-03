@@ -48,8 +48,7 @@ set DISABLED="scratch"
 :: one, link against kernel32 instead (which pretty much everything links
 :: against, so this doesn't introduce an extra dependency)
 
-cmake -DUSE_PYTHON2=off ^
-      -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
+cmake -DCMAKE_PREFIX_PATH="%PREFIX:\=/%;%PREFIX:\=/%\Library" ^
       -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=%DISABLED% ^
       -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX:\=/%" ^
       -DCMAKE_INSTALL_LIBDIR=bin ^

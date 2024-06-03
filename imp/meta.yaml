@@ -45,23 +45,15 @@ requirements:
   host:
     - python
     - numpy
-    # RMF and IHM are only built for Python 3
-    - rmf >=1.4  # [py > 27]
-    - ihm  # [py > 27]
-    - libboost-devel  # [py > 27]
-    - boost-cpp # [py == 27]
-    - libxcrypt # [py == 27]
+    - rmf >=1.4
+    - ihm
+    - libboost-devel
     - hdf5
     # We need both the libprotobuf library and the Python wrappers
     - libprotobuf
-    - protobuf # [py > 27]
-    - protobuf >=3.11.0  # [py == 27]
+    - protobuf
     # We only need the library; we don't use the OpenCV Python wrappers
     - libopencv
-    # We don't need matplotlib to build IMP, but we include it here so that
-    # the resulting IMP package can be installed alongside matplotlib
-    # (otherwise IMP pulls in a newer Boost, which is incompatible)
-    - matplotlib   # [py == 27]
     - eigen
     - cereal
     # Force usage of conda-forge fftw, not salilab
@@ -81,13 +73,9 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     # RMF does not pin its exports, but we link against the C++ DSO
-    - {{ pin_compatible('rmf', max_pin='x.x') }}  # [py > 27]
-    - ihm  # [py > 27]
-    - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }} # [py == 27]
+    - {{ pin_compatible('rmf', max_pin='x.x') }}
+    - ihm
     - {{ pin_compatible('libtau', max_pin='x.x') }}
-    # We use pathlib which is part of the standard library in Python 3,
-    # but in a separate package in Python 2
-    - pathlib   # [py == 27]
     - protobuf
     - msmpi  # [win]
 
