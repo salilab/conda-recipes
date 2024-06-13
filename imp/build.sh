@@ -10,14 +10,15 @@ export LANG=en_US.UTF-8
 if [ "${PY3K}" = "1" ]; then
   USE_PYTHON2=off
   SYS_IHM_RMF=on
+  # Don't build the scratch module
+  DISABLED=scratch
 else
   USE_PYTHON2=on
   # ihm and RMF aren't built for Python 2, so use those bundled with IMP instead
   SYS_IHM_RMF=off
+  # Don't build the scratch module or nestor (which doesn't work with Python 2)
+  DISABLED=scratch:nestor
 fi
-
-# Don't build the scratch module
-DISABLED=scratch
 
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=${DISABLED} \
