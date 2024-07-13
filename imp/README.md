@@ -52,7 +52,12 @@ and wrap this open call to catch `FileNotFoundError` and return `lines=[]`.
 ## Linux
 
 We build for Linux in the docker/podman `centos:7` container.
-First run `yum install patch` to get RPMs not in the base image.
+Run `yum install patch` to get RPMs not in the base image.
+In order for this to work now that CentOS 7 is EOL, first edit
+/etc/yum.repos.d/CentOS-Base.repo and replace mirrorlist with
+baseurl=https://vault.centos.org/7.9.2009/SUBDIR/$basearch/ in the [base],
+[updates] and [extras] sections where SUBDIR is os, updates, extras
+respectively.
 
 ## Nightly builds
 
