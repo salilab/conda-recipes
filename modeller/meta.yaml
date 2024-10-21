@@ -36,7 +36,8 @@ requirements:
     - setuptools
     - pkg-config [unix]
     - hdf5-1107 [unix]
-    - glib >=2.68.1 [osx]
+    - glib >=2.76.0 [osx and arm64]
+    - glib >=2.68.1 [osx and not arm64]
     - glib 2.31.2 [linux]
   run:
     - python

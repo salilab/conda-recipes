@@ -18,13 +18,6 @@ if [ `uname -s` = "Darwin" ]; then
   rm -f Library/modeller-*/lib/mac10v4/libintl.*.dylib
   rm -f Library/modeller-*/lib/mac10v4/libpcre*.dylib
 
-  # On Apple Silicon replace libmodeller with one built against an older glib,
-  # so that we don't try to reference the g_string_free_and_steal symbol which
-  # is not in the older glib that conda provides
-  if [ `uname -m` = "arm64" ]; then
-    cp ${RECIPE_DIR}/mac12arm64.glib268/libmodeller.${SOVERSION}.dylib Library/modeller-*/lib/mac10v4/
-  fi
-
   # Remove libmodeller symlink, so that install_name_tool doesn't replace it
   # with a copy (restore it later on)
   rm -f Library/modeller-*/lib/mac10v4/libmodeller.dylib
