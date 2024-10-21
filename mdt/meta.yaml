@@ -11,13 +11,13 @@ source:
     - mdt-cmake.patch
 
 build:
-  number: 7
+  number: 8
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 10.5.*
+    - modeller 10.6.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -27,7 +27,7 @@ requirements:
   run:
     - python {{ python }}
     - {{ pin_compatible('numpy') }}
-    - modeller 10.5.*
+    - modeller 10.6.*
 
 about:
   home: https://salilab.org/mdt/
