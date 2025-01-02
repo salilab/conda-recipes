@@ -45,7 +45,7 @@ requirements:
   host:
     - python
     - numpy
-    - rmf >=1.4
+    - rmf >=1.7
     - ihm
     - libboost-devel
     - hdf5
