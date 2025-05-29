@@ -1,0 +1,42 @@
+package:
+  name: hdf5-1146 
+  version: "1.14.6"
+
+source:
+  fn: hdf5-1.14.6.tar.bz2
+  url: https://support.hdfgroup.org/releases/hdf5/v1_14/v1_14_6/downloads/hdf5-1.14.6.tar.gz
+  sha256: e4defbac30f50d64e1556374aa49e574417c9e72c6b1de7a4ff88c4b1bea6e9b
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - zlib
+
+  run:
+    - zlib
+
+about:
+  home: http://www.hdfgroup.org/HDF5/
+  license: BSD
+  summary: "HDF5 pinned at 1.14.6, for use with Modeller"
+  description: >
+    [HDF5](https://www.hdfgroup.org/HDF5/) is a data model, library, and file
+    format for storing and managing data. It supports an unlimited variety of
+    datatypes, and is designed for flexible and efficient I/O and for high
+    volume and complex data. HDF5 is portable and is extensible, allowing
+    applications to evolve in their use of HDF5. The HDF5 Technology suite
+    includes tools and applications for managing, manipulating, viewing,
+    and analyzing data in the HDF5 format.
+
+    There is already an HDF5 conda package; however, Modeller is built against
+    a specific version of HDF5 (and since Modeller is not open source, we
+    cannot recompile it). Rather than force everybody that wants to use
+    Modeller (and other packages that build on top of Modeller, such as MDT)
+    to downgrade their copy of HDF5, we provide a copy of the library pinned
+    at the version needed by Modeller. It installs in a non-standard location
+    so it won't conflict with the main HDF5 package.
+
+    If you have problems with this conda package, please
+    [open an issue](https://github.com/salilab/conda-recipes/issues).
