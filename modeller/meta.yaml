@@ -1,20 +1,20 @@
 package:
   name: modeller
-  version: "10.6"
+  version: "10.7"
 
 source:
-  fn: modeller-10.6-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/10.6/modeller-10.6-mac.pax.gz [osx]
-  sha256: a29ead80ae3bef09e6532079eb228c2798cf44a49a067b31e826065c2e79761d [osx]
-  fn: modeller-10.6.tar.gz [linux]
-  url: https://salilab.org/modeller/10.6/modeller-10.6.tar.gz [linux]
-  sha256: 7b76d2323d63b935e760380f45365411a7efc67d4f8d175c9c0eebc6eeb377e2 [linux]
-  fn: modeller10.6-32bit.zip [win32]
-  url: https://salilab.org/modeller/10.6/modeller10.6-32bit.zip [win32]
-  sha256: afe400f8715315411280a2f353044b530d4d525cc33b59f0e931fe17ba3e5cb3 [win32]
-  fn: modeller10.6-64bit.zip [win64]
-  url: https://salilab.org/modeller/10.6/modeller10.6-64bit.zip [win64]
-  sha256: 36d598a0e859c0f542552d3abf3360f37fdacbdf9e03074a5c2e5788949b28d3 [win64]
+  fn: modeller-10.7-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/10.7/modeller-10.7-mac.pax.gz [osx]
+  sha256: 8c34e0d776411a0c6b6cf05af53b3757f38728c9550bc7c3fd3f64a8f3d21510 [osx]
+  fn: modeller-10.7.tar.gz [linux]
+  url: https://salilab.org/modeller/10.7/modeller-10.7.tar.gz [linux]
+  sha256: b81ffee26841ef96470341889fa4af560f968cf35ef990d95480c7eb7a5b5c8f [linux]
+  fn: modeller10.7-32bit.zip [win32]
+  url: https://salilab.org/modeller/10.7/modeller10.7-32bit.zip [win32]
+  sha256: 8e40edc204f1f4258ae3b61d7a97126e66016c5ca9d45c8e7eb2246687f00fea [win32]
+  fn: modeller10.7-64bit.zip [win64]
+  url: https://salilab.org/modeller/10.7/modeller10.7-64bit.zip [win64]
+  sha256: 70974d6a39dd3accf9aa2dba47fac0226e9f57a5df4740a056b41e00c84c1be5 [win64]
   patches:
     # On Mac pax.gz isn't extracted before patching, so we have to apply
     # this patch ourselves in build.sh
@@ -23,9 +23,9 @@ source:
 build:
   number: 0
   rpaths: [linux]
-    - lib/modeller-10.6/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-10.6/lib/i386-intel8/ [linux32]
-    - lib/hdf5-1107 [linux]
+    - lib/modeller-10.7/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-10.7/lib/i386-intel8/ [linux32]
+    - lib/hdf5-1146 [linux]
 
 requirements:
   build:
@@ -35,20 +35,20 @@ requirements:
     - python
     - setuptools
     - pkg-config [unix]
-    - hdf5-1107 [unix]
+    - hdf5-1146 [unix]
     - glib >=2.76.0 [osx and arm64]
     - glib >=2.68.1 [osx and not arm64]
     - glib 2.31.2 [linux]
   run:
     - python
-    - hdf5-1107 [unix]
+    - hdf5-1146 [unix]
 
 test:
   requires:
     - pkg-config [unix]
   # Command line tool
   commands:
-    - mod10.6 --cflags --libs
+    - mod10.7 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:

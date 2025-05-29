@@ -5,7 +5,7 @@ if "%ARCH%" == "64" (
   set EXETYPE=i386-w32
 )
 
-set SOVERSION=13
+set SOVERSION=14
 
 :: temporarily rename to avoid conflict with python%PY_VER%\_modeller.pyd
 move lib\%EXETYPE%\python2.3\_modeller.pyd lib\%EXETYPE%\python2.3\_modeller23.pyd
@@ -19,13 +19,14 @@ if errorlevel 1 exit 1
 :: named _modeller.pyd extensions cannot all be in the same directory,
 :: and if we put the DLLs in the PATH, they are visible globally and
 :: could conflict.
+:: Note that we don't bundle the VC runtime DLL (vcruntime140.dll) as that
+:: should already be pulled in by conda by {{ compiler('c') }} that we use
+:: to build the SWIG Python extension.
 if "%ARCH%" == "32" (
-  :: 32-bit uses msvcr100, so must pull that in (not in Anaconda)
-  python "%RECIPE_DIR%\install_bins.py" lib\%EXETYPE% "%PREFIX%" iconv.dll intl.dll hdf5.dll hdf5_hl.dll libglib-2.0-0.dll zlib1.dll libifcoremd.dll libmmd.dll --norename msvcr100.dll libmodeller%SOVERSION%.dll libsaxs.dll mod%PKG_VERSION%.exe python%PY_VER%\_modeller.pyd python2.3\_modeller23.pyd
+  python "%RECIPE_DIR%\install_bins.py" lib\%EXETYPE% "%PREFIX%" charset.dll pcre.dll iconv.dll intl.dll hdf5.dll hdf5_hl.dll glib-2.0-0.dll zlib1.dll libifcoremd.dll libmmd.dll --norename libmodeller%SOVERSION%.dll libsaxs.dll mod%PKG_VERSION%.exe python%PY_VER%\_modeller.pyd python2.3\_modeller23.pyd
   if errorlevel 1 exit 1
 ) else (
-  :: 64-bit uses msvcr110, so must pull that in (not in Anaconda)
-  python "%RECIPE_DIR%\install_bins.py" lib\%EXETYPE% "%PREFIX%" libintl-8.dll hdf5.dll hdf5_hl.dll libglib-2.0-0.dll zlib1.dll libifcoremd.dll libmmd.dll --norename msvcr110.dll libmodeller%SOVERSION%.dll libsaxs.dll mod%PKG_VERSION%.exe python%PY_VER%\_modeller.pyd python2.3\_modeller23.pyd
+  python "%RECIPE_DIR%\install_bins.py" lib\%EXETYPE% "%PREFIX%" charset.dll pcre.dll iconv.dll intl-8.dll hdf5.dll hdf5_hl.dll glib-2.0-0.dll zlib1.dll libifcoremd.dll libmmd.dll --norename libmodeller%SOVERSION%.dll libsaxs.dll mod%PKG_VERSION%.exe python%PY_VER%\_modeller.pyd python2.3\_modeller23.pyd
   if errorlevel 1 exit 1
 )
 
