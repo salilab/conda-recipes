@@ -12,6 +12,10 @@ export LDFLAGS="-L$PREFIX/lib"
 # matches the run-time version (library). So to be on the safe side we hide
 # the libraries too.)
 
+# Disable float16 support since older llvm is missing the __truncxfhf2
+# function needed to convert long double to float16, causing HDF5 tests
+# to fail; see also https://github.com/HDFGroup/hdf5/issues/4310
+
 ./configure --prefix=$PREFIX \
       --includedir=$PREFIX/include/hdf5-1146 \
       --libdir=$PREFIX/lib/hdf5-1146 \
@@ -21,7 +25,8 @@ export LDFLAGS="-L$PREFIX/lib"
       --with-szlib=no \
       --enable-filters=all \
       --enable-static=yes \
-      --enable-shared=yes
+      --enable-shared=yes \
+      --disable-nonstandard-feature-float16
 
 make -j4
 make install
