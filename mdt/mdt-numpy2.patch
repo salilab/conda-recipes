@@ -1,0 +1,30 @@
+From 7053e44ab0e0087a45db1d87646823fa4afc885c Mon Sep 17 00:00:00 2001
+From: Ben Webb <ben@salilab.org>
+Date: Fri, 11 Oct 2024 21:14:39 -0700
+Subject: [PATCH] Fix to work with numpy 2
+
+In numpy 2 we can no longer assign directly
+to PyArray_BASE; use the PyArray_SetBaseObject
+API function instead.
+---
+ pyext/mdt.i | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/pyext/mdt.i b/pyext/mdt.i
+index 18203295105ada8b243b37f6984e20263d5d836a..097e3f3c209e1b181b8bc0dfc9edfd0b95c731e6 100644
+--- a/pyext/mdt.i
++++ b/pyext/mdt.i
+@@ -131,7 +131,12 @@ PyObject *get_numpy(struct mdt *mdt, PyObject *mdt_pyobj)
+   /* Ensure that the mdt.Table is kept around as long as the numpy object
+      is alive. */
+   Py_INCREF(mdt_pyobj);
+-  PyArray_BASE(obj) = mdt_pyobj;
++  if (PyArray_SetBaseObject((PyArrayObject *)obj, mdt_pyobj) != 0) {
++    Py_DECREF(mdt_pyobj);
++    Py_DECREF(obj);
++    g_free(dims);
++    return NULL;
++  }
+ 
+   g_free(dims);
+   return obj;

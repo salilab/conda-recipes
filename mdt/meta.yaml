@@ -9,15 +9,17 @@ source:
   patches:
     - mdt-hdf5-hl.patch
     - mdt-cmake.patch
+    - mdt-python313.patch
+    - mdt-numpy2.patch
 
 build:
-  number: 8
+  number: 9
 
 requirements:
   host:
     - python {{ python }}
     - numpy
-    - modeller 10.6.*
+    - modeller 10.7.*
     - glib
   build:
     - {{ compiler('c') }}
@@ -27,7 +29,7 @@ requirements:
   run:
     - python {{ python }}
     - {{ pin_compatible('numpy') }}
-    - modeller 10.6.*
+    - modeller 10.7.*
 
 about:
   home: https://salilab.org/mdt/
