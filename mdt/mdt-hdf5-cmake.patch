@@ -1,0 +1,22 @@
+commit 8a06ec7b0f4f2214fecf018b815ed269362fa628 (HEAD -> refs/heads/develop, refs/remotes/origin/develop, refs/remotes/origin/HEAD)
+Author: Ben Webb <ben@salilab.org>
+Date:   Mon Jun 2 15:41:52 2025 -0700
+
+    Drop HDF5 version specifier
+    
+    Current homebrew cmake fails to find HDF5 libraries
+    if we request a specific version.
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 31b04b5..fe3a9ac 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -27,7 +27,7 @@ if (NOT DEFINED CMAKE_INSTALL_PYTHONDIR)
+   set(CMAKE_INSTALL_PYTHONDIR "${CMAKE_INSTALL_LIBDIR}/python/site_packages")
+ endif()
+ 
+-find_package(HDF5 1.8 REQUIRED COMPONENTS C HL)
++find_package(HDF5 REQUIRED COMPONENTS C HL)
+ set(EXTRA_LIBS ${EXTRA_LIBS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+ include_directories(${HDF5_INCLUDE_DIRS})
+ 
