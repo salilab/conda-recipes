@@ -22,7 +22,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - python {{ python }}
-    - cmake
+    - cmake [not osx or not arm64]
+    - cmake ==3.12.2 [osx and not arm64]
+    - xz ==5.2.5 [osx and not arm64]
     - swig
   run:
     - python {{ python }}
