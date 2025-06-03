@@ -23,8 +23,10 @@ requirements:
     - {{ compiler('c') }}
     - python {{ python }}
     - cmake [not osx or not arm64]
-    - cmake ==3.12.2 [osx and not arm64]
-    - xz ==5.2.5 [osx and not arm64]
+    - cmake ==3.12.2 [osx and not arm64 and py<311]
+    - xz ==5.2.5 [osx and not arm64 and py<311]
+    - cmake ==3.19.6 [osx and not arm64 and py>=311]
+    - xz ==5.4.6 [osx and not arm64 and py>=311]
     - swig
   run:
     - python {{ python }}
