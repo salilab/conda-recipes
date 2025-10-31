@@ -18,8 +18,8 @@ environment.
 ## Building for Python 3
 
 Download `conda_build_config.yaml` from the [conda-forge-pinning-feedstock](https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/master/recipe/conda_build_config.yaml)
-and put in the home directory. Edit the `python:`, `python_impl:` and
-`numpy:` sections to only include the Python versions desired (we generally
+and put in the home directory. Edit the `python:` and `is_python_min:` and
+sections to only include the Python versions desired (we generally
 build for the two latest Python versions).
 
 If the conda-forge IMP package has any migrations applied
