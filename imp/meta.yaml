@@ -68,7 +68,9 @@ requirements:
     - mpfr
     - mpich  # [not win]
     - msmpi  # [win]
-
+    # We use SWIG classes from the rmf package, so we must ensure we're
+    # using the same version of the SWIG runtime
+    - swig-abi
   run:
     - python
     - {{ pin_compatible('numpy') }}
