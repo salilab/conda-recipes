@@ -38,7 +38,8 @@ requirements:
     - hdf5-1146 [unix]
     - glib >=2.76.0 [osx and arm64]
     - glib >=2.68.1 [osx and not arm64]
-    - glib 2.31.2 [linux]
+    - glib 2.31.2 [linux and not aarch64]
+    - glib 2.69.1 [linux and aarch64]
   run:
     - python
     - hdf5-1146 [unix]

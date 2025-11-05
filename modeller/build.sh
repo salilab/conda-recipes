@@ -97,7 +97,9 @@ if [ `uname -s` = "Darwin" ]; then
   # Add extra padding to the Python extension so that install_name_tool works
   (cd ${modtop} && patch -p1 < ${RECIPE_DIR}/swig-mac.patch || exit 1) || exit 1
 else
-  if [ "${ARCH}" = "64" ]; then
+  if [ `uname -m` = "aarch64" ]; then
+    exetype="armv8-gnu"
+  elif [ "${ARCH}" = "64" ]; then
     exetype="x86_64-intel8"
   else
     exetype="i386-intel8"
@@ -117,7 +119,11 @@ else
 
   # Bundle glib so we don't need it as a runtime dependency (since it pulls in
   # gettext which might interfere with the system copy)
-  cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+  if [ "${exetype}" = "armv8-gnu" ]; then
+    cp ${PREFIX}/lib/{libpcre.so.1,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+  else
+    cp ${PREFIX}/lib/{libintl.so.8,libglib-2.0.so.0} ${modtop}/lib/${exetype}/
+  fi
 
   # Remove bundled HDF5; use the conda package instead
   rm -f ${modtop}/lib/${exetype}/*hdf5*
