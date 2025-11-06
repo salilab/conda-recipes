@@ -1,20 +1,20 @@
 package:
   name: modeller
-  version: "10.7"
+  version: "10.8"
 
 source:
-  fn: modeller-10.7-mac.pax.gz [osx]
-  url: https://salilab.org/modeller/10.7/modeller-10.7-mac.pax.gz [osx]
-  sha256: 8c34e0d776411a0c6b6cf05af53b3757f38728c9550bc7c3fd3f64a8f3d21510 [osx]
-  fn: modeller-10.7.tar.gz [linux]
-  url: https://salilab.org/modeller/10.7/modeller-10.7.tar.gz [linux]
-  sha256: b81ffee26841ef96470341889fa4af560f968cf35ef990d95480c7eb7a5b5c8f [linux]
-  fn: modeller10.7-32bit.zip [win32]
-  url: https://salilab.org/modeller/10.7/modeller10.7-32bit.zip [win32]
-  sha256: 8e40edc204f1f4258ae3b61d7a97126e66016c5ca9d45c8e7eb2246687f00fea [win32]
-  fn: modeller10.7-64bit.zip [win64]
-  url: https://salilab.org/modeller/10.7/modeller10.7-64bit.zip [win64]
-  sha256: 70974d6a39dd3accf9aa2dba47fac0226e9f57a5df4740a056b41e00c84c1be5 [win64]
+  fn: modeller-10.8-mac.pax.gz [osx]
+  url: https://salilab.org/modeller/10.8/modeller-10.8-mac.pax.gz [osx]
+  sha256: 76272ed9485f5b6bc07826cef686ab3abed0ec81bc8f0a3e622ecdcae74d780b [osx]
+  fn: modeller-10.8.tar.gz [linux]
+  url: https://salilab.org/modeller/10.8/modeller-10.8.tar.gz [linux]
+  sha256: dde99dcad8e2945d48f9d87ea21addfad90f61ade14bbd7a7ad38b72530c5927 [linux]
+  fn: modeller10.8-32bit.zip [win32]
+  url: https://salilab.org/modeller/10.8/modeller10.8-32bit.zip [win32]
+  sha256: 693059c736714e78ee7efd92770cbcbf729d024aa6e9a731c5d0c5d1562f5ae1 [win32]
+  fn: modeller10.8-64bit.zip [win64]
+  url: https://salilab.org/modeller/10.8/modeller10.8-64bit.zip [win64]
+  sha256: a2d41859781ead560a95d1fdd8d6cff768b2b8a0fc3a42a55f6c6224f59e1317 [win64]
   patches:
     # On Mac pax.gz isn't extracted before patching, so we have to apply
     # this patch ourselves in build.sh
@@ -23,8 +23,8 @@ source:
 build:
   number: 0
   rpaths: [linux]
-    - lib/modeller-10.7/lib/x86_64-intel8/ [linux64]
-    - lib/modeller-10.7/lib/i386-intel8/ [linux32]
+    - lib/modeller-10.8/lib/x86_64-intel8/ [linux64]
+    - lib/modeller-10.8/lib/i386-intel8/ [linux32]
     - lib/hdf5-1146 [linux]
 
 requirements:
@@ -49,7 +49,7 @@ test:
     - pkg-config [unix]
   # Command line tool
   commands:
-    - mod10.7 --cflags --libs
+    - mod10.8 --cflags --libs
     - pkg-config --cflags --libs modeller [unix]
   # Python imports (cannot test without license key)
   #imports:
