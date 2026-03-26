@@ -12,7 +12,7 @@ distribution on each build platform. We find that conda often gets confused
 (generates incorrect dependencies, particularly when switching between Python
 2 and Python 3) so we generally install a fresh copy for each build.
 
-Use `conda install boa` to get conda-build and mamba installed in the conda
+Use `conda install conda-build` to get conda-build installed in the conda
 environment.
 
 ## Building for Python 3
@@ -26,12 +26,7 @@ If the conda-forge IMP package has any migrations applied
 (`imp-feedstock/.ci_support/migrations`) for example for new Python versions,
 you may need to manually apply those to the YAML file too.
 
-Build IMP with `conda mambabuild -c salilab imp`.
-
-Note that `mambabuild` is like `build` but it uses `mamba` rather than `conda`
-to solve dependencies. This is a **lot** faster and also seems to do a better
-job of avoiding broken dependencies. (It doesn't appear to work properly on
-Windows yet though.)
+Build IMP with `conda build -c salilab imp`.
 
 ## Mac
 
