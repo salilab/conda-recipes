@@ -26,11 +26,12 @@ If the conda-forge IMP package has any migrations applied
 (`imp-feedstock/.ci_support/migrations`) for example for new Python versions,
 you may need to manually apply those to the YAML file too.
 
-**Note as of 7/27/2026**: Do not apply the `absl_grpc_proto_26q2` migration
+**Note as of 8/17/2026**: Do not apply the `absl_grpc_proto_26q2` migration
 as that [doesn't work](https://github.com/conda-forge/jaxlib-feedstock/pull/349)
 with jaxlib, which would cause tests of `imp_coding_tutorial` and `pmi`
 (and any other application that wants to install both the `imp` and `jax`
-conda packages) to fail.
+conda packages) to fail. Unfortunately that migration has been closed out, so
+reverse the [patch](https://github.com/conda-forge/conda-forge-pinning-feedstock/commit/f712349caa.diff)
 
 Build IMP with `conda build -c salilab imp`.
 
