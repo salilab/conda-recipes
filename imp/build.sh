@@ -16,6 +16,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DIMP_DISABLED_MODULES=${DISABLED} \
       -DIMP_USE_SYSTEM_IHM=on \
       ${CMAKE_ARGS} \
       -DPython3_FIND_FRAMEWORK=NEVER \
+      -DIMP_PY_LIMITED_API=${IMP_PY_LIMITED_API} \
       ${EXTRA_CMAKE_FLAGS} ..
 
 # Make sure all modules we asked for were found (this is tested for
