@@ -23,15 +23,10 @@ source:
 {% endif %}
   patches:
     - imp-directories.patch  # [win]
-    - imp-limited-api.patch
 
 build:
   number: 0
-  python_version_independent: true       # [is_abi3]
   detect_binary_files_with_prefix: True  # [not win]
-  skip: True                             # [is_abi3 and not is_python_min]
-  script_env:
-    - IMP_PY_LIMITED_API={{ python_min }} # [is_abi3]
 
 requirements:
   build:
@@ -49,7 +44,6 @@ requirements:
     - ninja
   host:
     - python
-    - python-abi3  # [is_abi3]
     - numpy
     - rmf >=1.7
     - ihm
@@ -91,7 +85,6 @@ test:
   # Need Eigen to test IMPConfig.cmake
   requires:
     - eigen
-    - abi3audit  # [is_abi3]
   # Python imports
   imports:
     - IMP
@@ -114,9 +107,6 @@ test:
     - cnmultifit --help
     - imp_sampcon --help
     - multifit --help
-    - abi3audit $SP_DIR/_IMP_*.so -s -v --assume-minimum-abi3 {{ python_min }}   # [unix and is_abi3]
-    - abi3audit %SP_DIR%/_IMP_*.pyd -s -v --assume-minimum-abi3 {{ python_min }} # [win and is_abi3]
-
 
 about:
   home: https://integrativemodeling.org
